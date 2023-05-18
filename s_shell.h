@@ -11,3 +11,15 @@
 #define EXIT -3
 
 
+/* hsh_control1 */
+
+int created_shell(shell_args *, char **);
+int find_root(shell_args *);
+void created_fork(shell_args *);
+void search_execcmd(shell_args *);
+
+/* hsh_control */
+int interactiv(shell_args *);
+int delimiter(char, char *);
+
+#endif /* S_SHELL_H */
