@@ -17,7 +17,7 @@ int created_shell(shell_args *element, char **a_v)
 		clear_shell_args(element);
 		if (interactiv(element))
 		{
-			_puts("# ");
+			puts("# ");
 		}
 
 		list_buffer(BUF_FLUSH);
@@ -31,7 +31,7 @@ int created_shell(shell_args *element, char **a_v)
 		}
 		else if (interactiv(element))
 		{
-			_putchar('\n');
+			putchar('\n');
 		}
 		empty_shell_args(element, 0);
 	}
