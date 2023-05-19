@@ -131,7 +131,10 @@ void list_buffer(char);
 
 /* obtain_line */
 ssize_t pro_in(shell_args *);
-
+ssize_t read_into_buffer(sh_args *content, char *buf, size_t *i);
+ssize_t get_input_from_stdin(sh_args *content, char **buf, size_t *len);
+int read_input_line(sh_args *, char **, size_t *);
+void handle_sigInt(int);
 
 
 /* obtain_hist */
@@ -169,5 +172,19 @@ int cpy_alias(shell_args *);
 
 /* strings_ctrl1 */
 int string_cmp(char *, char *);
+
+/* l_list handler */
+ssize_t find_node_index(l_list *, l_list *);
+l_list *get_first_node_with_prefix(l_list *, char *, char);
+size_t list_len(const l_list *);
+size_t prnt_l_list_with_index(const l_list *);
+char **conv_list_to_strings(l_list *);
+
+/* l_list_handler */
+size_t prnt_l_list_str(const l_list *);
+l_list *new_end_node(l_list **, const char *, int);
+int delete_node_index(l_list **, unsigned int);
+void free_l_list(l_list **);
+
 
 #endif /* S_SHELL_H */
