@@ -1,17 +1,32 @@
 #ifndef S_SHELL_H
 #define S_SHELL_H
 
-/* lists of all prototype variable names */
+
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/wait.h>
 #include <string.h>
 #include <sys/stat.h>
-
+#include <errno.h>
+#include <fcntl.h>
+#include <signal.h>
+#include <sys/types.h>
 
 #define END_OF_FILE -2
 #define EXIT -3
+
+#define BUF_FLUSH -1
+#define WRITE_BUF_SIZE 1024
+#define READ_BUF_SIZE 1024
+
+#define CONVERT_UNSIGNED 	2
+#define CONVERT_LOWERCASE	1
+
+
+extern char **surround;
+
+/* lists of all prototype variable names */
 
 /**
  * struct the_sh_args - this is where the arguments and also
@@ -34,6 +49,7 @@
  * @past: previous cmd linked list
  * @a_alias: the aliases linked list
  */
+
 
 typedef struct the_sh_args
 {
@@ -58,6 +74,15 @@ typedef struct the_sh_args
 } shell_args;
 
 
+typedef struct l_list
+{
+	int num;
+	char *string;
+	struct l_list *link;
+} l_list;
+
+
+
 /* hsh_control1 */
 
 int find_root(shell_args *);
@@ -73,18 +98,22 @@ int created_shell(shell_args *element, char **a_v);
 /*env_ctrls */
 int *getenv_cpy(shell_args *, const char *);
 
+
 /* parse_ctrls */
 int file_exec(shell_args *, char *);
 char *search_execpath(shell_args, char *, char *);
 
+
 /* err_ctrl */
 void error_msg_print(shell_args *, char *);
+
 
 /* obtain_info */
 
 void clear_shell_args(shell_args *);
 void enter_shell_args(shell_args *, char **);
 void empty_shell_args(shell_agrs *, int);
+
 
 /* buff_ctrl */
 void list_buffer(char);
