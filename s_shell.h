@@ -30,6 +30,20 @@ extern char **surround;
 /* lists of all prototype variable names */
 
 /**
+ * struct l_list - reps singly linked list
+ * @string: my string
+ * @num: field num
+ * @lnk: points to the next node
+ */
+
+typedef struct l_list
+{
+        int num;
+        char *string;
+        struct l_list *lnk;
+} l_list;
+
+/**
  * struct the_shell_args - this is where the arguments and also
  * the variables for the shell are stored
  * @rd_fd: this is the descriptor of file to be read
@@ -73,22 +87,6 @@ typedef struct the_shell_args
 	l_list *past;
 	l_list *a_alias;	
 } shell_args;
-
-/**
- * struct l_list - reps singly linked list
- * @string: my string
- * @num: field num
- * @lnk: points to the next node
- */
-
-typedef struct l_list
-{
-	int num;
-	char *string;
-	struct l_list *lnk;
-} l_list;
-
-
 
 /* hsh_control1 */
 
