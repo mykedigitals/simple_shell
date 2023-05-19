@@ -49,8 +49,10 @@ int created_shell(shell_args *element, char **a_v)
 	{
 		clear_shell_args(element);
 		if (interactiv(element))
+		{
 			_puts("# ");
-		
+		}
+
 		list_buffer(BUF_FLUSH);
 		in_result = pro_in(element);
 		if (in_result != -1)
@@ -61,7 +63,9 @@ int created_shell(shell_args *element, char **a_v)
 				search_execcmd(element);
 		}
 		else if (interactiv(element))
+		{
 			_putchar('\n');
+		}
 		empty_shell_args(element, 0);
 	}
 
