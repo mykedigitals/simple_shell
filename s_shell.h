@@ -89,13 +89,47 @@ void empty_shell_args(shell_agrs *, int);
 /* buff_ctrl */
 void list_buffer(char);
 
+
+
 /* obtain_line */
 ssize_t pro_in(shell_args *);
+
+
 
 /* obtain_hist */
 int list_shell_hist(shell_args *element);
 
+
+
+/* history_l */
+int print_cmd_hist(shell_args *);
+
+
+
 /* obtain_env */
 char **obtain_env(shell_args *);
+
+
+
+/* exit_fnct */
+int s_shell_exit(shell_args *);
+int cmd_help(shell_args *);
+int cd_dir(shell_args *);
+
+
+/* env_ctrl */
+int env_cpy(shell_args *);
+int env_apply(shell_args *);
+int env_unapply(shell_args *);
+
+
+
+/* ali_as */
+int cpy_alias(shell_args *);
+
+
+
+/* strings_ctrl1 */
+int string_cmp(char *, char *);
 
 #endif /* S_SHELL_H */
