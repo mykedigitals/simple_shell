@@ -112,7 +112,7 @@ void error_msg_print(shell_args *, char *);
 
 void clear_shell_args(shell_args *);
 void enter_shell_args(shell_args *, char **);
-void empty_shell_args(shell_agrs *, int);
+void empty_shell_args(shell_args *, int);
 
 
 /* buff_ctrl */
