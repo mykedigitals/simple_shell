@@ -29,7 +29,7 @@ extern char **surround;
 /* lists of all prototype variable names */
 
 /**
- * struct the_sh_args - this is where the arguments and also
+ * struct the_shell_args - this is where the arguments and also
  * the variables for the shell are stored
  * @rd_fd: this is the descriptor of file to be read
  * @history_c: total number of command in history of the shell
@@ -42,7 +42,7 @@ extern char **surround;
  * @change_surr: this flag indicates if an env variable has changed
  * @arg: cmd that we want to execute
  * @fname: this is the file name for a particular cmd
- * @argv: an argument's array of pointer for cmd
+ * @a_v: an argument's array of pointer for cmd
  * @surround: env variables linked list
  * @buff_cmd: buffer pointer that stores cmd chain
  * @surr: this is the env array of pointers
@@ -51,7 +51,7 @@ extern char **surround;
  */
 
 
-typedef struct the_sh_args
+typedef struct the_shell_args
 {
 	unsigned int count_ln;
 	int rd_fd;
@@ -65,7 +65,7 @@ typedef struct the_sh_args
 	int change_surr;
 	char *arg;
 	char *fname;
-	char **argv;
+	char **a_v;
 	char **surround;
 	char **buff_cmd;
 	l_list *surr;
@@ -73,12 +73,18 @@ typedef struct the_sh_args
 	l_list *a_alias;	
 } shell_args;
 
+/**
+ * struct l_list - reps singly linked list
+ * @string: my string
+ * @num: field num
+ * @lnk: points to the next node
+ */
 
 typedef struct l_list
 {
 	int num;
 	char *string;
-	struct l_list *link;
+	struct l_list *lnk;
 } l_list;
 
 
