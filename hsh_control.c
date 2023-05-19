@@ -1,4 +1,5 @@
 #include "s_shell.h"
+#include <stdio.h>
 
 
 /**
