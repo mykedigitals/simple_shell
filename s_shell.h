@@ -1,8 +1,8 @@
 #ifndef S_SHELL_H
 #define S_SHELL_H
 
-#include <unistd.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <limits.h>
 #include <errno.h>
 #include <stdlib.h>
@@ -14,13 +14,17 @@
 #include <signal.h>
 #include <sys/types.h>
 
-#define END_OF_FILE -2
-#define EXIT -3
 
+/* if I use system getline() */
+#define DO_GETLINE 0
+#define DO_STRTOK 0
+
+/* buffer sizes for rd_wr */
 #define BUF_FLUSH -1
 #define WRITE_BUF_SIZE 1024
 #define READ_BUF_SIZE 1024
 
+/* No Converters */
 #define CONVERT_UNSIGNED 	2
 #define CONVERT_LOWERCASE	1
 
