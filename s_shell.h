@@ -1,9 +1,9 @@
 #ifndef S_SHELL_H
 #define S_SHELL_H
 
+#include <stdio.h>
 #include <limits.h>
 #include <errno.h>
-#include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/wait.h>
