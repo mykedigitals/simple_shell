@@ -60,13 +60,42 @@ typedef struct the_sh_args
 
 /* hsh_control1 */
 
-int created_shell(shell_args *, char **);
 int find_root(shell_args *);
 void created_fork(shell_args *);
 void search_execcmd(shell_args *);
 
 /* hsh_control */
-int interactiv(shell_args *);
-int delimiter(char, char *);
+int interactiv(shell_args *element);
+int delimiter(char val, char *d_delim);
+int created_shell(shell_args *element, char **a_v);
+
+
+/*env_ctrls */
+int *getenv_cpy(shell_args *, const char *);
+
+/* parse_ctrls */
+int file_exec(shell_args *, char *);
+char *search_execpath(shell_args, char *, char *);
+
+/* err_ctrl */
+void error_msg_print(shell_args *, char *);
+
+/* obtain_info */
+
+void clear_shell_args(shell_args *);
+void enter_shell_args(shell_args *, char **);
+void empty_shell_args(shell_agrs *, int);
+
+/* buff_ctrl */
+void list_buffer(char);
+
+/* obtain_line */
+ssize_t pro_in(shell_args *);
+
+/* obtain_hist */
+int list_shell_hist(shell_args *element);
+
+/* obtain_env */
+char **obtain_env(shell_args *);
 
 #endif /* S_SHELL_H */

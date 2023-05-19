@@ -10,14 +10,14 @@
 
 void search_execcmd(shell_args *element)
 {
-	char *path = NULL;
+	char *way_path = NULL;
 	int index, un_delimiter_ct;
 
-	element->path = element->a_v[0];
-	if (element->linect_flg == 1)
+	element->way_path = element->argv[0];
+	if (element->flag_count_ln == 1)
 	{
-		element->line_ct++;
-		element->linect_flg = 0;
+		element->count_ln++;
+		element->flag_count_ln = 0;
 	}
 	for (index = 0, un_delimiter_ct = 0; element->arg[index]; index++)
 		if (!delimiter(element->arg[index], "\t\n"))
@@ -25,14 +25,60 @@ void search_execcmd(shell_args *element)
 	if (!un_delimiter_ct)
 		return;
 
-	path = search_execpath(element, getenv_cpy(element, "PATH="), content-> a_v[0]);
-	if (path)
+	way_path = search_execpath(element, getenv_cpy(element, "PATH="), content-> argv[0]);
+	if (way_path)
 	{
-		element->path = path;
+		element->way_path = way_path;
 		created_fork(element);
 	}
 	else
 	{
-		if ((interactive(element) || getenv-clone(element, "PATH=") 
-					|| element->a_v[0][0] =='/') && file_exec(element, element->a_v[0]))custom_fork(element);
-		else if (*(element->arg) != '\n'
+		if ((interactiv(element) || getenv_cpy(element, "PATH=")
+					|| element->argv[0][0] == '/') && file_exec(element, element->argv[0]))created_fork(element);
+		else if (*(element->arg) != '\n')
+		{
+			element->for_status = 127;
+			error_msg_print(element, "not found\n");
+		}
+	}
+}
+
+
+/**
+ * created_fork - to create a new process a system call is forked
+ * @element: parameter for the struct
+ * Return: nothing to return
+ */
+
+void created_fork(shell_args *element)
+{
+	pid_t pid_pikin;
+
+	pid_pikin = fork();
+	if (pid_pikin == -1)
+	{
+		perror("Error");
+		return;
+	}
+	if (pid_pikin == 0)
+	{
+		if (execve(content->way_path, element->argv, obtain_env(element)) == -1)
+		{
+			empty_shell_args(element, 1);
+			if (errno == EACCES)
+				exit(126);
+			exit(1);
+		}
+	}
+	else
+	{
+		wait(&(element->for_status));
+		if (WIFEXITED(element->for_status))
+		{
+			element->for_status = WEXITSTATUS(element->for_status);
+			if(element->for_status == 126)
+				error_msg_print(element, "Permission denied\n");
+		}
+	}
+
+}
