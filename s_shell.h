@@ -131,9 +131,9 @@ void list_buffer(char);
 
 /* obtain_line */
 ssize_t pro_in(shell_args *);
-ssize_t read_into_buffer(sh_args *content, char *buf, size_t *i);
-ssize_t get_input_from_stdin(sh_args *content, char **buf, size_t *len);
-int read_input_line(sh_args *, char **, size_t *);
+ssize_t read_into_buffer(shell_args *content, char *buf, size_t *i);
+ssize_t get_input_from_stdin(shell_args *content, char **buf, size_t *len);
+int read_input_line(shell_args *, char **, size_t *);
 void handle_sigInt(int);
 
 
