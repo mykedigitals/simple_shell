@@ -24,12 +24,33 @@
 #define WRITE_BUF_SIZE 1024
 #define READ_BUF_SIZE 1024
 
+
+#define INFO_INIT \
+{NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
+		0, 0, 0}
+
+
 /* No Converters */
 #define CONVERT_UNSIGNED 	2
 #define CONVERT_LOWERCASE	1
 
+/**
+ * struct builtin - contains a builtin string and related function
+ * @type: the builtin command flag
+ * @func: the function
+ */
 
-extern char **surround;
+typedef struct builtin
+{
+	char *type;
+	int (*func)(sh_args *);
+} builtin_table;
+
+
+
+extern char **environ;
+
+
 
 /* lists of all prototype variable names */
 
@@ -40,12 +61,16 @@ extern char **surround;
  * @lnk: points to the next node
  */
 
+
+
 typedef struct l_list
 {
-        int num;
-        char *string;
-        struct l_list *lnk;
+	int num;
+	char *str;
+	struct l_list *link;
 } l_list;
+
+
 
 /**
  * struct the_shell_args - this is where the arguments and also
@@ -70,121 +95,42 @@ typedef struct l_list
  */
 
 
-typedef struct the_shell_args
+typedef struct shell_args
 {
-	unsigned int count_ln;
-	int rd_fd;
-	int history_c;
-	char *way_path;
-	int num_error;
-	int for_status;
-	int argc;
-	int type_buff_cmd;
-	int flag_count_ln;
-	int change_surr;
 	char *arg;
+	char **argv;
+	char *path;
+	int argc;
+	unsigned int line_count;
+	int err_num;
+	int linecount_flag;
 	char *fname;
-	char **a_v;
-	char **surround;
-	char **buff_cmd;
-	l_list *surr;
-	l_list *past;
-	l_list *a_alias;	
-} shell_args;
-
-/* hsh_control1 */
-
-int find_root(shell_args *);
-void created_fork(shell_args *);
-void search_execcmd(shell_args *);
-
-/* hsh_control */
-int interactiv(shell_args *element);
-int delimiter(char val, char *d_delim);
-int created_shell(shell_args *element, char **a_v);
-
-
-/*env_ctrls */
-int *getenv_cpy(shell_args *, const char *);
-
-
-/* parse_ctrls */
-int file_exec(shell_args *, char *);
-char *search_execpath(shell_args, char *, char *);
-
-
-/* err_ctrl */
-void error_msg_print(shell_args *, char *);
-
-
-/* obtain_info */
-
-void clear_shell_args(shell_args *);
-void enter_shell_args(shell_args *, char **);
-void empty_shell_args(shell_args *, int);
-
-
-/* buff_ctrl */
-void list_buffer(char);
+	l_list *env;
+	l_list *history;
+	l__list *alias;
+	char **environ;
+	int env_changed;
+	int status;
+	char **cmd_buf;
+	int cmd_buf_type;
+	int readfd;
+	int histcount;
+} sh_args;
 
 
 
-/* obtain_line */
-ssize_t pro_in(shell_args *);
-ssize_t read_into_buffer(sh_args *content, char *buf, size_t *i);
-ssize_t get_input_from_stdin(sh_args *content, char **buf, size_t *len);
-int read_input_line(sh_args *, char **, size_t *);
-void handle_sigInt(int);
+
+/* hsh_handlers */
+int custom_shell(sh_args *, char **);
+void findAndExecCommand(sh_args *);
+void custom_fork(sh_args *);
+int search_and_exec_builtin(sh_args *);
 
 
-/* obtain_hist */
-int list_shell_hist(shell_args *element);
+/* hsh_handlers1 */
+int is_interactive(sh_args *);
+int is_delimiter(char, char *);
 
-
-
-/* history_l */
-int print_cmd_hist(shell_args *);
-
-
-
-/* obtain_env */
-char **obtain_env(shell_args *);
-
-
-
-/* exit_fnct */
-int s_shell_exit(shell_args *);
-int cmd_help(shell_args *);
-int cd_dir(shell_args *);
-
-
-/* env_ctrl */
-int env_cpy(shell_args *);
-int env_apply(shell_args *);
-int env_unapply(shell_args *);
-
-
-
-/* ali_as */
-int cpy_alias(shell_args *);
-
-
-
-/* strings_ctrl1 */
-int string_cmp(char *, char *);
-
-/* l_list handler */
-ssize_t find_node_index(l_list *, l_list *);
-l_list *get_first_node_with_prefix(l_list *, char *, char);
-size_t list_len(const l_list *);
-size_t prnt_l_list_with_index(const l_list *);
-char **conv_list_to_strings(l_list *);
-
-/* l_list_handler */
-size_t prnt_l_list_str(const l_list *);
-l_list *new_end_node(l_list **, const char *, int);
-int delete_node_index(l_list **, unsigned int);
-void free_l_list(l_list **);
 
 
 #endif /* S_SHELL_H */
