@@ -1,86 +1,86 @@
 #include "shell.h"
 
 /**
- * custom_shell - custom shell implementation
- * that reads user input, interprets and executes commands
- * @content: struct parameter
- * @arg_v: argument vector
+ * created_sh - implementation of created_sh to read
+ * a user's input, interpret and execute it
+ * @element: structure parameter
+ * @a_v: argument vector
  * Return: 0 (success), 1 (error)
  */
 
-int custom_shell(sh_args *content, char **arg_v)
+int created_sh(shell_args *element, char **a_v)
 {
-	ssize_t input_result = 0;
-	int builtin_result = 0;
+	ssize_t details_rslt = 0;
+	int root_rslt = 0;
 
-	while (input_result != -1 && builtin_result != -2)
+	while (details_rslt != -1 && root_rslt != -2)
 	{
-		reset_sh_args(content);
-		if (is_interactive(content))
+		correct_sh_args(element);
+		if (reciprocal(element))
 			_puts("$ ");
-		write_with_buffer(BUF_FLUSH);
-		input_result = process_input(content);
-		if (input_result != -1)
+		create_in_space(BUFF_FLUSH);
+		details_rslt = pro_details(element);
+		if (details_rslt != -1)
 		{
-			fill_sh_args(content, arg_v);
-			builtin_result = search_and_exec_builtin(content);
-			if (builtin_result == -1)
-				findAndExecCommand(content);
+			enter_shell_args(element, a_v);
+			root_rslt = find_root(element);
+			if (root_rslt == -1)
+				search_execcmd(element);
 		}
-		else if (is_interactive(content))
+		else if (reciprocal(element))
 			_putchar('\n');
-		free_sh_args(content, 0);
+		empty_shell_args(element, 0);
 	}
-	write_shel_histry(content);
-	free_sh_args(content, 1);
-	if (!is_interactive(content) && content->status)
-		exit(content->status);
-	if (builtin_result == -2)
+	create_shel_record(element);
+	empty_shell_args(element, 1);
+	if (!reciprocal(element) && element->status)
+		exit(element->status);
+	if (root_rslt == -2)
 	{
-		if (content->err_num == -1)
-			exit(content->status);
-		exit(content->err_num);
+		if (element->err_num == -1)
+			exit(element->status);
+		exit(element->err_num);
 	}
-	return (builtin_result);
+	return (root_rslt);
 }
 
 /**
- * custom_fork - forks a system call to create a new process
- * @content: struct parameter
+ * createdfork - forks a system call to create a new process
+ * @element: struct parameter
  *
  * Return: nil
  */
 
-void custom_fork(sh_args *content)
+void createdfork(shell_args *element)
 {
 	pid_t child_pid;
 	
 	child_pid = fork();
 	if (child_pid == -1)
 	{
-		/* TODO: PUT ERROR FUNCTION */
+		/* ACTION: PUT ERROR FUNCTION */
 		perror("Error:");
 		return;
 	}
 	if (child_pid == 0)
 	{
-		if (execve(content->path, content->argv, environ_getter(content)) == -1)
+		if (execve(element->path, element->argv, env_seeker(element)) == -1)
 		{
-			free_sh_args(content, 1);
+			empty_shell_args(element, 1);
 			if (errno == EACCES)
 				exit(126);
 			exit(1);
 		}
-		/* TODO: PUT ERROR FUNCTION */
+		/* ACTION: PUT ERROR FUNCTION */
 	}
 	else
 	{
-		wait(&(content->status));
-		if (WIFEXITED(content->status))
+		wait(&(element->status));
+		if (WIFEXITED(element->status))
 		{
-			content->status = WEXITSTATUS(content->status);
-			if (content->status == 126)
-				print_err_mesg(content, "Permission denied\n");
+			element->status = WEXITSTATUS(element->status);
+			if (element->status == 126)
+				print_err_mesg(element, "Permission notgiv\n");
 		}
 	}
 }
