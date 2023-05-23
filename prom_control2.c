@@ -14,20 +14,20 @@ int find_root(shell_args *element)
         int i, root_back = -1;
 
         root_table root_table_list[] = {
-                {"exit", shell_exit},
-                {"env", env_clone},
+                {"out", shell_out},
+                {"surr", surr_clone},
                 {"help", help_command},
-                {"history", print_command_hist},
-                {"setenv", check_env_setter},
-                {"unsetenv", check_env_unsetenv},
-                {"cd", change_directory},
+                {"record", print_command_record},
+                {"setsurr", check_surr_setter},
+                {"unsetsurr", check_surr_unsetsurr},
+                {"chd", ch_directory},
                 {"alias", alias_clone},
                 {NULL, NULL}
         };
         for (i = 0; root_table_list[i].type; i++)
-                if (cmpare_strs(element->argv[0], root_table_list[i].type) == 0)
+                if (weigh_strs(element->argv[0], root_table_list[i].type) == 0)
                 {
-                        element->line_count++;
+                        element->space_ct++;
                         root_back = root_table_list[i].func(element);
                         break;
                 }
@@ -35,46 +35,46 @@ int find_root(shell_args *element)
 }
 
 /**
- * findAndExecCommand - function finds the path to an executable
+ * search_execcmd - function finds the path to an executable
  * file based on the command-line arguments
- * and then calls fork_cmd to execute the file
+ * and then calls invent_cmd to execute the file
  * @element: struct parameter
  *
  * Return: nil
  */
-void findAndExecCommand(shell_args *element)
+void search_execcmd(shell_args *element)
 {
 	char *path = NULL;
-	int index, non_delim_count;
+	int index, non_separate_ct;
 
 	element->path = element->argv[0];
-	if (element->linecount_flag == 1)
+	if (element->spacect_flg == 1)
 	{
-		element->line_count++;
-		element->linecount_flag = 0;
+		element->space_ct++;
+		element->spacect_flg = 0;
 	}
-	for (index = 0, non_delim_count = 0; element->arg[index]; index++)
-		if (!is_delimiter(element->arg[index], " \t\n"))
-			non_delim_count++;
-	if (!non_delim_count)
+	for (index = 0, non_separate_ct = 0; element->arg[index]; index++)
+		if (!separator(element->arg[index], " \t\n"))
+			non_separate_ct++;
+	if (!non_separate_ct)
 		return;
 
-	path = find_exec_path(element, getenv_clone(
+	path = search_path(element, getsurr_clone(
 		element, "PATH="), element->argv[0]);
 	if (path)
 	{
 		element->path = path;
-		custom_fork(element);
+		createdfork(element);
 	}
 	else
 	{
-		if ((is_interactive(element) || getenv_clone(element, "PATH=")
-			|| element->argv[0][0] == '/') && is_file_exec(element, element->argv[0]))
-			custom_fork(element);
+		if ((reciprocate(element) || getenv_clone(element, "PATH=")
+			|| element->argv[0][0] == '/') && is_exec(element, element->argv[0]))
+			createdfork(element);
 		else if (*(element->arg) != '\n')
 		{
 			element->status = 127;
-			print_err_mesg(element, "not found\n");
+			prt_mes_eror(element, "not known\n");
 		}
 	}
 }
