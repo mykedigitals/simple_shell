@@ -1,45 +1,45 @@
 #include "shell.h"
 
 /**
- * reset_sh_args - resets the values of the fields in that struct
+ * correct_shell_args - resets the values of the areas in that struct
  *      to their default values
- * @content: struct parameter
+ * @element: struct parameter
  */
-void reset_sh_args(sh_args *content)
+void correct_shell_args(shell_args *element)
 {
-        content->arg = NULL;
-        content->argv = NULL;
-        content->path = NULL;
-        content->argc = 0;
+        element->arg = NULL;
+        element->argv = NULL;
+        element->path = NULL;
+        element->argc = 0;
 }
 
 
 /**
- * free_sh_args - frees sh_args fields
- * @content: struct parameter
- * @fields: fields
+ * empty_shell_args - frees shell_args areas
+ * @element: struct parameter
+ * @areas: areas
  */
-void free_sh_args(sh_args *content, int fields)
+void empty_shell_args(shell_args *element, int areas)
 {
-        multi_free(content->argv);
-        content->argv = NULL;
-        content->path = NULL;
-        if (fields)
+        double_empty(element->argv);
+        element->argv = NULL;
+        element->path = NULL;
+        if (areas)
         {
-                if (!content->cmd_buf)
-                        free(content->arg);
-                if (content->env)
-                        free_l_list(&(content->env));
-                if (content->history)
-                        free_l_list(&(content->history));
-                if (content->alias)
-                        free_l_list(&(content->alias));
-                multi_free(content->environ);
-                        content->environ = NULL;
-                free_n_NULL((void **)content->cmd_buf);
-                if (content->readfd > 2)
-                        close(content->readfd);
-                _putchar(BUF_FLUSH);
+                if (!element->cd_buff)
+                        free(element->arg);
+                if (element->surr)
+                        empty_l_list(&(element->surr));
+                if (element->record)
+                        empty_l_list(&(element->record));
+                if (element->alias)
+                        empty_l_list(&(element->alias));
+                double_empty(element->surriron);
+                        element->surriron = NULL;
+                empty_n_NULL((void **)element->cd_buff);
+                if (element->seefd > 2)
+                        close(element->seefd);
+                _putchar(BUFF_FLUSHH);
         }
 }
 

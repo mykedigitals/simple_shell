@@ -1,4 +1,4 @@
-#include "s_shell.h"
+#include "shell.h"
 
 /**
  * reciprocate - this checks a shell is reciprocating
@@ -9,10 +9,8 @@
 
 int reciprocate(shell_args *element)
 {
-	return (isatty(STDIN_FILENO) && element->readfd <= 2);
+	return (isatty(STDIN_FILENO) && element->seefd <= 2);
 }
-
-
 
 /**
  * separator - this checks if a given character can separate
@@ -25,7 +23,7 @@ int reciprocate(shell_args *element)
 int separator(char chk, char *delim)
 {
 	while (*delim)
-		if (*delim++ == car)
+		if (*delim++ == chk)
 			return (1);
 	return (0);
 }

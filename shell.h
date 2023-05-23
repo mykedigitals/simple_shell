@@ -63,7 +63,7 @@ typedef struct l_list
  * @argv: array of pointers to the arguments for the command
  * @path: path to the command
  * @argc: number of arguments for the command
- * @line_count: number of lines in the command
+ * @space_ct: number of lines in the command
  * @err_num: error number if the command fails
  * @spacect_flg: flag indicating if the command is a line count command
  * @fname: name of the file for the command
@@ -73,9 +73,9 @@ typedef struct l_list
  * @alias: linked list of aliases
  * @surr_changed: flag show if the environment variables have been changed
  * @status: exit status of the command
- * @cmd_buf: pointer to a buffer that stores the command chain
- * @cmd_buf_type: type of the command chain
- * @readfd: file descriptor for the command
+ * @cd_buff: pointer to a buffer that stores the command chain
+ * @cd_buff_type: type of the command chain
+ * @seefd: file descriptor for the command
  * @histcount: number of commands in the record
  */
 typedef struct shell_args
@@ -84,7 +84,7 @@ typedef struct shell_args
 	char **argv;
 	char *path;
 	int argc;
-	unsigned int line_count;
+	unsigned int space_ct;
 	int err_num;
 	int spacect_flg;
 	char *fname;
@@ -95,9 +95,9 @@ typedef struct shell_args
 	int surr_changed;
 	int status;
 
-	char **cmd_buf;
-	int cmd_buf_type;
-	int readfd;
+	char **cd_buff;
+	int cd_buff_type;
+	int seefd;
 	int histcount;
 } shell_args;
 
@@ -134,14 +134,14 @@ void write_string_with_buffer(char *);
 /* dym_mem_allocator */
 void *mem_alloc(void *, unsigned int, unsigned int);
 char *memset_clone(char *, char, unsigned int);
-void multi_free(char **);
-int free_n_NULL(void **);
+void double_empty(char **);
+int empty_n_NULL(void **);
 
 
 /* surr_getter */
 int surr_setter(shell_args *, char *, char *);
 int unsetsurr_clone(shell_args *, char *);
-char **surriron_getter(shell_args *);
+char **surr_getter(shell_args *);
 
 
 /* surrironment_handlers */
@@ -196,14 +196,14 @@ int separator(char, char *);
 /* info_getter */
 void enter_shell_args(shell_args *, char **);
 void correct_sh_args(shell_args *);
-void enter_shell_args(shell_args *, int);
+void empty_shell_args(shell_args *, int);
 
 
 /* l_list_handler */
 size_t prnt_l_list_str(const l_list *);
 l_list *new_end_node(l_list **, const char *, int);
 int delete_node_index(l_list **, unsigned int);
-void free_l_list(l_list **);
+void empty_l_list(l_list **);
 
 
 /* l_list_handler1 */
@@ -251,15 +251,15 @@ char *str_dup(const char *);
 
 
 /* token_handlers */
-char **custom_strtow(char *, char *);
+char **created_strtow(char *, char *);
 
 
 /* token_handlers */
 void evaluate_command_chain(shell_args *, char *, size_t *, size_t, size_t);
 int detect_command_chaining(shell_args *, char *, size_t *);
 int replaceStr_Contnt(char **, char *);
-int replace_alias_with_value(shell_args *);
-int replace_var_values(shell_args *);
+int sub_alias_val(shell_args *);
+int sub_var_val(shell_args *);
 
 
 #endif /* MAIN_H */

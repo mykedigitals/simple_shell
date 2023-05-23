@@ -1,4 +1,4 @@
-#include "s_shell.h"
+#include "shell.h"
 
 /**
  * find_root - searches for a root or
@@ -68,7 +68,7 @@ void search_execcmd(shell_args *element)
 	}
 	else
 	{
-		if ((reciprocate(element) || getenv_clone(element, "PATH=")
+		if ((reciprocate(element) || getsurr_clone(element, "PATH=")
 			|| element->argv[0][0] == '/') && is_exec(element, element->argv[0]))
 			createdfork(element);
 		else if (*(element->arg) != '\n')

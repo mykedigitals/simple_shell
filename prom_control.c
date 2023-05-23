@@ -16,7 +16,7 @@ int created_sh(shell_args *element, char **a_v)
 	while (details_rslt != -1 && root_rslt != -2)
 	{
 		correct_sh_args(element);
-		if (reciprocal(element))
+		if (reciprocate(element))
 			_puts("$ ");
 		create_in_space(BUFF_FLUSHH);
 		details_rslt = pro_details(element);
@@ -27,13 +27,13 @@ int created_sh(shell_args *element, char **a_v)
 			if (root_rslt == -1)
 				search_execcmd(element);
 		}
-		else if (reciprocal(element))
+		else if (reciprocate(element))
 			_putchar('\n');
 		empty_shell_args(element, 0);
 	}
 	create_shel_record(element);
 	empty_shell_args(element, 1);
-	if (!reciprocal(element) && element->status)
+	if (!reciprocate(element) && element->status)
 		exit(element->status);
 	if (root_rslt == -2)
 	{
@@ -64,7 +64,7 @@ void createdfork(shell_args *element)
 	}
 	if (child_pid == 0)
 	{
-		if (execve(element->path, element->argv, env_seeker(element)) == -1)
+		if (execve(element->path, element->argv, surr_getter(element)) == -1)
 		{
 			empty_shell_args(element, 1);
 			if (errno == EACCES)
@@ -80,7 +80,7 @@ void createdfork(shell_args *element)
 		{
 			element->status = WEXITSTATUS(element->status);
 			if (element->status == 126)
-				print_err_mesg(element, "Permission notgiv\n");
+				prt_mes_eror(element, "Permission notgiv\n");
 		}
 	}
 }

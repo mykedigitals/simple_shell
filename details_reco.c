@@ -1,35 +1,35 @@
-#include "s_shell.h"
+#include "shell.h"
 
 /**
- * fill_sh_args - sets the fname field of the struct to the name
+ * enter_shell_args - sets the fname field of the struct to the name
  *	of the command being executed
- * @content: struct parameter
- * @arg_v: argument vector
+ * @element: struct parameter
+ * @a_v: argument vector
  */
-void fill_sh_args(sh_args *content, char **arg_v)
+void enter_shell_args(shell_args *element, char **a_v)
 {
 	int index = 0;
 
-	content->fname = arg_v[0];
-	if (content->arg)
+	element->fname = a_v[0];
+	if (element->arg)
 	{
-		content->argv = custom_strtow(content->arg, " \t");
-		if (!content->argv)
+		element->argv = created_strtow(element->arg, " \t");
+		if (!element->argv)
 		{
 
-			content->argv = malloc(sizeof(char *) * 2);
-			if (content->argv)
+			element->argv = malloc(sizeof(char *) * 2);
+			if (element->argv)
 			{
-				content->argv[0] = str_dup(content->arg);
-				content->argv[1] = NULL;
+				element->argv[0] = str_dup(element->arg);
+				element->argv[1] = NULL;
 			}
 		}
-		for (index = 0; content->argv && content->argv[index]; index++)
+		for (index = 0; element->argv && element->argv[index]; index++)
 			;
-		content->argc = index;
+		element->argc = index;
 
-		replace_alias_with_value(content);
-		replace_var_values(content);
+		sub_alias_val(element);
+		sub_var_val(element);
 	}
 }
 
