@@ -229,21 +229,21 @@ char *copy_chars_without_delimiter(char *, int, int);
 
 
 /* thread_control */
-char *seen_locate(char *, char);
+char *locate_char(char *, char);
 char *thread_rearr(char *, char *, int);
 char *string_clone(char *, char *, int);
 void word_comot(char *);
 char *created_iota(long int, int, int);
 
 
-/* string_handlers1 */
-char *find_substr_at_start(const char *, const char *);
-int len_of_str(char *);
-char *concat_str(char *, char *);
-int weigh_strs(char *, char *);
+/* thread_control1 */
+char *locate_word_begin(const char *, const char *);
+int string_lent(char *);
+char *string_add(char *, char *);
+int string_sku(char *, char *);
 
 
-/* string_handlers2 */
+/* thread_control2 */
 int _putchar(char);
 void _puts(char *);
 char *str_cpy(char *, char *);

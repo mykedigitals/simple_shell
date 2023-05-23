@@ -3,88 +3,88 @@
 
 /**
  * _putchar - writes a char to stdout
- * @target_char: character to be printed
+ * @point_char: character to be printed
  *
  * Return: 1 (success), -1 (error)
  */
-int _putchar(char target_char)
+int _putchar(char point_char)
 {
-	static int idx;
+	static int index_word;
 	static char buf[WRITE_BUF_SIZE];
 
-	if (target_char == BUF_FLUSH || idx >= WRITE_BUF_SIZE)
+	if (point_char == BUF_FLUSH || index_word >= WRITE_BUF_SIZE)
 	{
-		write(1, buf, idx);
-		idx = 0;
+		write(1, buf, index_word);
+		index_word = 0;
 	}
-	if (target_char != BUF_FLUSH)
-		buf[idx++] = target_char;
+	if (point_char != BUF_FLUSH)
+		buf[index_word++] = point_char;
 	return (1);
 }
 
 
 /**
  *_puts - handles printing string from input
- *@str: string being printed
+ *@print_string: string being printed
  *
  * Return: nil
  */
-void _puts(char *str)
+void _puts(char *print_string)
 {
-	int idx = 0;
+	int index_word = 0;
 
-	if (!str)
+	if (!print_string)
 		return;
-	while (str[idx] != '\0')
+	while (print_string[index_word] != '\0')
 	{
-		_putchar(str[idx]);
-		idx++;
+		_putchar(print_string[index_word]);
+		index_word++;
 	}
 }
 
 
 /**
- * str_cpy - copies string from src_str to dest_str
- * @dest_str: string destination
- * @src_str: string source
+ * clone_str - copies string from begin_string to string_dest
+ * @string_dest: string destination
+ * @begin_string: string source
  *
  * Return: pointer to destination
  */
-char *str_cpy(char *dest_str, char *src_str)
+char *clone_str(char *string_dest, char *begin_string)
 {
-	int idx = 0;
+	int index_word = 0;
 
-	if (dest_str == src_str || src_str == 0)
-		return (dest_str);
-	while (src_str[idx])
+	if (string_dest == begin_string || begin_string == 0)
+		return (string_dest);
+	while (begin_string[index_word])
 	{
-		dest_str[idx] = src_str[idx];
-		idx++;
+		string_dest[index_word] = begin_string[index_word];
+		index_word++;
 	}
-	dest_str[idx] = 0;
-	return (dest_str);
+	string_dest[index_word] = 0;
+	return (string_dest);
 }
 
 
 /**
- * str_dup - handles string duplication
- * @str: string being duplicated
+ * double_str - handles string duplication
+ * @word_txt: string being duplicated
  *
  * Return: pointer to the duplicated string
  */
-char *str_dup(const char *str)
+char *double_str(const char *word_txt)
 {
-	int len = 0;
-	char *result;
+	int xy = 0;
+	char *effect;
 
-	if (str == NULL)
+	if (word_txt == NULL)
 		return (NULL);
-	while (*str++)
-		len++;
-	result = malloc(sizeof(char) * (len + 1));
-	if (!result)
+	while (*word_txt++)
+		xy++;
+	effect = malloc(sizeof(char) * (xy + 1));
+	if (!effect)
 		return (NULL);
-	for (len++; len--;)
-		result[len] = *--str;
-	return (result);
+	for (xy++; xy--;)
+		effect[xy] = *--word_txt;
+	return (effect);
 }

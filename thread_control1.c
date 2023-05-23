@@ -2,80 +2,82 @@
 
 
 /**
- * find_substr_at_start - the string str_to_search starts with the
- *	substring substring
- * @str_to_search: searched string
- * @substring: substring being searched
+ * locate_word_begin - the string find_in_string starts with the
+ *	anotherstring
+ * @find_in_string: the string to be searched
+ * @anotherstring: anotherstring being searched
  *
- * Return: address of next char of str_to_search or NULL
+ * Return: location of next char of find_in_string or NULL
  */
-char *find_substr_at_start(const char *str_to_search, const char *substring)
+char *locate_word_begin(const char *find_in_string, const char *anotherstring)
 {
-	while (*substring)
-		if (*substring++ != *str_to_search++)
+	while (*anotherstring)
+		if (*anotherstring++ != *find_in_string++)
 			return (NULL);
-	return ((char *)str_to_search);
+	return ((char *)find_in_string);
 }
 
 
 /**
- * len_of_str - gets length of a string
- * @str: string length to be checked
+ * string_lent - gets length of a string
+ * @word_string: string length to be checked
  *
  * Return: string length
  */
-int len_of_str(char *str)
+int string_lent(char *word_string)
 {
-	int idx = 0;
+	int index_word = 0;
 
-	if (!str)
+	if (!word_string)
 		return (0);
 
-	while (*str++)
-		idx++;
-	return (idx);
+	while (*word_string++)
+		index_word++;
+	return (index_word);
 }
 
 
 /**
- * concat_str - concatenates strings str_dest and str_src
- * @str_dest: the destination buffer
- * @str_src: the source buffer
+ * string_add - concatenates strings ending_of_str and begin_string
+ * @ending_of_str: the destination buffer
+ * @begin_string: the source buffer
  *
  * Return: concatenates string
  */
-char *concat_str(char *str_dest, char *str_src)
+char *string_add(char *ending_of_str, char *begin_string)
 {
-	char *result = str_dest;
+	char *effect = ending_of_str;
 
-	while (*str_dest)
-		str_dest++;
-	while (*str_src)
-		*str_dest++ = *str_src++;
-	*str_dest = *str_src;
-	return (result);
+	while (*ending_of_str)
+		ending_of_str++;
+	while (*begin_string)
+		*ending_of_str++ = *begin_string++;
+	*ending_of_str = *begin_string;
+	return (effect);
 }
 
 
 /**
- * cmpare_strs - compare two strings, str1 and str2, and return an
- *	integer value indicating their relative order
- * @str1: first string
- * @str2: second string
+ * string_sku - weigh two strings, 1st_string and 2nd_string,
+ * and return an whole number value indicating their relative order
+ * @1st_string: first string
+ * @2nd_string: second string
  *
- * Return: 0 (if str1 == str2), negative (str1 < str2), positive (str1 > str2)
+ * Return: return 0 (if 1st_string == 2nd_string), negative 
+ * (1st_string < 2nd_string), positive (1st_string > 2nd_string)
  */
-int cmpare_strs(char *str1, char *str2)
+
+int string_sku(char *1st_string, char *2nd_string)
 {
-	while (*str1 && *str2)
+	while (*1st_string && *2nd_string)
 	{
-		if (*str1 != *str2)
-			return (*str1 - *str2);
-		str1++;
-		str2++;
+		if (*1st_string != *2nd_string)
+			return (*1st_string - *2nd_string);
+		1st_string++;
+		2nd_string++;
 	}
-	if (*str1 == *str2)
+	if (*1st_string == *2nd_string)
 		return (0);
 	else
-		return (*str1 < *str2 ? -1 : 1);
+		return (*1st_string < *2nd_string ? -1 : 1);
 }
