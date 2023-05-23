@@ -228,12 +228,12 @@ int is_exec(shell_args *, char *);
 char *copy_chars_without_delimiter(char *, int, int);
 
 
-/* string_handlers */
-char *chk_finder(char *, char);
-char *string_concat(char *, char *, int);
-char *cpy_str(char *, char *, int);
-void coments_remover(char *);
-char *custom_itoa(long int, int, int);
+/* thread_control */
+char *seen_locate(char *, char);
+char *thread_rearr(char *, char *, int);
+char *string_clone(char *, char *, int);
+void word_comot(char *);
+char *created_iota(long int, int, int);
 
 
 /* string_handlers1 */

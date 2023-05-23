@@ -2,20 +2,20 @@
 
 
 /**
- * car_finder - searches for a particular character in a string and
+ * locate_char - searches for a particular character in a string and
  *	returns a pointer to the first occurrence of that character
- * @target_char: character being looked for
+ * @the_real_char: character being looked for
  * @str: string being checked
  *
  * Return: the character that was found in string *start_of_dest
  */
-char *car_finder(char *str, char target_char)
+char *locate_char(char *letter, char the_real_char)
 {
-	while (*str++ != '\0')
+	while (*letter++ != '\0')
 	{
-		if (target_char == *str)
+		if (the_real_char == *letter)
 		{
-			return (str);
+			return (letter);
 		}
 	}
 	return (NULL);
@@ -23,83 +23,83 @@ char *car_finder(char *str, char target_char)
 
 
 /**
- * string_concat - concatenate a portion of one string, src, onto the
- *	end of another string, dest
- * @dest: destination string
- * @src: source string
- * @max_chars: maximum number of characters to copy from src
+ * thread_rearr - this function concatenate a part of one string, 
+ * begin, onto the end of another string, dest
+ * @ending: ending of the string
+ * @begin: foundation of string
+ * @threshold: maximum number of characters to copy from begin
  *
- * Return: concatenated string
+ * Return: this returns the string after it is concatenated
  */
-char *string_concat(char *dest, char *src, int max_chars)
+char *thread_rearr(char *ending, char *begin, int threshold)
 {
-	int dest_index, source_index;
-	char *start_of_dest = dest;
+	int dest_index, begin_index;
+	char *start_of_dest = ending;
 
 	dest_index = 0;
-	source_index = 0;
-	while (dest[dest_index] != '\0')
+	begin_index = 0;
+	while (ending[dest_index] != '\0')
 		dest_index++;
-	while (src[source_index] != '\0' && source_index < max_chars)
+	while (begin[begin_index] != '\0' && begin_index < threshold)
 	{
-		dest[dest_index] = src[source_index];
+		ending[dest_index] = begin[begin_index];
 		dest_index++;
-		source_index++;
+		begin_index++;
 	}
-	if (source_index < max_chars)
-		dest[dest_index] = '\0';
+	if (begin_index < threshold)
+		ending[dest_index] = '\0';
 	return (start_of_dest);
 }
 
 
 /**
- * cpy_str - copies characters from the source string (src) to the
- *	destination string (dest) and ensure that the destination
- *	string is null-terminated
- * @dest: destination string
- * @src: source string
- * @limit: maximum number of characters to copy from src
+ * string_clone - Wonderfully copies the char from the foundation
+ * string (begin) to the final end string (ending) and 
+ * make it definite that the final end string is null
+ * @ending: destination string
+ * @begin: source string
+ * @minimz: maximum number of characters to copy from begin
  *
  * Return: copied string
  */
-char *cpy_str(char *dest, char *src, int limit)
+char *string_clone(char *ending, char *begin, int minimz)
 {
-	int src_idx, dest_idx;
-	char *dest_start = dest;
+	int index_start, index_ending;
+	char *begin_of_end = ending;
 
-	src_idx = 0;
-	while (src[src_idx] != '\0' && src_idx < limit - 1)
+	index_start = 0;
+	while (begin[index_start] != '\0' && index_start < minimz - 1)
 	{
-		dest[src_idx] = src[src_idx];
-		src_idx++;
+		ending[index_start] = begin[index_start];
+		index_start++;
 	}
-	if (src_idx < limit)
+	if (index_start < minimz)
 	{
-		dest_idx = src_idx;
-		while (dest_idx < limit)
+		index_ending = index_start;
+		while (index_ending < minimz)
 		{
-			dest[dest_idx] = '\0';
-			dest_idx++;
+			ending[index_ending] = '\0';
+			index_ending++;
 		}
 	}
-	return (dest_start);
+	return (begin_of_end);
 }
 
 
 /**
- * coments_remover - searches and replaces first instance of '#' with '\0'
- * @text: string to be modifed
+ * word_comot - searches and replaces first instance of '#' with '\0'
+ * @txt_word: string to be modifed
  *
  * Return: 0
  */
-void coments_remover(char *text)
+void word_comot(char *txt_word)
 {
-	int idx;
+	int index_word;
 
-	for (idx = 0; text[idx] != '\0'; idx++)
-		if (text[idx] == '#' && (!idx || text[idx - 1] == ' '))
+	for (index_word = 0; txt_word[index_word] != '\0'; index_word++)
+		if (txt_word[index_word] == '#' && (!index_word || txt_word[index_word - 1] == ' '))
 		{
-			text[idx] = '\0';
+			txt_word[index_word] = '\0';
 			break;
 		}
 }
