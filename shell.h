@@ -246,8 +246,8 @@ int string_sku(char *, char *);
 /* thread_control2 */
 int _putchar(char);
 void _puts(char *);
-char *str_cpy(char *, char *);
-char *str_dup(const char *);
+char *clone_str(char *, char *);
+char *double_str(const char *);
 
 
 /* token_handlers */
