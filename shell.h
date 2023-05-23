@@ -27,7 +27,7 @@
 
 /* File History Specifiers */
 #define HIST_MAX	4096
-#define HIST_FILE	".simple_shell_history"
+#define HIST_FILE	".simple_shell_record"
 
 
 /* Number Converters */
@@ -38,10 +38,10 @@
 /* Buffer sizes for Read-Write */
 #define WRITE_BUF_SIZE 1024
 #define READ_BUF_SIZE 1024
-#define BUF_FLUSH -1
+#define BUFF_FLUSHH -1
 
 
-extern char **environ;
+extern char **surriron;
 
 
 /**
@@ -58,25 +58,25 @@ typedef struct l_list
 } l_list;
 
 /**
- *struct shell_args - stores arguments and environment variables for a shell
+ *struct shell_args - stores arguments and surrironment variables for a shell
  * @arg: command to be executed
  * @argv: array of pointers to the arguments for the command
  * @path: path to the command
  * @argc: number of arguments for the command
  * @line_count: number of lines in the command
  * @err_num: error number if the command fails
- * @linecount_flag: flag indicating if the command is a line count command
+ * @spacect_flg: flag indicating if the command is a line count command
  * @fname: name of the file for the command
- * @env: array of pointers to the environment variables
- * @environ: linked list of environment variables
- * @history: linked list of previous commands
+ * @surr: array of pointers to the environment variables
+ * @surriron: linked list of environment variables
+ * @record: linked list of previous commands
  * @alias: linked list of aliases
- * @env_changed: flag show if the environment variables have been changed
+ * @surr_changed: flag show if the environment variables have been changed
  * @status: exit status of the command
  * @cmd_buf: pointer to a buffer that stores the command chain
  * @cmd_buf_type: type of the command chain
  * @readfd: file descriptor for the command
- * @histcount: number of commands in the history
+ * @histcount: number of commands in the record
  */
 typedef struct shell_args
 {
@@ -86,20 +86,20 @@ typedef struct shell_args
 	int argc;
 	unsigned int line_count;
 	int err_num;
-	int linecount_flag;
+	int spacect_flg;
 	char *fname;
-	l_list *env;
-	l_list *history;
+	l_list *surr;
+	l_list *record;
 	l_list *alias;
-	char **environ;
-	int env_changed;
+	char **surriron;
+	int surr_changed;
 	int status;
 
 	char **cmd_buf;
 	int cmd_buf_type;
 	int readfd;
 	int histcount;
-} sh_args;
+} shell_args;
 
 #define INFO_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
@@ -113,21 +113,21 @@ typedef struct shell_args
 typedef struct builtin
 {
 	char *type;
-	int (*func)(sh_args *);
-} builtin_table;
+	int (*func)(shell_args *);
+} root_table;
 
 
 /* PROTOTYPE DEFINATIONS */
 
 /* alias */
-int alias_to_str(sh_args *content, char *str);
-int remv_alias(sh_args *content, char *str);
+int alias_to_str(shell_args *element, char *str);
+int remv_alias(shell_args *element, char *str);
 int alias_printer(l_list *node);
-int alias_clone(sh_args *);
+int alias_clone(shell_args *);
 
 
 /* buffer_handlers */
-int write_with_buffer(char);
+int create_in_space(char);
 void write_string_with_buffer(char *);
 
 
@@ -138,65 +138,65 @@ void multi_free(char **);
 int free_n_NULL(void **);
 
 
-/* env_getter */
-int env_setter(sh_args *, char *, char *);
-int unsetenv_clone(sh_args *, char *);
-char **environ_getter(sh_args *);
+/* surr_getter */
+int surr_setter(shell_args *, char *, char *);
+int unsetsurr_clone(shell_args *, char *);
+char **surriron_getter(shell_args *);
 
 
-/* environment_handlers */
-int check_env_setter(sh_args *);
-int check_env_unsetenv(sh_args *);
-int populat_listof_env(sh_args *);
-int env_clone(sh_args *);
-char *getenv_clone(sh_args *, const char *);
+/* surrironment_handlers */
+int check_surr_setter(shell_args *);
+int check_surr_unsetsurr(shell_args *);
+int populat_listof_surr(shell_args *);
+int surr_clone(shell_args *);
+char *getsurr_clone(shell_args *, const char *);
 
 
 /* error_handlers1 */
-void print_err_mesg(sh_args *, char *);
+void prt_mes_eror(shell_args *, char *);
 int exit_str_to_int(char *);
 
 
 /* exit_checker */
-int change_directory(sh_args *);
-int help_command(sh_args *);
-int shell_exit(sh_args *);
+int ch_directory(shell_args *);
+int help_command(shell_args *);
+int shell_out(shell_args *);
 
 
 /* file-descriptor_handlers */
 int write_string_to_fd(char *str, int fd);
-int write_car_to_fd(int fil_des, char car);
+int write_chk_to_fd(int fil_des, char chk);
 int prnt_decim_int(int, int);
 
 
-/* history_getter */
-int load_history(sh_args *content);
-int write_shel_histry(sh_args *content);
-int add_to_history(sh_args *content, char *buf, int linecount);
-char *get_hist_file_path(sh_args *content);
-int update_hist_node_numbrs(sh_args *incontentfo);
+/* record_getter */
+int load_record(shell_args *element);
+int create_shel_record(shell_args *element);
+int add_to_record(shell_args *element, char *buf, int linecount);
+char *get_hist_file_path(shell_args *element);
+int update_hist_node_numbrs(shell_args *inelementfo);
 
 
-/* history_list */
-int print_command_hist(sh_args *);
+/* record_list */
+int print_command_record(shell_args *);
 
 
 /* hsh_handlers */
-int custom_shell(sh_args *, char **);
-void findAndExecCommand(sh_args *);
-void custom_fork(sh_args *);
-int search_and_exec_builtin(sh_args *);
+int created_sh(shell_args *, char **);
+void search_execcmd(shell_args *);
+void createdfork(shell_args *);
+int find_root(shell_args *);
 
 
 /* hsh_handlers1 */
-int is_interactive(sh_args *);
-int is_delimiter(char, char *);
+int reciprocate(shell_args *);
+int separator(char, char *);
 
 
 /* info_getter */
-void fill_sh_args(sh_args *, char **);
-void reset_sh_args(sh_args *);
-void free_sh_args(sh_args *, int);
+void enter_shell_args(shell_args *, char **);
+void correct_sh_args(shell_args *);
+void enter_shell_args(shell_args *, int);
 
 
 /* l_list_handler */
@@ -215,21 +215,21 @@ char **conv_list_to_strings(l_list *);
 
 
 /* line_getter */
-ssize_t process_input(sh_args *);
-ssize_t read_into_buffer(sh_args *content, char *buf, size_t *i);
-ssize_t get_input_from_stdin(sh_args *content, char **buf, size_t *len);
-int read_input_line(sh_args *, char **, size_t *);
+ssize_t pro_details(shell_args *);
+ssize_t read_into_buffer(shell_args *element, char *buf, size_t *i);
+ssize_t get_input_from_stdin(shell_args *element, char **buf, size_t *len);
+int read_input_line(shell_args *, char **, size_t *);
 void handle_sigInt(int);
 
 
 /* parse_handlers */
-char *find_exec_path(sh_args *, char *, char *);
-int is_file_exec(sh_args *, char *);
+char *search_path(shell_args *, char *, char *);
+int is_exec(shell_args *, char *);
 char *copy_chars_without_delimiter(char *, int, int);
 
 
 /* string_handlers */
-char *car_finder(char *, char);
+char *chk_finder(char *, char);
 char *string_concat(char *, char *, int);
 char *cpy_str(char *, char *, int);
 void coments_remover(char *);
@@ -240,7 +240,7 @@ char *custom_itoa(long int, int, int);
 char *find_substr_at_start(const char *, const char *);
 int len_of_str(char *);
 char *concat_str(char *, char *);
-int cmpare_strs(char *, char *);
+int weigh_strs(char *, char *);
 
 
 /* string_handlers2 */
@@ -255,11 +255,11 @@ char **custom_strtow(char *, char *);
 
 
 /* token_handlers */
-void evaluate_command_chain(sh_args *, char *, size_t *, size_t, size_t);
-int detect_command_chaining(sh_args *, char *, size_t *);
+void evaluate_command_chain(shell_args *, char *, size_t *, size_t, size_t);
+int detect_command_chaining(shell_args *, char *, size_t *);
 int replaceStr_Contnt(char **, char *);
-int replace_alias_with_value(sh_args *);
-int replace_var_values(sh_args *);
+int replace_alias_with_value(shell_args *);
+int replace_var_values(shell_args *);
 
 
 #endif /* MAIN_H */
