@@ -1,18 +1,19 @@
-#include "shell.h"
+#include "s_shell.h"
 
 /**
- * search_and_exec_builtin - searches for a built-in command in a shell program
- * @content: struct parameter
- * Return: -1 (builtin is not found), 0 (builtin is executed),
- * 1 (builtin found but not executed),
- * -2 (builtin signals exit())
+ * find_root - searches for a root or
+ * built-in command in our shell program
+ * @element: struct parameter
+ * Return: -1 (if builtin is not found), 0(when executed),
+ * 1 (if found but not executed),
+ * -2 (if it (builtin) signals exit())
  */
 
-int search_and_exec_builtin(sh_args *content)
+int find_root(shell_args *element)
 {
-        int i, builtin_return = -1;
+        int i, root_back = -1;
 
-        builtin_table builtin_table_list[] = {
+        root_table root_table_list[] = {
                 {"exit", shell_exit},
                 {"env", env_clone},
                 {"help", help_command},
@@ -23,57 +24,57 @@ int search_and_exec_builtin(sh_args *content)
                 {"alias", alias_clone},
                 {NULL, NULL}
         };
-        for (i = 0; builtin_table_list[i].type; i++)
-                if (cmpare_strs(content->argv[0], builtin_table_list[i].type) == 0)
+        for (i = 0; root_table_list[i].type; i++)
+                if (cmpare_strs(element->argv[0], root_table_list[i].type) == 0)
                 {
-                        content->line_count++;
-                        builtin_return = builtin_table_list[i].func(content);
+                        element->line_count++;
+                        root_back = root_table_list[i].func(element);
                         break;
                 }
-        return (builtin_return);
+        return (root_back);
 }
 
 /**
  * findAndExecCommand - function finds the path to an executable
  * file based on the command-line arguments
  * and then calls fork_cmd to execute the file
- * @content: struct parameter
+ * @element: struct parameter
  *
  * Return: nil
  */
-void findAndExecCommand(sh_args *content)
+void findAndExecCommand(shell_args *element)
 {
 	char *path = NULL;
 	int index, non_delim_count;
 
-	content->path = content->argv[0];
-	if (content->linecount_flag == 1)
+	element->path = element->argv[0];
+	if (element->linecount_flag == 1)
 	{
-		content->line_count++;
-		content->linecount_flag = 0;
+		element->line_count++;
+		element->linecount_flag = 0;
 	}
-	for (index = 0, non_delim_count = 0; content->arg[index]; index++)
-		if (!is_delimiter(content->arg[index], " \t\n"))
+	for (index = 0, non_delim_count = 0; element->arg[index]; index++)
+		if (!is_delimiter(element->arg[index], " \t\n"))
 			non_delim_count++;
 	if (!non_delim_count)
 		return;
 
-	path = find_exec_path(content, getenv_clone(
-		content, "PATH="), content->argv[0]);
+	path = find_exec_path(element, getenv_clone(
+		element, "PATH="), element->argv[0]);
 	if (path)
 	{
-		content->path = path;
-		custom_fork(content);
+		element->path = path;
+		custom_fork(element);
 	}
 	else
 	{
-		if ((is_interactive(content) || getenv_clone(content, "PATH=")
-			|| content->argv[0][0] == '/') && is_file_exec(content, content->argv[0]))
-			custom_fork(content);
-		else if (*(content->arg) != '\n')
+		if ((is_interactive(element) || getenv_clone(element, "PATH=")
+			|| element->argv[0][0] == '/') && is_file_exec(element, element->argv[0]))
+			custom_fork(element);
+		else if (*(element->arg) != '\n')
 		{
-			content->status = 127;
-			print_err_mesg(content, "not found\n");
+			element->status = 127;
+			print_err_mesg(element, "not found\n");
 		}
 	}
 }

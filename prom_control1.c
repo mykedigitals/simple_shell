@@ -1,31 +1,28 @@
-#include "shell.h"
-
-
+#include "s_shell.h"
 
 /**
- * is_interactive - checks if shell is in interactive mode
- * @content: struct parameter
+ * reciprocate - this checks a shell is reciprocating
+ * @element: struct parameter
  *
  * Return: 1 (is interactive mode)
  */
 
-int is_interactive(sh_args *content)
+int reciprocate(shell_args *element)
 {
-	return (isatty(STDIN_FILENO) && content->readfd <= 2);
+	return (isatty(STDIN_FILENO) && element->readfd <= 2);
 }
 
 
 
 /**
- * is_delimiter - checks if a given
- * character is a delimeter character
- * @car: character being check
+ * separator - this checks if a given character can separate
+ * @chk: character under check
  * @delim: delimeter string
  *
  * Return: 1 (true), 0 (false)
  */
 
-int is_delimiter(char car, char *delim)
+int separator(char chk, char *delim)
 {
 	while (*delim)
 		if (*delim++ == car)
