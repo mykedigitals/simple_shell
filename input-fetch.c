@@ -1,95 +1,90 @@
 #include "shell.h"
 
 /**
- * read_into_buffer - reads data from a file descriptor into a buffer,
- *	up to a maximum size specified by READ_BUF_SIZE
- * @content: struct parameter
- * @buffer: buffer
- * @bytes_read: size
+ * see_in_buff - This will read data in a file into a render,
+ *	up to a max size by READ_BUF_SIZE
+ * @element: structure parameter
+ * @render: render
+ * @fourbits_see: size
  *
  * Return: result
  */
-ssize_t read_into_buffer(sh_args *content, char *buffer, size_t *bytes_read)
+ssize_t see_in_buff(shell_args *element, char *render, size_t *fourbits_see)
 {
 	ssize_t result = 0;
 
-	if (*bytes_read)
+	if (*fourbits_see)
 		return (0);
-	result = read(content->readfd, buffer, READ_BUF_SIZE);
+	result = read(element->seefd, render, READ_BUF_SIZE);
 	if (result >= 0)
-		*bytes_read = result;
+		*fourbits_see = result;
 	return (result);
 }
 
 
 /**
- * get_input_from_stdin - reads input from standard input (stdin)
- *	and store it in a buffer
- * @content: parameter struct
- * @input_buffer: buffer's address
- * @buffer_size: buffer_size  address
- * Desc: If there is no input left in the buffer, the function will
- *	fill the buffer by calling getline or read_input_line function
- *	to read input from stdin. The input is then processed by
- *	removing any trailing newline, removing comments, adding it to
- *	the command history, and determining if it is a command chain
- *	by checking for the presence of a semicolon
+ * obtain_details_stdin - this will read details in STDIN
+ *	to keep in a render
+ * @element: structure param
+ * @input_render: render adress
+ * @render_size: render_size  address
+ * rFw: read the following weight
  *
  * Return: number of characters read
  */
-ssize_t get_input_from_stdin(sh_args *content, char **input_buffer,
-		size_t *buffer_size)
+ssize_t obtain_details_stdin(shell_args *element, char **input_render,
+		size_t *render_size)
 {
-	ssize_t read_len = 0;
-	size_t allocated_bufferLen = 0;
+	ssize_t see_len = 0;
+	size_t allocated_renderLen = 0;
 
-	if (!*buffer_size)
+	if (!*render_size)
 	{
-		free(*input_buffer);
-		*input_buffer = NULL;
-		signal(SIGINT, handle_sigInt);
+		free(*input_render);
+		*input_render = NULL;
+		signal(SIGINT, sigint_control);
 #if USE_GETLINE
-		read_len = getline(input_buffer, &allocated_bufferLen, stdin);
+		see_len = getline(input_render, &allocated_renderLen, stdin);
 #else
-		read_len = read_input_line(content, input_buffer, &allocated_bufferLen);
+		see_len = read_input_line(element, input_render, &allocated_renderLen);
 #endif
-		if (read_len > 0)
+		if (see_len > 0)
 		{
-			if ((*input_buffer)[read_len - 1] == '\n')
+			if ((*input_render)[see_len - 1] == '\n')
 			{
-				(*input_buffer)[read_len - 1] = '\0';
-				read_len--;
+				(*input_render)[see_len - 1] = '\0';
+				see_len--;
 			}
-			content->linecount_flag = 1;
-			coments_remover(*input_buffer);
-			add_to_history(content, *input_buffer, content->histcount++);
+			element->spacect_flg = 1;
+			word_comot(*input_render);
+			plus_to_record(element, *input_render, element->recordct++);
 			{
-				*buffer_size = read_len;
-				content->cmd_buf = input_buffer;
+				*render_size = see_len;
+				element->cd_buff = input_render;
 			}
 		}
 	}
-	return (read_len);
+	return (see_len);
 }
 
 
 /**
  * read_input_line - reads a line of input from a file or a stream
  *	and store it in a character array
- * @content: parameter struct
+ * @element: parameter struct
  * @ptr: stores address of the pointer that will point to the output
- *	buffer where the function will store the read line
+ *	render where the function will store the read line
  * @length: stores  the length of the line that was read, including
  *	the null terminator
  *
  * Return: total_bytes
  */
-int read_input_line(sh_args *content, char **ptr, size_t *length)
+int read_input_line(shell_args *element, char **ptr, size_t *length)
 {
 	static char input_buf[READ_BUF_SIZE];
 	static size_t buf_pos, buf_len;
 	size_t line_len;
-	ssize_t bytes_read = 0, total_bytes = 0;
+	ssize_t fourbits_see = 0, total_bytes = 0;
 	char *input_pos = NULL, *new_output_str = NULL, *line_end;
 
 	input_pos = *ptr;
@@ -98,8 +93,8 @@ int read_input_line(sh_args *content, char **ptr, size_t *length)
 	if (buf_pos == buf_len)
 		buf_pos = buf_len = 0;
 
-	bytes_read = read_into_buffer(content, input_buf, &buf_len);
-	if (bytes_read == -1 || (bytes_read == 0 && buf_len == 0))
+	fourbits_see = see_in_buff(element, input_buf, &buf_len);
+	if (fourbits_see == -1 || (fourbits_see == 0 && buf_len == 0))
 		return (-1);
 
 	line_end = car_finder(input_buf + buf_pos, '\n');

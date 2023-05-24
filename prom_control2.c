@@ -25,7 +25,7 @@ int find_root(shell_args *element)
                 {NULL, NULL}
         };
         for (i = 0; root_table_list[i].type; i++)
-                if (string_sku(element->argv[0], root_table_list[i].type) == 0)
+                if (weigh_strs(element->argv[0], root_table_list[i].type) == 0)
                 {
                         element->space_ct++;
                         root_back = root_table_list[i].func(element);

@@ -19,10 +19,10 @@
 
 
 /* Command Chaining sequence */
-#define CMD_AND		2
-#define CMD_OR		1
-#define CMD_NORM	0
-#define CMD_CHAIN	3
+#define CMD_WIT		2
+#define CMD_EI		1
+#define CMD_ORDI	0
+#define CMD_ORDER	3
 
 
 /* File History Specifiers */
@@ -96,7 +96,7 @@ typedef struct shell_args
 	int status;
 
 	char **cd_buff;
-	int cd_buff_type;
+	int cd_buff_category;
 	int seefd;
 	int histcount;
 } shell_args;
@@ -208,7 +208,7 @@ void empty_l_list(l_list **);
 
 /* l_list_handler1 */
 ssize_t search_node_sort(l_list *, l_list *);
-l_list *collect_init_node_in_title(l_list *, char *, char);
+l_list *obtain_beginingnode(l_list *, char *, char);
 size_t list_span(const l_list *);
 size_t prt_l_list_in_sort(const l_list *);
 char **chng_list_to_strng(l_list *);
@@ -240,7 +240,7 @@ char *created_iota(long int, int, int);
 char *locate_word_begin(const char *, const char *);
 int string_lent(char *);
 char *string_add(char *, char *);
-int string_sku(char *, char *);
+int weigh_strs(char *, char *);
 
 
 /* thread_control2 */
@@ -251,13 +251,13 @@ char *double_str(const char *);
 
 
 /* token_handlers */
-char **created_strtow(char *, char *);
+char **created_tokener(char *, char *);
 
 
 /* token_handlers */
-void evaluate_command_chain(shell_args *, char *, size_t *, size_t, size_t);
-int detect_command_chaining(shell_args *, char *, size_t *);
-int replaceStr_Contnt(char **, char *);
+void access_cmd_order(shell_args *, char *, size_t *, size_t, size_t);
+int order_cmd_discover(shell_args *, char *, size_t *);
+int change_element(char **, char *);
 int sub_alias_val(shell_args *);
 int sub_var_val(shell_args *);
 
