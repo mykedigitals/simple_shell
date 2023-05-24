@@ -58,26 +58,26 @@ char *string_add(char *ending_of_str, char *begin_string)
 
 
 /**
- * string_sku - weigh two strings, 1st_string and 2nd_string,
+ * string_sku - weigh two strings, begining_strng and following_strng,
  * and return an whole number value indicating their relative order
- * @1st_string: first string
- * @2nd_string: second string
+ * @begining_strng: first string
+ * @following_strng: second string
  *
- * Return: return 0 (if 1st_string == 2nd_string), negative 
- * (1st_string < 2nd_string), positive (1st_string > 2nd_string)
+ * Return: return 0 (if begining_strng == following_strng), negative 
+ * (begining_strng < following_strng), positive (begining_strng > following_strng)
  */
 
-int string_sku(char *1st_string, char *2nd_string)
+int string_sku(char *begining_strng, char *following_strng)
 {
-	while (*1st_string && *2nd_string)
+	while (*begining_strng && *following_strng)
 	{
-		if (*1st_string != *2nd_string)
-			return (*1st_string - *2nd_string);
-		1st_string++;
-		2nd_string++;
+		if (*begining_strng != *following_strng)
+			return (*begining_strng - *following_strng);
+		begining_strng++;
+		following_strng++;
 	}
-	if (*1st_string == *2nd_string)
+	if (*begining_strng == *following_strng)
 		return (0);
 	else
-		return (*1st_string < *2nd_string ? -1 : 1);
+		return (*begining_strng < *following_strng ? -1 : 1);
 }

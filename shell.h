@@ -200,18 +200,18 @@ void empty_shell_args(shell_args *, int);
 
 
 /* l_list_handler */
-size_t prnt_l_list_str(const l_list *);
+size_t screen_l_list_in_str(const l_list *);
 l_list *new_end_node(l_list **, const char *, int);
 int delete_node_index(l_list **, unsigned int);
 void empty_l_list(l_list **);
 
 
 /* l_list_handler1 */
-ssize_t find_node_index(l_list *, l_list *);
-l_list *get_first_node_with_prefix(l_list *, char *, char);
-size_t list_len(const l_list *);
-size_t prnt_l_list_with_index(const l_list *);
-char **conv_list_to_strings(l_list *);
+ssize_t search_node_sort(l_list *, l_list *);
+l_list *collect_init_node_in_title(l_list *, char *, char);
+size_t list_span(const l_list *);
+size_t prt_l_list_in_sort(const l_list *);
+char **chng_list_to_strng(l_list *);
 
 
 /* line_getter */

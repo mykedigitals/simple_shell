@@ -22,7 +22,7 @@ l_list *updated_tail_node(l_list **list_top, const char *str, int num)
         updated_node->num = num;
         if (str)
         {
-                updated_node->str = str_dup(str);
+                updated_node->str = double_str(str);
                 if (!updated_node->str)
                 {
                         free(updated_node);

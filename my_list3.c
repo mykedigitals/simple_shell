@@ -16,7 +16,7 @@ l_list *collect_init_node_in_title(l_list *node, char *discover_str,
 
         while (node)
         {
-                match_ptr = find_substr_at_start(node->str, discover_str);
+                match_ptr = locate_word_begin(node->str, discover_str);
                 if (match_ptr && ((discover_char == -1) || (*match_ptr == discover_char)))
                         return (node);
                 node = node->link;

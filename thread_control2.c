@@ -12,12 +12,12 @@ int _putchar(char point_char)
 	static int index_word;
 	static char buf[WRITE_BUF_SIZE];
 
-	if (point_char == BUF_FLUSH || index_word >= WRITE_BUF_SIZE)
+	if (point_char == BUFF_FLUSHH || index_word >= WRITE_BUF_SIZE)
 	{
 		write(1, buf, index_word);
 		index_word = 0;
 	}
-	if (point_char != BUF_FLUSH)
+	if (point_char != BUFF_FLUSHH)
 		buf[index_word++] = point_char;
 	return (1);
 }

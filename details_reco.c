@@ -20,7 +20,7 @@ void enter_shell_args(shell_args *element, char **a_v)
 			element->argv = malloc(sizeof(char *) * 2);
 			if (element->argv)
 			{
-				element->argv[0] = str_dup(element->arg);
+				element->argv[0] = double_str(element->arg);
 				element->argv[1] = NULL;
 			}
 		}

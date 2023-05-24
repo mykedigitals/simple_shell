@@ -31,7 +31,7 @@ size_t prt_l_list_in_sort(const l_list *top)
 
 	while (top)
 	{
-		_puts(custom_itoa(top->num, 10, 0));
+		_puts(created_iota(top->num, 10, 0));
 		_putchar(':');
 		_putchar(' ');
 		_puts(top->str ? top->str : "(nil)");
@@ -63,7 +63,7 @@ char **chng_list_to_strng(l_list *top)
 		return (NULL);
 	for (index = 0; node; node = node->link, index++)
 	{
-		str = malloc(span_of_str(node->str) + 1);
+		str = malloc(string_lent(node->str) + 1);
 		if (!str)
 		{
 			for (x = 0; x < index; x++)
@@ -72,7 +72,7 @@ char **chng_list_to_strng(l_list *top)
 			return (NULL);
 		}
 
-		str = str_cpy(str, node->str);
+		str = clone_str(str, node->str);
 		str_array[index] = str;
 	}
 	str_array[index] = NULL;
