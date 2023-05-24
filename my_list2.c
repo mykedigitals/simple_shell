@@ -1,18 +1,18 @@
 #include "shell.h"
 
 /**
- * list_len - finds length of linked list
- * @head: head node
+ * list_span - finds length of linked list
+ * @top: top node
  *
  * Return: list size
  */
-size_t list_len(const l_list *head)
+size_t list_span(const l_list *top)
 {
 	size_t index = 0;
 
-	while (head)
+	while (top)
 	{
-		head = head->link;
+		top = top->link;
 		index++;
 	}
 	return (index);
@@ -20,23 +20,23 @@ size_t list_len(const l_list *head)
 
 
 /**
- * prnt_l_list_with_index - prints all elements of a l_list linked list
- * @head: head node
+ * prt_l_list_in_sort - prints all elements of a l_list linked list
+ * @top: top node
  *
  * Return: list size
  */
-size_t prnt_l_list_with_index(const l_list *head)
+size_t prt_l_list_in_sort(const l_list *top)
 {
 	size_t index = 0;
 
-	while (head)
+	while (top)
 	{
-		_puts(custom_itoa(head->num, 10, 0));
+		_puts(custom_itoa(top->num, 10, 0));
 		_putchar(':');
 		_putchar(' ');
-		_puts(head->str ? head->str : "(nil)");
+		_puts(top->str ? top->str : "(nil)");
 		_puts("\n");
-		head = head->link;
+		top = top->link;
 		index++;
 	}
 	return (index);
@@ -44,26 +44,26 @@ size_t prnt_l_list_with_index(const l_list *head)
 
 
 /**
- * conv_list_to_strings - create an array of strings from list->str
- * @head: head node
+ * chng_list_to_strng - create an array of strings from list->str
+ * @top: top node
  *
  * Return: array of strings
  */
-char **conv_list_to_strings(l_list *head)
+char **chng_list_to_strng(l_list *top)
 {
-	l_list *node = head;
-	size_t index = list_len(head), x;
+	l_list *node = top;
+	size_t index = list_span(top), x;
 	char **str_array;
 	char *str;
 
-	if (!head || !index)
+	if (!top || !index)
 		return (NULL);
 	str_array = malloc(sizeof(char *) * (index + 1));
 	if (!str_array)
 		return (NULL);
 	for (index = 0; node; node = node->link, index++)
 	{
-		str = malloc(len_of_str(node->str) + 1);
+		str = malloc(span_of_str(node->str) + 1);
 		if (!str)
 		{
 			for (x = 0; x < index; x++)
