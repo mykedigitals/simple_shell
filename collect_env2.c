@@ -1,16 +1,16 @@
 #include "shell.h"
 
 /**
- * unsetenv_clone - to remove a variable from the environment
- * @content: struct parameter
+ * unsetsurr_cpy - to remove a variable from the environment
+ * @element: struct parameter
  * @var: name of the variable to remove from the environment
  * Desc: Each node in the list contains a string that
  * represents a single environment variable in the format
- * VARNAME=VALUE. "find_substr_at_start" checks if
+ * VARNAME=VALUE. "locate_word_begin" checks if
  * the node's string starts with var, is non-null, then the node
  * represents the environment variable to remove.
- * The function calls delete_node_index to remove the node
- * from the linked list, sets content->env_changed to
+ * The function calls rem_node_sort to remove the node
+ * from the linked list, sets element->env_changed to
  * true to indicate that the environment was modified,
  * resets the index to 0, and starts iterating the
  * linked list from the beginning again. But if it is null,
@@ -22,36 +22,36 @@
  * indicating that no changes were made to the environment)
  */
 
-int unsetenv_clone(sh_args *content, char *var)
+int unsetsurr_cpy(shell_args *element, char *var)
 {
 	/* represents the current environment variables */
-	l_list *node = content->env;
-	size_t index, yy;
+	l_list *node = element->surr;
+	size_t index, whaa;
 	char *ptr;
 
 	index = 0;
-	yy = 0;
+	whaa = 0;
 	if (var == NULL || !node)
 	{
-		return (yy);
+		return (whaa);
 	}
 	/* Loop thu l list of env vars until d end of d list is reached */
 	for ( ; node; index++)
 	{
 		/* Find the first occurrence of the input string at */
 		/* the start of the current string in the linked list */
-		ptr = find_substr_at_start(node->str, var);
+		ptr = locate_word_begin(node->str, var);
 		if (*ptr == '=' && ptr != NULL)
 		{
 			/* Delete the current node from the linked list, */
 			/* set env_vars_changed to 1 */
 			/* and reset the index and node variables */
-			content->env_changed = delete_node_index(&(content->env), index);
-			index = yy;
-			node = content->env;
+			element->env_changed = rem_node_sort(&(element->surr), index);
+			index = whaa;
+			node = element->surr;
 			continue;
 		}
 		node = node->link;
 	}
-	return (content->env_changed);
+	return (element->env_changed);
 }

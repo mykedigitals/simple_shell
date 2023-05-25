@@ -141,10 +141,10 @@ void double_empty(char **);
 int empty_n_NULL(void **);
 
 
-/* surr_getter */
-int surr_setter(shell_args *, char *, char *);
-int unsetsurr_clone(shell_args *, char *);
-char **surr_getter(shell_args *);
+/* collect_env */
+int make_env(shell_args *, char *, char *);
+int unsetsurr_cpy(shell_args *, char *);
+char **env_seeker(shell_args *);
 
 
 /* surrironment_handlers */
