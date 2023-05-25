@@ -26,41 +26,42 @@
 int ch_directory(shell_args *element)
 {
 	int ch_win;
-	char buff[1024], *current_dir, *dir;
+	char buff[1024], *current_dir, *folder;
 
 	current_dir = getcwd(buff, 1024);
 	if (current_dir == NULL)
 		_puts("TODO: >>getcwd failure emsg here<<\n");
 	if (!element->argv[1])
 	{
-		dir = getenv_clone(element, "HOME=");
-		if (dir == NULL)
-			ch_win = chdir((dir = getenv_clone(element, "PWD=")) ? dir : "/");
+		folder = getsurr_clone(element, "HOME=");
+		if (folder == NULL)
+			ch_win = chdir((folder = getsurr_clone(element, "PWD=")) ? folder : "/");
 		else
-			ch_win = chdir(dir);
+			ch_win = chdir(folder);
 	}
-	else if (cmpare_strs(element->argv[1], "-") == 0)
+	else if (weigh_strs(element->argv[1], "-") == 0)
 	{
-		if (!getenv_clone(element, "OLDPWD="))
+		if (!getsurr_clone(element, "OLDPWD="))
 		{
 			_puts(current_dir);
 			_putchar('\n');
 			return (1);
 		}
-		_puts(getenv_clone(element, "OLDPWD=")), _putchar('\n');
-		ch_win = chdir((dir = getenv_clone(element, "OLDPWD=")) ? dir : "/");
+		_puts(getsurr_clone(element, "OLDPWD=")), _putchar('\n');
+		ch_win = chdir((folder = getsurr_clone(element, "OLDPWD=")) ? folder : "/");
 	}
 	else
 		ch_win = chdir(element->argv[1]);
 	if (ch_win == -1)
 	{
-		print_err_mesg(element, "can't cd to ");
-		write_string_with_buffer(element->argv[1]), write_with_buffer('\n');
+		prt_mes_eror(element, "can't cd to ");
+		create_thread_in_render(element->argv[1]), create_in_space('\n');
 	}
 	else
 	{
-		env_setter(element, "OLDPWD", getenv_clone(element, "PWD="));
-		env_setter(element, "PWD", getcwd(buff, 1024));
+		make_env(element, "OLDPWD", getsurr_clone(element, "PWD="));
+		make_env(element, "PWD", getcwd(buff, 1024));
+
 	}
 	return (0);
 }
@@ -69,30 +70,30 @@ int ch_directory(shell_args *element)
 
 
 /**
- * shell_exit - terminates the shell's working process
+ * shell_out - terminates the shell's working process
  * @element: struct parameter
  *
  * Return: 0
  */
-int shell_exit(shell_args *element)
+int shell_out(shell_args *element)
 {
-	int exitcheck;
+	int test_exit;
 
 	if (element->argv[1])
 	{
 		/* converts exit argument to an integer */
-		exitcheck = exit_str_to_int(element->argv[1]);
+		test_exit = end_from_str(element->argv[1]);
 
 		/* If the exit arg is not a valid integer, print an err mesg */
-		if (exitcheck == -1)
+		if (test_exit == -1)
 		{
 			element->status = 2;
-			print_err_mesg(element, "Error number: ");
-			write_string_with_buffer(element->argv[1]);
-			write_with_buffer('\n');
+			prt_mes_eror(element, "Error number: ");
+			create_thread_in_render(element->argv[1]);
+			create_in_space('\n');
 			return (1);
 		}
-		element->err_num = exit_str_to_int(element->argv[1]);
+		element->err_num = end_from_str(element->argv[1]);
 		return (-2);
 	}
 	element->err_num = -1;
