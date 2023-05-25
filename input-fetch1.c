@@ -1,63 +1,63 @@
 #include "shell.h"
 
 /**
- * process_input - reads user input from the command line
- *	(apart from the newline)
- * @content: struct parameter
+ * pro_details - this  will read user input from the command line
+ *	other than a newline
+ * @element: structure parameter
  *
- * Return: length of the current command
+ * Return: length of present command
  */
-ssize_t process_input(sh_args *content)
+ssize_t pro_details(shell_args *element)
 {
-	static char *command_chain_buffer;
-	static size_t current_position, next_position, buffer_length;
-	ssize_t input_length = 0;
-	char **current_command_pointer = &(content->arg), *current_command;
+	static char *cmd_order_render;
+	static size_t pre_post, post_next, lenght_buff;
+	ssize_t details_lenght = 0;
+	char **pre_cmd_pointer = &(element->arg), *pre_cmd;
 
-	_putchar(BUF_FLUSH);
-	input_length = get_input_from_stdin(content,
-			&command_chain_buffer, &buffer_length);
-	if (input_length == -1)
+	_putchar(BUFF_FLUSHH);
+	details_lenght = obtain_details_stdin(element,
+			&cmd_order_render, &lenght_buff);
+	if (details_lenght == -1)
 		return (-1);
-	if (buffer_length)
+	if (lenght_buff)
 	{
-		next_position = current_position;
-		current_command = command_chain_buffer + current_position;
+		post_next = pre_post;
+		pre_cmd = cmd_order_render + pre_post;
 
-		evaluate_command_chain(content, command_chain_buffer,
-				&next_position, current_position, buffer_length);
-		while (next_position < buffer_length)
+		access_cmd_order(element, cmd_order_render,
+				&post_next, pre_post, lenght_buff);
+		while (post_next < lenght_buff)
 		{
-			if (detect_command_chaining(content, command_chain_buffer, &next_position))
+			if (order_cmd_discover(element, cmd_order_render, &post_next))
 				break;
-			next_position++;
+			post_next++;
 		}
 
-		current_position = next_position + 1;
-		if (current_position >= buffer_length)
+		pre_post = post_next + 1;
+		if (pre_post >= lenght_buff)
 		{
-			current_position = buffer_length = 0;
-			content->cmd_buf_type = CMD_NORM;
+			pre_post = lenght_buff = 0;
+			element->cd_buff_category = CMD_ORDI;
 		}
 
-		*current_command_pointer = current_command;
-		return (len_of_str(current_command));
+		*pre_cmd_pointer = pre_cmd;
+		return (string_lent(pre_cmd));
 	}
 
-	*current_command_pointer = command_chain_buffer;
-	return (input_length);
+	*pre_cmd_pointer = cmd_order_render;
+	return (details_lenght);
 }
 
 /**
- * handle_sigInt - handle signal calls when user presses Ctrl+C
+ * sigint_control - handle signal calls when user presses Ctrl+C
  * @unused_signal_num:  indicates the signal number that triggered
  *	the signal handler
  *
  * Return: nil
  */
-void handle_sigInt(__attribute__((unused))int unused_signal_num)
+void sigint_control(__attribute__((unused))int unused_signal_num)
 {
 	_puts("\n");
 	_puts("$ ");
-	_putchar(BUF_FLUSH);
+	_putchar(BUFF_FLUSHH);
 }

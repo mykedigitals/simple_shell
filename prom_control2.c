@@ -21,7 +21,7 @@ int find_root(shell_args *element)
                 {"setsurr", check_surr_setter},
                 {"unsetsurr", check_surr_unsetsurr},
                 {"chd", ch_directory},
-                {"alias", alias_clone},
+                {"alias", cpy_refer},
                 {NULL, NULL}
         };
         for (i = 0; root_table_list[i].type; i++)

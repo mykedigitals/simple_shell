@@ -64,7 +64,7 @@ void createdfork(shell_args *element)
 	}
 	if (child_pid == 0)
 	{
-		if (execve(element->path, element->argv, surr_getter(element)) == -1)
+		if (execve(element->path, element->argv, surr_seeker(element)) == -1)
 		{
 			empty_shell_args(element, 1);
 			if (errno == EACCES)

@@ -2,7 +2,7 @@
 
 /**
  * see_in_buff - This will read data in a file into a render,
- *	up to a max size by READ_BUF_SIZE
+ *	up to a max size by SEEN_BUF_SIZE
  * @element: structure parameter
  * @render: render
  * @fourbits_see: size
@@ -15,7 +15,7 @@ ssize_t see_in_buff(shell_args *element, char *render, size_t *fourbits_see)
 
 	if (*fourbits_see)
 		return (0);
-	result = read(element->seefd, render, READ_BUF_SIZE);
+	result = read(element->seefd, render, SEEN_BUF_SIZE);
 	if (result >= 0)
 		*fourbits_see = result;
 	return (result);
@@ -42,11 +42,11 @@ ssize_t obtain_details_stdin(shell_args *element, char **input_render,
 	{
 		free(*input_render);
 		*input_render = NULL;
-		signal(SIGINT, sigint_control);
+		signal(SIGINT, signit_control);
 #if USE_GETLINE
-		see_len = getline(input_render, &allocated_renderLen, stdin);
+		see_len = receiveline(input_render, &allocated_renderLen, stdin);
 #else
-		see_len = read_input_line(element, input_render, &allocated_renderLen);
+		see_len = see_line_details(element, input_render, &allocated_renderLen);
 #endif
 		if (see_len > 0)
 		{
@@ -69,53 +69,53 @@ ssize_t obtain_details_stdin(shell_args *element, char **input_render,
 
 
 /**
- * read_input_line - reads a line of input from a file or a stream
- *	and store it in a character array
+ * see_line_details - This will read line of input in a file and 
+ * store it in array
  * @element: parameter struct
- * @ptr: stores address of the pointer that will point to the output
- *	render where the function will store the read line
- * @length: stores  the length of the line that was read, including
+ * @ptr: This will store address of pointer that point to result
+ *	render where the function will store the seen line
+ * @lent: stores  the lent of the line that was read, including
  *	the null terminator
  *
- * Return: total_bytes
+ * Return: all_fourbitss
  */
-int read_input_line(shell_args *element, char **ptr, size_t *length)
+int see_line_details(shell_args *element, char **ptr, size_t *lent)
 {
-	static char input_buf[READ_BUF_SIZE];
-	static size_t buf_pos, buf_len;
+	static char input_buf[SEEN_BUF_SIZE];
+	static size_t buf_area, buf_len;
 	size_t line_len;
-	ssize_t fourbits_see = 0, total_bytes = 0;
-	char *input_pos = NULL, *new_output_str = NULL, *line_end;
+	ssize_t fourbits_see = 0, all_fourbitss = 0;
+	char *details_pos = NULL, *result_str = NULL, *line_end;
 
-	input_pos = *ptr;
-	if (input_pos && length)
-		total_bytes = *length;
-	if (buf_pos == buf_len)
-		buf_pos = buf_len = 0;
+	details_pos = *ptr;
+	if (details_pos && lent)
+		all_fourbitss = *lent;
+	if (buf_area == buf_len)
+		buf_area = buf_len = 0;
 
 	fourbits_see = see_in_buff(element, input_buf, &buf_len);
 	if (fourbits_see == -1 || (fourbits_see == 0 && buf_len == 0))
 		return (-1);
 
-	line_end = car_finder(input_buf + buf_pos, '\n');
+	line_end = locate_char(input_buf + buf_area, '\n');
 	line_len = line_end ? 1 + (unsigned int)(line_end - input_buf) : buf_len;
-	new_output_str = mem_alloc(input_pos, total_bytes, total_bytes ?
-			total_bytes + line_len : line_len + 1);
-	if (!new_output_str) /* MALLOC FAILURE! */
-		return (input_pos ? free(input_pos), -1 : -1);
+	result_str = mem_alloc(details_pos, all_fourbitss, all_fourbitss ?
+			all_fourbitss + line_len : line_len + 1);
+	if (!result_str) /* MALLOC FAIL! */
+		return (details_pos ? free(details_pos), -1 : -1);
 
-	if (total_bytes)
-		string_concat(new_output_str, input_buf + buf_pos, line_len - buf_pos);
+	if (all_fourbitss)
+		thread_rearr(result_str, input_buf + buf_area, line_len - buf_area);
 	else
-		cpy_str(new_output_str, input_buf + buf_pos, line_len - buf_pos + 1);
+		cpy_str(result_str, input_buf + buf_area, line_len - buf_area + 1);
 
-	total_bytes += line_len - buf_pos;
-	buf_pos = line_len;
-	input_pos = new_output_str;
+	all_fourbitss += line_len - buf_area;
+	buf_area = line_len;
+	details_pos = result_str;
 
-	if (length)
-		*length = total_bytes;
-	*ptr = input_pos;
-	return (total_bytes);
+	if (lent)
+		*lent = all_fourbitss;
+	*ptr = details_pos;
+	return (all_fourbitss);
 }
 

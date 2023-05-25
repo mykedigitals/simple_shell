@@ -37,7 +37,7 @@
 
 /* Buffer sizes for Read-Write */
 #define WRITE_BUF_SIZE 1024
-#define READ_BUF_SIZE 1024
+#define SEEN_BUF_SIZE 1024
 #define BUFF_FLUSHH -1
 
 
@@ -144,7 +144,7 @@ int empty_n_NULL(void **);
 /* collect_env */
 int make_env(shell_args *, char *, char *);
 int unsetsurr_cpy(shell_args *, char *);
-char **env_seeker(shell_args *);
+char **surr_seeker(shell_args *);
 
 
 /* surrironment_handlers */
@@ -175,7 +175,7 @@ int prnt_decim_int(int, int);
 /* record_getter */
 int load_record(shell_args *element);
 int create_shel_record(shell_args *element);
-int add_to_record(shell_args *element, char *buf, int linecount);
+int plus_to_record(shell_args *element, char *buf, int linecount;
 char *get_hist_file_path(shell_args *element);
 int update_hist_node_numbrs(shell_args *inelementfo);
 
@@ -220,9 +220,9 @@ char **chng_list_to_strng(l_list *);
 /* line_getter */
 ssize_t pro_details(shell_args *);
 ssize_t read_into_buffer(shell_args *element, char *buf, size_t *i);
-ssize_t get_input_from_stdin(shell_args *element, char **buf, size_t *len);
-int read_input_line(shell_args *, char **, size_t *);
-void handle_sigInt(int);
+ssize_t obtain_details_stdin(shell_args *element, char **buf, size_t *len);
+int see_line_details(shell_args *, char **, size_t *);
+void signit_control(int);
 
 
 /* examiner */
