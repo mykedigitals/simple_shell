@@ -2,9 +2,9 @@
 
 
 /**
- * change_directory - changes the current
+ * ch_directory - changes the current
  * working directory of the shell
- * @content: struct parameter
+ * @element: struct parameter
  * Desc: getcwd gets the current working directory and
  * stores it in the buffer. If it is empty, it sets
  * the dir variable to the value of the HOME environment
@@ -23,44 +23,44 @@
  *
  * Return: 0 (success), 1 (error)
  */
-int change_directory(sh_args *content)
+int ch_directory(shell_args *element)
 {
-	int cd_success;
-	char buff[1024], *wrkin_dir, *dir;
+	int ch_win;
+	char buff[1024], *current_dir, *dir;
 
-	wrkin_dir = getcwd(buff, 1024);
-	if (wrkin_dir == NULL)
+	current_dir = getcwd(buff, 1024);
+	if (current_dir == NULL)
 		_puts("TODO: >>getcwd failure emsg here<<\n");
-	if (!content->argv[1])
+	if (!element->argv[1])
 	{
-		dir = getenv_clone(content, "HOME=");
+		dir = getenv_clone(element, "HOME=");
 		if (dir == NULL)
-			cd_success = chdir((dir = getenv_clone(content, "PWD=")) ? dir : "/");
+			ch_win = chdir((dir = getenv_clone(element, "PWD=")) ? dir : "/");
 		else
-			cd_success = chdir(dir);
+			ch_win = chdir(dir);
 	}
-	else if (cmpare_strs(content->argv[1], "-") == 0)
+	else if (cmpare_strs(element->argv[1], "-") == 0)
 	{
-		if (!getenv_clone(content, "OLDPWD="))
+		if (!getenv_clone(element, "OLDPWD="))
 		{
-			_puts(wrkin_dir);
+			_puts(current_dir);
 			_putchar('\n');
 			return (1);
 		}
-		_puts(getenv_clone(content, "OLDPWD=")), _putchar('\n');
-		cd_success = chdir((dir = getenv_clone(content, "OLDPWD=")) ? dir : "/");
+		_puts(getenv_clone(element, "OLDPWD=")), _putchar('\n');
+		ch_win = chdir((dir = getenv_clone(element, "OLDPWD=")) ? dir : "/");
 	}
 	else
-		cd_success = chdir(content->argv[1]);
-	if (cd_success == -1)
+		ch_win = chdir(element->argv[1]);
+	if (ch_win == -1)
 	{
-		print_err_mesg(content, "can't cd to ");
-		write_string_with_buffer(content->argv[1]), write_with_buffer('\n');
+		print_err_mesg(element, "can't cd to ");
+		write_string_with_buffer(element->argv[1]), write_with_buffer('\n');
 	}
 	else
 	{
-		env_setter(content, "OLDPWD", getenv_clone(content, "PWD="));
-		env_setter(content, "PWD", getcwd(buff, 1024));
+		env_setter(element, "OLDPWD", getenv_clone(element, "PWD="));
+		env_setter(element, "PWD", getcwd(buff, 1024));
 	}
 	return (0);
 }
@@ -70,31 +70,31 @@ int change_directory(sh_args *content)
 
 /**
  * shell_exit - terminates the shell's working process
- * @content: struct parameter
+ * @element: struct parameter
  *
  * Return: 0
  */
-int shell_exit(sh_args *content)
+int shell_exit(shell_args *element)
 {
 	int exitcheck;
 
-	if (content->argv[1])
+	if (element->argv[1])
 	{
 		/* converts exit argument to an integer */
-		exitcheck = exit_str_to_int(content->argv[1]);
+		exitcheck = exit_str_to_int(element->argv[1]);
 
 		/* If the exit arg is not a valid integer, print an err mesg */
 		if (exitcheck == -1)
 		{
-			content->status = 2;
-			print_err_mesg(content, "Error number: ");
-			write_string_with_buffer(content->argv[1]);
+			element->status = 2;
+			print_err_mesg(element, "Error number: ");
+			write_string_with_buffer(element->argv[1]);
 			write_with_buffer('\n');
 			return (1);
 		}
-		content->err_num = exit_str_to_int(content->argv[1]);
+		element->err_num = exit_str_to_int(element->argv[1]);
 		return (-2);
 	}
-	content->err_num = -1;
+	element->err_num = -1;
 	return (-2);
 }
