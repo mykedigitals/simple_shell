@@ -2,52 +2,52 @@
 
 
 /**
- * check_env_setter - verifies the number of
- * arguments being passed to env_setter
- * @content: struct parameter
+ * check_surr_setter - verifies the number of
+ * arguments being passed to make_env
+ * @element: struct parameter
  * 
  * Return: 0 (success), 1 (error)
  */
 
-int check_env_setter(sh_args *content)
+int check_surr_setter(shell_args *element)
 {
-	int xx = 0, yy = 1;
+	int whaa = 0, thaa = 1;
 
 	/* check if number of arguments is correct */
-	if (content->argc != 3)
+	if (element->argc != 3)
 	{
 		/* if number of arguments is incorrect, print error message */
-		write_string_with_buffer("Error in number of arguements\n");
-		return (yy);
+		create_thread_in_render("Error in number of arguements\n");
+		return (thaa);
 	}
-	/* if arguments are correct, try to set env var using env_setter function */
-	if (env_setter(content, content->argv[1], content->argv[2]))
+	/* if arguments are correct, try to set env var using make_env function */
+	if (make_env(element, element->argv[1], element->argv[2]))
 	{
-		return (xx);
+		return (whaa);
 	}
-	return (yy);
+	return (thaa);
 }
 
 
 /**
- * populat_listof_env -  populating a linked list with environment variables
- * @content: struct parameter
+ * fillup_ct_surr -  populating a linked list with environment variables
+ * @element: struct parameter
  * Desc: it adds each element of the environ array to the end
- * of the linked list using the new_end_node function. The third
- * argument to new_end_node takes 0 (an integer value) as arguments
+ * of the linked list using the updated_tail_node function. The third
+ * argument to updated_tail_node takes 0 (an integer value) as arguments
  *
  * Return: 0
  */
 
-int populat_listof_env(sh_args *content)
+int fillup_ct_surr(shell_args *element)
 {
-	size_t idx;
+	size_t indices;
 	l_list *node = NULL;
 
-	for (idx = 0; environ[idx]; idx++)
+	for (indices = 0; surriron[indices]; indices++)
 	{
-		new_end_node(&node, environ[idx], 0);
+		updated_tail_node(&node, surriron[indices], 0);
 	}
-	content->env = node;
+	element->surr = node;
 	return (0);
 }

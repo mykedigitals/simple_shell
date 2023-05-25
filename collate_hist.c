@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- * print_command_hist -  print out the command history,
+ * order_print_rec -  print out the command history,
  * consecutively, leading with line numbers, from 0
- * @content: struct parameter
+ * @element: struct parameter
  *  Return: Always 0
  */
-int print_command_hist(sh_args *content)
+int order_print_rec(shell_args *element)
 {
-	prnt_l_list_with_index(content->history);
+	prt_l_list_in_sort(element->history);
 	return (0);
 }
