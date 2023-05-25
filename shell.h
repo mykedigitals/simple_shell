@@ -157,7 +157,7 @@ char *getsurr_clone(shell_args *, const char *);
 
 /* error_handlers1 */
 void prt_mes_eror(shell_args *, char *);
-int exit_str_to_int(char *);
+int end_from_str(char *);
 
 
 /* exit_checker */
