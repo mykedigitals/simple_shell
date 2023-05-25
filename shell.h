@@ -147,7 +147,7 @@ int unsetsurr_cpy(shell_args *, char *);
 char **surr_seeker(shell_args *);
 
 
-/* surrironment_handlers */
+/* control_environ */
 int check_surr_setter(shell_args *);
 int check_surr_unsetsurr(shell_args *);
 int fillup_ct_surr(shell_args *);
