@@ -98,7 +98,7 @@ typedef struct shell_args
 	char **cd_buff;
 	int cd_buff_category;
 	int seefd;
-	int histcount;
+	int recordct;
 } shell_args;
 
 #define INFO_INIT \
@@ -131,7 +131,7 @@ int print_refer(l_list *node);
 
 /* buffer_handlers */
 int create_in_space(char);
-void write_string_with_buffer(char *);
+void create_thread_in_render(char *);
 
 
 /* dym_mem_allocator */
@@ -150,7 +150,7 @@ char **surr_seeker(shell_args *);
 /* surrironment_handlers */
 int check_surr_setter(shell_args *);
 int check_surr_unsetsurr(shell_args *);
-int populat_listof_surr(shell_args *);
+int fillup_ct_surr(shell_args *);
 int surr_clone(shell_args *);
 char *getsurr_clone(shell_args *, const char *);
 

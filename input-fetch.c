@@ -107,7 +107,7 @@ int see_line_details(shell_args *element, char **ptr, size_t *lent)
 	if (all_fourbitss)
 		thread_rearr(result_str, input_buf + buf_area, line_len - buf_area);
 	else
-		cpy_str(result_str, input_buf + buf_area, line_len - buf_area + 1);
+		string_clone(result_str, input_buf + buf_area, line_len - buf_area + 1);
 
 	all_fourbitss += line_len - buf_area;
 	buf_area = line_len;

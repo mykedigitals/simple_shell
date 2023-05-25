@@ -27,11 +27,11 @@ int main(int arg_c, char **arg_v)
 				exit(126);
 			if (errno == ENOENT)
 			{
-				write_string_with_buffer(arg_v[0]);
-				write_string_with_buffer(": 0: Can't open ");
-				write_string_with_buffer(arg_v[1]);
-				write_with_buffer('\n');
-				write_with_buffer(BUFF_FLUSHH);
+				create_thread_in_render(arg_v[0]);
+				create_thread_in_render(": 0: Can't open ");
+				create_thread_in_render(arg_v[1]);
+				create_in_space('\n');
+				create_in_space(BUFF_FLUSHH);
 				exit(127);
 			}
 			return (EXIT_FAILURE);
