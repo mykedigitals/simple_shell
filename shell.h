@@ -175,7 +175,7 @@ int prnt_decim_int(int, int);
 /* record_getter */
 int load_record(shell_args *element);
 int create_shel_record(shell_args *element);
-int plus_to_record(shell_args *element, char *buf, int linecount;
+int plus_to_record(shell_args *element, char *buf, int linecount);
 char *get_hist_file_path(shell_args *element);
 int update_hist_node_numbrs(shell_args *inelementfo);
 
