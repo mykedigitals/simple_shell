@@ -13,7 +13,7 @@ void enter_shell_args(shell_args *element, char **a_v)
 	element->fname = a_v[0];
 	if (element->arg)
 	{
-		element->argv = created_strtow(element->arg, " \t");
+		element->argv = created_tokener(element->arg, " \t");
 		if (!element->argv)
 		{
 
