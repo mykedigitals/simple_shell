@@ -2,25 +2,25 @@
 
 
 /**
- * print_err_mesg - The function writes an
- * error message to the standard error output
- * @content: struct parameter
- * @err_str: information about the source of the error
+ * prt_mes_eror - This function will write our error 
+ * msg to the stderr output
+ * @element: structure parameter
+ * @strng_of_err: write info on source of the error
  *
  * Return: 0
  */
-void print_err_mesg(sh_args *content, char *err_str)
+void prt_mes_eror(shell_args *element, char *strng_of_err)
 {
-	/* writes the filename to the buffer */
-	write_string_with_buffer(content->fname);
-	/* writes a colon and a space to the buffer */
-	write_string_with_buffer(": ");
-	/* writes the line number to the buffer */
-	prnt_decim_int(content->line_count, STDERR_FILENO);
-	write_string_with_buffer(": ");
-	/* writes the command name to the buffer */
-	write_string_with_buffer(content->argv[0]);
-	write_string_with_buffer(": ");
-	/* writes the error message to the buffer */
-	write_string_with_buffer(err_str);
+	/* This will write the filename to buffer */
+	create_thread_in_render(element->fname);
+	/* This will write colon and space to buffer */
+	create_thread_in_render(": ");
+	/* This will write line num to buffer */
+	prt_dcm_int(element->space_ct, STDERR_FILENO);
+	create_thread_in_render(": ");
+	/* This will write cmd name buffer */
+	create_thread_in_render(element->argv[0]);
+	create_thread_in_render(": ");
+	/* This write error msg to buffer */
+	create_thread_in_render(strng_of_err);
 }

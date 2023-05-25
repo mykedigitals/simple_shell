@@ -8,6 +8,6 @@
  */
 int order_print_rec(shell_args *element)
 {
-	prt_l_list_in_sort(element->history);
+	prt_l_list_in_sort(element->record);
 	return (0);
 }

@@ -10,9 +10,9 @@
  * set @str_p to null (\0) to terminate the string at that point.
  * The search_node_sort function is then called to find the index
  * of the node in the alias linked list that starts with the string
- * before the equal sign. The collect_init_node_in_title function is
+ * before the equal sign. The obtain_beginingnode function is
  * used to perform the comparison. If a matching node is found, the
- * rem_node_sort function is called
+ * search_node_sort function is called
  * to remove the node from the linked list.
  *
  * Return: 0 (success), 1 (error)7
@@ -37,7 +37,7 @@ int comot_refer(shell_args *element, char *str)
 
 	comoter = rem_node_sort(&(element->alias),
 			search_node_sort(element->alias,
-			collect_init_node_in_title(element->alias, str, -1)));
+			obtain_beginingnode(element->alias, str, -1)));
 	/* Restore the '=' character to the input string */
 	*str_p = clone;
 	return (comoter);
@@ -73,7 +73,7 @@ int cpy_refer(shell_args *element)
 		if (chk != NULL)
 			refer_to_word(element, element->argv[indices]);
 		else
-			print_refer(collect_init_node_in_title(
+			print_refer(obtain_beginingnode(
 						element->alias, element->argv[indices], '='));
 		indices++;
 	}

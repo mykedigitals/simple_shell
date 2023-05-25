@@ -17,7 +17,7 @@ char *search_path(shell_args *element, char *dirctry_list, char *command)
 
 	if (!dirctry_list)
 		return (NULL);
-	if ((span_of_str(command) > 2) && locate_word_begin(command, "./"))
+	if ((string_lent(command) > 2) && locate_word_begin(command, "./"))
 	{
 		if (is_exec(element, command))
 			return (command);

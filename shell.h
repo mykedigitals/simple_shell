@@ -169,7 +169,7 @@ int shell_out(shell_args *);
 /* file-descriptor_handlers */
 int write_string_to_fd(char *str, int fd);
 int write_chk_to_fd(int fil_des, char chk);
-int prnt_decim_int(int, int);
+int prt_dcm_int(int, int);
 
 
 /* record_getter */
@@ -204,8 +204,8 @@ void empty_shell_args(shell_args *, int);
 
 /* l_list_handler */
 size_t screen_l_list_in_str(const l_list *);
-l_list *new_end_node(l_list **, const char *, int);
-int delete_node_index(l_list **, unsigned int);
+l_list *updated_tail_node(l_list **, const char *, int);
+int rem_node_sort(l_list **, unsigned int);
 void empty_l_list(l_list **);
 
 
