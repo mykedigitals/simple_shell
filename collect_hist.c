@@ -1,98 +1,99 @@
 #include "shell.h"
 
 /**
- * load_history - reads command history
- * from a file and add it to a history buffer
- * @content: struct parameter
+ * load_record - reads command history
+ * from a file and add it to a record buffer
+ * @element: struct parameter
  *
- * Return: histcount (success), 0 (error)
+ * Return: recordct (success), 0 (error)
  */
-int load_history(sh_args *content)
+
+int load_record(shell_args *element)
 {
-	int index, last_newline = 0, linecount = 0;
-	ssize_t fil_des, read_len, fil_size = 0;
+	int work_idx, final_line = 0, linecount = 0;
+	ssize_t hom_doc, rd_lent, fil_size = 0;
 	struct stat file_stats;
-	char *buffer = NULL, *history_file = get_hist_file_path(content);
+	char *buffer = NULL, *record_file = collect_filepath(element);
 
-	if (!history_file)
+	if (!record_file)
 		return (0);
 
-	fil_des = open(history_file, O_RDONLY);
-	free(history_file);
-	if (fil_des == -1)
+	hom_doc = open(record_file, O_RDONLY);
+	free(record_file);
+	if (hom_doc == -1)
 		return (0);
-	if (!fstat(fil_des, &file_stats))
+	if (!fstat(hom_doc, &file_stats))
 		fil_size = file_stats.st_size;
 	if (fil_size < 2)
 		return (0);
 	buffer = malloc(sizeof(char) * (fil_size + 1));
 	if (!buffer)
 		return (0);
-	read_len = read(fil_des, buffer, fil_size);
+	rd_lent = read(hom_doc, buffer, fil_size);
 	buffer[fil_size] = 0;
-	if (read_len <= 0)
+	if (rd_lent <= 0)
 		return (free(buffer), 0);
-	close(fil_des);
-	for (index = 0; index < fil_size; index++)
-		if (buffer[index] == '\n')
+	close(hom_doc);
+	for (word_idx = 0; word_idx < fil_size; word_idx++)
+		if (buffer[word_idx] == '\n')
 		{
-			buffer[index] = 0;
-			add_to_history(content, buffer + last_newline, linecount++);
-			last_newline = index + 1;
+			buffer[word_idx] = 0;
+			plus_to_record(element, buffer + final_line, linecount++);
+			final_line = word_idx + 1;
 		}
-	if (last_newline != index)
-		add_to_history(content, buffer + last_newline, linecount++);
+	if (final_line != word_idx)
+		plus_to_record(element, buffer + final_line, linecount++);
 	free(buffer);
-	content->histcount = linecount;
-	while (content->histcount-- >= HIST_MAX)
-		delete_node_index(&(content->history), 0);
-	update_hist_node_numbrs(content);
-	return (content->histcount);
+	element->recordct = linecount;
+	while (element->recordct-- >= HIST_MAX)
+		rem_node_sort(&(element->record), 0);
+	edit_nodenumber(element);
+	return (element->recordct);
 }
 
 
 /**
- * add_to_history - builds a history list by adding
+ * plus_to_record - builds a history list by adding
  * a new node at the end of the linked list pointed to by
- *	content->history
- * @content: struct parameter
+ *	element->record
+ * @element: struct parameter
  * @buffer: buffer
- * @linecount: history linecount, histcount
+ * @linecount: record linecount, recordct
  *
  * Return: 0
  */
-int add_to_history(sh_args *content, char *buffer, int linecount)
+int plus_to_record(shell_args *element, char *buffer, int linecount)
 {
 	l_list *node = NULL;
 
-	if (content->history)
-		node = content->history;
-	new_end_node(&node, buffer, linecount);
+	if (element->record)
+		node = element->record;
+	updated_tail_node(&node, buffer, linecount);
 
-	if (!content->history)
-		content->history = node;
+	if (!element->record)
+		element->record = node;
 	return (0);
 }
 
 
 
 /**
- * update_hist_node_numbrs - renumbers
- * the nodes in a linked list of history items
- * @content: struct parameter
+ * edit_nodenumber - renumbers
+ * the nodes in a linked list of record items
+ * @element: struct parameter
  *
  * Return: total number of nodes in the linked list
  * (i.e. the new highest number assigned to a node, plus one)
  */
-int update_hist_node_numbrs(sh_args *content)
+int edit_nodenumber(shell_args *element)
 {
-	l_list *node = content->history;
-	int i = 0;
+	l_list *node = element->record;
+	int yep = 0;
 
 	while (node)
 	{
-		node->num = i++;
+		node->num = yep++;
 		node = node->link;
 	}
-	return (content->histcount = i);
+	return (element->recordct = yep);
 }

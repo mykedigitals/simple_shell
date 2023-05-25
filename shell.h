@@ -160,7 +160,7 @@ void prt_mes_eror(shell_args *, char *);
 int end_from_str(char *);
 
 
-/* exit_checker */
+/* check_to_close.c */
 int ch_directory(shell_args *);
 int help_command(shell_args *);
 int shell_out(shell_args *);
@@ -172,12 +172,12 @@ int write_chk_to_fd(int fil_des, char chk);
 int prt_dcm_int(int, int);
 
 
-/* record_getter */
+/* collect_hist */
 int load_record(shell_args *element);
 int create_shel_record(shell_args *element);
 int plus_to_record(shell_args *element, char *buf, int linecount);
-char *get_hist_file_path(shell_args *element);
-int update_hist_node_numbrs(shell_args *inelementfo);
+char *collect_filepath(shell_args *element);
+int edit_nodenumber(shell_args *inelementfo);
 
 
 /* record_list */
