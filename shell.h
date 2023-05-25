@@ -119,11 +119,14 @@ typedef struct builtin
 
 /* PROTOTYPE DEFINATIONS */
 
-/* alias */
-int alias_to_str(shell_args *element, char *str);
-int remv_alias(shell_args *element, char *str);
-int alias_printer(l_list *node);
-int alias_clone(shell_args *);
+/* file_refer */
+int comot_refer(shell_args *element, char *str);
+int cpy_refer(shell_args *);
+
+
+/* filer_refer2 */
+int refer_to_word(shell_args *element, char *str);
+int print_refer(l_list *node);
 
 
 /* buffer_handlers */
@@ -222,10 +225,10 @@ int read_input_line(shell_args *, char **, size_t *);
 void handle_sigInt(int);
 
 
-/* parse_handlers */
+/* examiner */
 char *search_path(shell_args *, char *, char *);
 int is_exec(shell_args *, char *);
-char *copy_chars_without_delimiter(char *, int, int);
+char *char_clone_nolimiter(char *, int, int);
 
 
 /* thread_control */
