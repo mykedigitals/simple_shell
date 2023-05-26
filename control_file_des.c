@@ -3,7 +3,7 @@
 
 /**
  * create_strng_find - to write a string to other streams of strings
- * @str: string to be printed back 
+ * @str: string to be printed back
  * @ent_int: the descriptor of file to be written into
  *
  * Return: this returns the value string written

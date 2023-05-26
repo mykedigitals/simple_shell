@@ -2,7 +2,7 @@
 
 
 /**
- * prt_mes_eror - This function will write our error 
+ * prt_mes_eror - This function will write our error
  * msg to the stderr output
  * @element: structure parameter
  * @strng_of_err: write info on source of the error

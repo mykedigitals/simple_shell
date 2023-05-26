@@ -5,7 +5,7 @@
  * check_surr_setter - verifies the number of
  * arguments being passed to make_env
  * @element: struct parameter
- * 
+ *
  * Return: 0 (success), 1 (error)
  */
 
@@ -44,9 +44,9 @@ int fillup_ct_surr(shell_args *element)
 	size_t indices;
 	l_list *node = NULL;
 
-	for (indices = 0; surriron[indices]; indices++)
+	for (indices = 0; environ[indices]; indices++)
 	{
-		updated_tail_node(&node, surriron[indices], 0);
+		updated_tail_node(&node, environ[indices], 0);
 	}
 
 	element->surr = node;

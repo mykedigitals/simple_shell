@@ -41,7 +41,7 @@
 #define BUFF_FLUSHH -1
 
 
-extern char **surriron;
+extern char **environ;
 
 
 /**
@@ -58,7 +58,7 @@ typedef struct l_list
 } l_list;
 
 /**
- *struct shell_args - stores arguments and surrironment variables for a shell
+ *struct shell_args - stores arguments and environment variables for a shell
  * @arg: command to be executed
  * @argv: array of pointers to the arguments for the command
  * @path: path to the command
@@ -68,7 +68,7 @@ typedef struct l_list
  * @spacect_flg: flag indicating if the command is a line count command
  * @fname: name of the file for the command
  * @surr: array of pointers to the environment variables
- * @surriron: linked list of environment variables
+ * @environ: linked list of environment variables
  * @record: linked list of previous commands
  * @alias: linked list of aliases
  * @surr_changed: flag show if the environment variables have been changed
@@ -91,7 +91,7 @@ typedef struct shell_args
 	l_list *surr;
 	l_list *record;
 	l_list *alias;
-	char **surriron;
+	char **environ;
 	int surr_changed;
 	int status;
 

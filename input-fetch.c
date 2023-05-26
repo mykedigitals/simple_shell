@@ -2,8 +2,8 @@
 
 /**
  * see_in_buff - This will read data in a file into a render,
- *	up to a max size by SEEN_BUF_SIZE
- * @element: structure parameter
+ * up to a max size by SEEN_BUF_SIZE
+ * @element: parameter for a part structure
  * @render: render
  * @fourbits_see: size
  *
@@ -69,7 +69,7 @@ ssize_t obtain_details_stdin(shell_args *element, char **input_render,
 
 
 /**
- * see_line_details - This will read line of input in a file and 
+ * see_line_details - This will read line of input in a file and
  * store it in array
  * @element: parameter struct
  * @ptr: This will store address of pointer that point to result
@@ -77,7 +77,7 @@ ssize_t obtain_details_stdin(shell_args *element, char **input_render,
  * @lent: stores  the lent of the line that was read, including
  *	the null terminator
  *
- * Return: all_fourbitss
+ * Return: this return 4bits
  */
 int see_line_details(shell_args *element, char **ptr, size_t *lent)
 {

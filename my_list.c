@@ -3,7 +3,7 @@
 /**
  * rem_node_sort - delete a node in a linked list at a specific index
  * @list_top: top node
- * @sort: sort node being deleted
+ * @index: sort node being deleted
  *
  * Return: 1 (success), 0 (failure)
  */

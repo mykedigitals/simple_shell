@@ -46,9 +46,10 @@ l_list *updated_tail_node(l_list **list_top, const char *str, int num)
  *
  * Return: node index starting from 0, -1 (otherwise)
  */
+
 ssize_t search_node_sort(l_list *top, l_list *point_node)
 {
-        size_t index = 0;
+	size_t index = 0;
 
 	while (top)
 	{
