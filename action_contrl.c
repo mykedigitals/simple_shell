@@ -2,7 +2,7 @@
 
 
 /**
- * find_exec_path - finds the full path of a command within a
+ * locate_execute - finds the full path of a command within a
  *	list of directories provided in the dirctry_list
  * @content: struct content
  * @dirctry_list: string path
@@ -10,7 +10,7 @@
  *
  * Return: command's full path | NULL
  */
-char *find_exec_path(sh_args *content, char *dirctry_list, char *command)
+char *locate_execute(sh_args *content, char *dirctry_list, char *command)
 {
 	int path_index = 0, prev_index = 0;
 	char *full_path;
@@ -19,14 +19,14 @@ char *find_exec_path(sh_args *content, char *dirctry_list, char *command)
 		return (NULL);
 	if ((len_of_str(command) > 2) && find_substr_at_start(command, "./"))
 	{
-		if (is_file_exec(content, command))
+		if (for_doc_exec(content, command))
 			return (command);
 	}
 	while (1)
 	{
 		if (!dirctry_list[path_index] || dirctry_list[path_index] == ':')
 		{
-			full_path = copy_chars_without_delimiter(dirctry_list,
+			full_path = clone_no_delim(dirctry_list,
 					prev_index, path_index);
 			if (!*full_path)
 				concat_str(full_path, command);
@@ -35,7 +35,7 @@ char *find_exec_path(sh_args *content, char *dirctry_list, char *command)
 				concat_str(full_path, "/");
 				concat_str(full_path, command);
 			}
-			if (is_file_exec(content, full_path))
+			if (for_doc_exec(content, full_path))
 				return (full_path);
 			if (!dirctry_list[path_index])
 				break;
@@ -48,13 +48,13 @@ char *find_exec_path(sh_args *content, char *dirctry_list, char *command)
 
 
 /**
- * is_file_exec - checks if a file is an executable command or not
+ * for_doc_exec - checks if a file is an executable command or not
  * @content: struct content
  * @file_path: file path
  *
  * Return: 1 (true), 0 (otherwise)
  */
-int is_file_exec(sh_args *content, char *file_path)
+int for_doc_exec(sh_args *content, char *file_path)
 {
 	struct stat file_info;
 
@@ -71,7 +71,7 @@ int is_file_exec(sh_args *content, char *file_path)
 
 
 /**
- * copy_chars_without_delimiter - duplicates chars while removing any
+ * clone_no_delim - duplicates chars while removing any
  *	delimiters
  * @pathstr: string path
  * @start_index: start index
@@ -79,7 +79,7 @@ int is_file_exec(sh_args *content, char *file_path)
  *
  * Return: pointer to new buffer
  */
-char *copy_chars_without_delimiter(char *pathstr, int start_index,
+char *clone_no_delim(char *pathstr, int start_index,
 		int stop_index)
 {
 	static char buffer[1024];

@@ -70,7 +70,7 @@ void findAndExecCommand(sh_args *content)
 	if (!non_delim_count)
 		return;
 
-	path = find_exec_path(content, getenv_clone(
+	path = locate_execute(content, getenv_clone(
 		content, "PATH="), content->argv[0]);
 	if (path)
 	{
@@ -80,7 +80,7 @@ void findAndExecCommand(sh_args *content)
 	else
 	{
 		if ((is_interactive(content) || getenv_clone(content, "PATH=")
-			|| content->argv[0][0] == '/') && is_file_exec(content, content->argv[0]))
+			|| content->argv[0][0] == '/') && for_doc_exec(content, content->argv[0]))
 			custom_fork(content);
 		else if (*(content->arg) != '\n')
 		{

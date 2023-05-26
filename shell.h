@@ -223,9 +223,9 @@ void handle_sigInt(int);
 
 
 /* parse_handlers */
-char *find_exec_path(sh_args *, char *, char *);
-int is_file_exec(sh_args *, char *);
-char *copy_chars_without_delimiter(char *, int, int);
+char *locate_execute(sh_args *, char *, char *);
+int for_doc_exec(sh_args *, char *);
+char *clone_no_delim(char *, int, int);
 
 
 /* string_handlers */
