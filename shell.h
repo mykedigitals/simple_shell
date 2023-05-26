@@ -131,11 +131,11 @@ int write_with_buffer(char);
 void write_string_with_buffer(char *);
 
 
-/* dym_mem_allocator */
-void *mem_alloc(void *, unsigned int, unsigned int);
-char *memset_clone(char *, char, unsigned int);
-void multi_free(char **);
-int free_n_NULL(void **);
+/* dym_to_allocate_memator */
+void *to_allocate_mem(void *, unsigned int, unsigned int);
+char *cpy_setof_mem(char *, char, unsigned int);
+void free_alot(char **);
+int to_free_nothing(void **);
 
 
 /* env_getter */

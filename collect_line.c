@@ -154,7 +154,7 @@ int read_input_line(sh_args *content, char **ptr, size_t *length)
 
 	line_end = car_finder(input_buf + buf_pos, '\n');
 	line_len = line_end ? 1 + (unsigned int)(line_end - input_buf) : buf_len;
-	new_output_str = mem_alloc(input_pos, total_bytes, total_bytes ?
+	new_output_str = to_allocate_mem(input_pos, total_bytes, total_bytes ?
 			total_bytes + line_len : line_len + 1);
 	if (!new_output_str) /* MALLOC FAILURE! */
 		return (input_pos ? free(input_pos), -1 : -1);

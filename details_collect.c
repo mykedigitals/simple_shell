@@ -55,7 +55,7 @@ void reset_sh_args(sh_args *content)
  */
 void free_sh_args(sh_args *content, int fields)
 {
-	multi_free(content->argv);
+	free_alot(content->argv);
 	content->argv = NULL;
 	content->path = NULL;
 	if (fields)
@@ -68,9 +68,9 @@ void free_sh_args(sh_args *content, int fields)
 			free_l_list(&(content->history));
 		if (content->alias)
 			free_l_list(&(content->alias));
-		multi_free(content->environ);
+		free_alot(content->environ);
 			content->environ = NULL;
-		free_n_NULL((void **)content->cmd_buf);
+		to_free_nothing((void **)content->cmd_buf);
 		if (content->readfd > 2)
 			close(content->readfd);
 		_putchar(BUF_FLUSH);

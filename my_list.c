@@ -43,7 +43,7 @@ l_list *new_end_node(l_list **list_head, const char *str, int num)
 	new_node = malloc(sizeof(l_list));
 	if (!new_node)
 		return (NULL);
-	memset_clone((void *)new_node, 0, sizeof(l_list));
+	cpy_setof_mem((void *)new_node, 0, sizeof(l_list));
 	new_node->num = num;
 	if (str)
 	{

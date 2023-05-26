@@ -2,7 +2,7 @@
 
 
 /**
- * mem_alloc - resizes a previously allocated memory block
+ * to_allocate_mem - resizes a previously allocated memory block
  * @prev_mem_size: byte size of previous block
  * @new_mem_size: byte size of new block
  * @first_ptr: pointer to previous malloc'ated block
@@ -19,7 +19,7 @@
  *
  * Return: pointer to newly allocated memory block (p)
  */
-void *mem_alloc(void *first_ptr, unsigned int
+void *to_allocate_mem(void *first_ptr, unsigned int
 prev_mem_size, unsigned int new_mem_size)
 {
 	char *new_ptr;
@@ -51,7 +51,7 @@ prev_mem_size, unsigned int new_mem_size)
 
 
 /**
- * memset_clone - emulates "memset()"
+ * cpy_setof_mem - emulates "memset()"
  * function as it fills memory with a constant byte
  * @ptr: pointer to the memory area to be filled
  * @value: the value to be filled in the memory block
@@ -59,7 +59,7 @@ prev_mem_size, unsigned int new_mem_size)
  *
  * Return: pointer to the memory area
  */
-char *memset_clone(char *ptr, char value, unsigned int num)
+char *cpy_setof_mem(char *ptr, char value, unsigned int num)
 {
 	unsigned int x;
 
@@ -69,10 +69,11 @@ char *memset_clone(char *ptr, char value, unsigned int num)
 }
 
 /**
- * multi_free - frees memory allocated to a string of strings
+ * free_alot - frees memory allocated to a string of strings
  * @str_ptr: pointer to a string of strings
  */
-void multi_free(char **str_ptr)
+
+void free_alot(char **str_ptr)
 {
 	char **my_strings = str_ptr;
 
@@ -85,12 +86,12 @@ void multi_free(char **str_ptr)
 
 
 /**
- * free_n_NULL - free the memory pointed to by
+ * to_free_nothing - free the memory pointed to by
  * @p: pointer address being freed
  *
  * Return: 1 (freed), 0 (otherwise)
  */
-int free_n_NULL(void **p)
+int to_free_nothing(void **p)
 {
 	if (p && *p)
 	{
