@@ -106,15 +106,14 @@ void word_comot(char *txt_word)
 
 
 /**
- * custom_itoa - converts a long integer num into a string
- *	representation in a given base, which can be specified through the flags
+ * created_iota - this function converts long integer into a strs
  * @num: number
  * @conversionBase: conversionBase
  * @flags: flags
  *
  * Return: converted string
  */
-char *custom_itoa(long int num, int conversionBase, int flags)
+char *created_iota(long int num, int conversionBase, int flags)
 {
 	static char *conversionArray;
 	static char conversionBuffer[50];
