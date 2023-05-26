@@ -2,25 +2,25 @@
 
 
 /**
- * write_car_to_fd - writes characters
- * to a file descriptor fil_des in a buffered manner
- * @car: character being printed
- * @fil_des: filedescriptor written to
+ * write_chk_to_fd - This wlll write character to a file
+ * descriptor ent_int in a rendered manner
+ * @chk: character to be  printed
+ * @ent_int: filedescriptor being writen  to
  *
  * Return: 1 (success), -1 (error)
  */
 
-int write_car_to_fd(int fil_des, char car)
+int write_chk_to_fd(int ent_int, char chk)
 {
-	static int index;
-	static char buffer[WRITE_BUF_SIZE];
+	static int sort;
+	static char render[WRITE_BUF_SIZE];
 
-	if (car == BUF_FLUSH || index >= WRITE_BUF_SIZE)
+	if (chk == BUFF_FLUSHH || sort >= WRITE_BUF_SIZE)
 	{
-		write(fil_des, buffer, index);
-		index = 0;
+		write(ent_int, render, sort);
+		sort = 0;
 	}
-	if (car != BUF_FLUSH)
-		buffer[index++] = car;
+	if (chk != BUFF_FLUSHH)
+		render[sort++] = chk;
 	return (1);
 }
