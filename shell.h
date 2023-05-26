@@ -166,18 +166,18 @@ int help_command(shell_args *);
 int shell_out(shell_args *);
 
 
-/* file-descriptor_handlers */
-int create_strng_find(char *str, int fd);
-int write_chk_to_fd(int fil_des, char chk);
+/* collect_file_des */
+int create_strng_find(char *, int);
+int write_chk_to_fd(int , char);
 int prt_dcm_int(int, int);
 
 
 /* collect_hist */
 int load_record(shell_args *element);
 int create_shel_record(shell_args *element);
-int plus_to_record(shell_args *element, char *buf, int linecount);
+int plus_to_record(shell_args *element, char *, int);
 char *collect_filepath(shell_args *element);
-int edit_nodenumber(shell_args *inelementfo);
+int edit_nodenumber(shell_args *);
 
 
 /* record_list */
