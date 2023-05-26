@@ -15,12 +15,12 @@ int write_chk_to_fd(int ent_int, char chk)
 	static int sort;
 	static char render[WRITE_BUF_SIZE];
 
-	if (chk == BUFF_FLUSHH || sort >= WRITE_BUF_SIZE)
+	if (chk == BUF_FLUSH || sort >= WRITE_BUF_SIZE)
 	{
 		write(ent_int, render, sort);
 		sort = 0;
 	}
-	if (chk != BUFF_FLUSHH)
+	if (chk != BUF_FLUSH)
 		render[sort++] = chk;
 	return (1);
 }

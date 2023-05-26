@@ -14,13 +14,13 @@ int create_in_space(char chk)
 
 	/* If the render is full or a flush character is taken */
 	/* the render to the output and reset the sort to 0 */
-	if (sort >= WRITE_BUF_SIZE || chk == BUFF_FLUSHH)
+	if (sort >= WRITE_BUF_SIZE || chk == BUF_FLUSH)
 	{
 		write(2, render, sort);
 		sort = 0;
 	}
 
-	if (chk != BUFF_FLUSHH)
+	if (chk != BUF_FLUSH)
 	{
 		render[sort++] = chk;
 	}

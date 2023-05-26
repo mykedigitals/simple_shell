@@ -19,7 +19,7 @@ int created_sh(shell_args *element, char **a_v)
 		correct_shell_args(element);
 		if (reciprocate(element))
 			_puts("$ ");
-		create_in_space(BUFF_FLUSHH);
+		create_in_space(BUF_FLUSH);
 		details_rslt = pro_details(element);
 		if (details_rslt != -1)
 		{

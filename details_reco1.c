@@ -39,7 +39,7 @@ void empty_shell_args(shell_args *element, int areas)
 		empty_n_NULL((void **)element->cd_buff);
 		if (element->seefd > 2)
 			close(element->seefd);
-		_putchar(BUFF_FLUSHH);
+		_putchar(BUF_FLUSH);
 	}
 }
 

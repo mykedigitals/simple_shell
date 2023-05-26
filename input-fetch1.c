@@ -14,7 +14,7 @@ ssize_t pro_details(shell_args *element)
 	ssize_t details_lenght = 0;
 	char **pre_cmd_pointer = &(element->arg), *pre_cmd;
 
-	_putchar(BUFF_FLUSHH);
+	_putchar(BUF_FLUSH);
 	details_lenght = obtain_details_stdin(element,
 			&cmd_order_render, &lenght_buff);
 	if (details_lenght == -1)
@@ -37,7 +37,7 @@ ssize_t pro_details(shell_args *element)
 		if (pre_post >= lenght_buff)
 		{
 			pre_post = lenght_buff = 0;
-			element->cd_buff_category = CMD_ORDI;
+			element->cd_buff_category = CMD_NORM;
 		}
 
 		*pre_cmd_pointer = pre_cmd;
@@ -59,5 +59,5 @@ void sigint_control(__attribute__((unused))int unused_signal_num)
 {
 	_puts("\n");
 	_puts("$ ");
-	_putchar(BUFF_FLUSHH);
+	_putchar(BUF_FLUSH);
 }

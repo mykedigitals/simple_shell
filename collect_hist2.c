@@ -18,13 +18,13 @@ char *collect_filepath(shell_args *element)
 		return (NULL);
 
 	render = malloc(sizeof(char) * (string_lent(abode)
-				+ string_lent(RECO_DOCX) + 2));
+				+ string_lent(HIST_FILE) + 2));
 	if (!render)
 		return (NULL);
 	render[0] = 0;
 	clone_str(render, abode);
 	string_add(render, "/");
-	string_add(render, RECO_DOCX);
+	string_add(render, HIST_FILE);
 	return (render);
 }
 
@@ -53,7 +53,7 @@ int create_shel_record(shell_args *element)
 		create_strng_find(node->str, ent_int);
 		write_chk_to_fd('\n', ent_int);
 	}
-	write_chk_to_fd(BUFF_FLUSHH, ent_int);
+	write_chk_to_fd(BUF_FLUSH, ent_int);
 	close(ent_int);
 	return (1);
 }

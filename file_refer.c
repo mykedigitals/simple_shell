@@ -20,7 +20,6 @@
 
 int comot_refer(shell_args *element, char *str)
 {
-	/* Find the position of the '=' character in the input string */
 	int comoter;
 	char clone;
 	char *str_p = locate_char(str, '=');

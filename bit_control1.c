@@ -51,7 +51,7 @@ void access_cmd_order(shell_args *element, char *cd_buff,
 {
 	size_t present_post = *buffpost;
 
-	if (element->cd_buff_category == CMD_WIT)
+	if (element->cd_buff_category == CMD_AND)
 	{
 		if (element->status)
 		{
@@ -59,7 +59,7 @@ void access_cmd_order(shell_args *element, char *cd_buff,
 			present_post = lenght_buff;
 		}
 	}
-	if (element->cd_buff_category == CMD_EI)
+	if (element->cd_buff_category == CMD_OR)
 	{
 		if (!element->status)
 		{
@@ -90,18 +90,18 @@ int order_cmd_discover(shell_args *element, char *cd_buff,
 	{
 		cd_buff[present_post] = 0;
 		present_post++;
-		element->cd_buff_category = CMD_EI;
+		element->cd_buff_category = CMD_OR;
 	}
 	else if (cd_buff[present_post] == '&' && cd_buff[present_post + 1] == '&')
 	{
 		cd_buff[present_post] = 0;
 		present_post++;
-		element->cd_buff_category = CMD_WIT;
+		element->cd_buff_category = CMD_AND;
 	}
 	else if (cd_buff[present_post] == ';') /* found end of this command */
 	{
 		cd_buff[present_post] = 0; /* replace semicolon with null */
-		element->cd_buff_category = CMD_ORDER;
+		element->cd_buff_category = CMD_CHAIN;
 	}
 	else
 		return (0);

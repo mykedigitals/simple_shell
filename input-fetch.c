@@ -2,7 +2,7 @@
 
 /**
  * see_in_buff - This will read data in a file into a render,
- * up to a max size by SEEN_BUF_SIZE
+ * up to a max size by READ_BUF_SIZE
  * @element: parameter for a part structure
  * @render: render
  * @fourbits_see: size
@@ -15,7 +15,7 @@ ssize_t see_in_buff(shell_args *element, char *render, size_t *fourbits_see)
 
 	if (*fourbits_see)
 		return (0);
-	result = read(element->seefd, render, SEEN_BUF_SIZE);
+	result = read(element->seefd, render, READ_BUF_SIZE);
 	if (result >= 0)
 		*fourbits_see = result;
 	return (result);
@@ -81,7 +81,7 @@ ssize_t obtain_details_stdin(shell_args *element, char **input_render,
  */
 int see_line_details(shell_args *element, char **ptr, size_t *lent)
 {
-	static char input_buf[SEEN_BUF_SIZE];
+	static char input_buf[READ_BUF_SIZE];
 	static size_t buf_area, buf_len;
 	size_t line_len;
 	ssize_t fourbits_see = 0, all_fourbitss = 0;

@@ -19,15 +19,15 @@
 
 
 /* Command Chaining sequence */
-#define CMD_WIT		2
-#define CMD_EI		1
-#define CMD_ORDI	0
-#define CMD_ORDER	3
+#define CMD_AND		2
+#define CMD_OR		1
+#define CMD_NORM	0
+#define CMD_CHAIN	3
 
 
 /* File History Specifiers */
-#define RECO_MAX	4096
-#define RECO_DOCX	".simple_shell_record"
+#define HIST_MAX	4096
+#define HIST_FILE	".simple_shell_history"
 
 
 /* Number Converters */
@@ -37,8 +37,8 @@
 
 /* Buffer sizes for Read-Write */
 #define WRITE_BUF_SIZE 1024
-#define SEEN_BUF_SIZE 1024
-#define BUFF_FLUSHH -1
+#define READ_BUF_SIZE 1024
+#define BUF_FLUSH -1
 
 
 extern char **environ;

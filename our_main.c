@@ -31,7 +31,7 @@ int main(int arg_c, char **arg_v)
 				create_thread_in_render(": 0: Can't open ");
 				create_thread_in_render(arg_v[1]);
 				create_in_space('\n');
-				create_in_space(BUFF_FLUSHH);
+				create_in_space(BUF_FLUSH);
 				exit(127);
 			}
 			return (EXIT_FAILURE);

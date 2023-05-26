@@ -45,7 +45,7 @@ int load_record(shell_args *element)
 		plus_to_record(element, render + end_lne, linecount++);
 	free(render);
 	element->recordct = linecount;
-	while (element->recordct-- >= RECO_MAX)
+	while (element->recordct-- >= HIST_MAX)
 		rem_node_sort(&(element->record), 0);
 	edit_nodenumber(element);
 	return (element->recordct);
