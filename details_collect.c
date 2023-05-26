@@ -13,7 +13,7 @@ void fill_sh_args(sh_args *content, char **arg_v)
 	content->fname = arg_v[0];
 	if (content->arg)
 	{
-		content->argv = custom_strtow(content->arg, " \t");
+		content->argv = created_strt(content->arg, " \t");
 		if (!content->argv)
 		{
 

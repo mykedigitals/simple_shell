@@ -131,7 +131,7 @@ int write_with_buffer(char);
 void write_string_with_buffer(char *);
 
 
-/* dym_to_allocate_memator */
+/* assign_dym_mem */
 void *to_allocate_mem(void *, unsigned int, unsigned int);
 char *cpy_setof_mem(char *, char, unsigned int);
 void free_alot(char **);
@@ -163,7 +163,7 @@ int help_command(sh_args *);
 int shell_exit(sh_args *);
 
 
-/* file-descriptor_handlers */
+/* control_fd */
 int write_string_to_fd(char *str, int fd);
 int write_car_to_fd(int fil_des, char car);
 int prnt_decim_int(int, int);
@@ -250,8 +250,8 @@ char *str_cpy(char *, char *);
 char *str_dup(const char *);
 
 
-/* token_handlers */
-char **custom_strtow(char *, char *);
+/* bit_contrl */
+char **created_strt(char *, char *);
 
 
 /* token_handlers */

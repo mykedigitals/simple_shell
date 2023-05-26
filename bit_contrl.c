@@ -2,13 +2,13 @@
 
 
 /**
- * **custom_strtow - takes a string (str) and a delimiter string
+ * **created_strt - takes a string (str) and a delimiter string
  *	(delimiter) as input and then split str into an array of strings
  * @str: the input string
  * @delimiter: the delimeter string
  * Return: a pointer to an array of strings, or NULL on failure
  */
-char **custom_strtow(char *str, char *delimiter)
+char **created_strt(char *str, char *delimiter)
 {
 	int i, j, k, m, word_count = 0;
 	char **substrings;
