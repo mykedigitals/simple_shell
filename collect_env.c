@@ -2,7 +2,7 @@
 
 
 /**
- * make_surr - sets or updates an surrironment
+ * make_env - sets or updates an surrironment
  * variable with a given name and value
  * @element: struct parameter
  * @name: the name of the surrironment variable to be set
@@ -21,7 +21,7 @@
  *
  * Return: Always 0
  */
-int make_surr(shell_args *element, char *name, char *value)
+int make_env(shell_args *element, char *name, char *value)
 {
 	int thaa = 1, wha = 0, whii = 2;
 	char *render = NULL, *str;
