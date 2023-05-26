@@ -5,6 +5,7 @@
  * a user's input, interpret and execute it
  * @element: structure parameter
  * @a_v: argument vector
+ *
  * Return: 0 (success), 1 (error)
  */
 
@@ -54,8 +55,9 @@ int created_sh(shell_args *element, char **a_v)
 void createdfork(shell_args *element)
 {
 	pid_t child_pid;
+
 	child_pid = fork();
-	
+
 	if (child_pid == -1)
 	{
 		/* ACTION: PUT ERROR FUNCTION */
