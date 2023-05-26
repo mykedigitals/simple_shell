@@ -2,7 +2,7 @@
 
 /**
  * load_record - reads command history
- * from a file and add it to a record buffer
+ * from a file and add it to a record render
  * @element: struct parameter
  *
  * Return: recordct (success), 0 (error)
@@ -13,7 +13,7 @@ int load_record(shell_args *element)
 	int work_idx, end_lne = 0, linecount = 0;
 	ssize_t hom_doc, rd_lent, fil_size = 0;
 	struct stat file_stats;
-	char *buffer = NULL, *record_file = obtain_reco_docu_nav(element);
+	char *render = NULL, *record_file = collect_filepath(element);
 
 	if (!record_file)
 		return (0);
@@ -26,24 +26,24 @@ int load_record(shell_args *element)
 		fil_size = file_stats.st_size;
 	if (fil_size < 2)
 		return (0);
-	buffer = malloc(sizeof(char) * (fil_size + 1));
-	if (!buffer)
+	render = malloc(sizeof(char) * (fil_size + 1));
+	if (!render)
 		return (0);
-	rd_lent = read(hom_doc, buffer, fil_size);
-	buffer[fil_size] = 0;
+	rd_lent = read(hom_doc, render, fil_size);
+	render[fil_size] = 0;
 	if (rd_lent <= 0)
-		return (free(buffer), 0);
+		return (free(render), 0);
 	close(hom_doc);
 	for (work_idx = 0; work_idx < fil_size; work_idx++)
-		if (buffer[work_idx] == '\n')
+		if (render[work_idx] == '\n')
 		{
-			buffer[work_idx] = 0;
-			plus_to_record(element, buffer + end_lne, linecount++);
+			render[work_idx] = 0;
+			plus_to_record(element, render + end_lne, linecount++);
 			end_lne = work_idx + 1;
 		}
 	if (end_lne != work_idx)
-		plus_to_record(element, buffer + end_lne, linecount++);
-	free(buffer);
+		plus_to_record(element, render + end_lne, linecount++);
+	free(render);
 	element->recordct = linecount;
 	while (element->recordct-- >= RECO_MAX)
 		rem_node_sort(&(element->record), 0);
@@ -57,18 +57,18 @@ int load_record(shell_args *element)
  * a new node at the end of the linked list pointed to by
  *	element->record
  * @element: struct parameter
- * @buffer: buffer
+ * @render: render
  * @linecount: record linecount, recordct
  *
  * Return: 0
  */
-int plus_to_record(shell_args *element, char *buffer, int linecount)
+int plus_to_record(shell_args *element, char *render, int linecount)
 {
 	l_list *node = NULL;
 
 	if (element->record)
 		node = element->record;
-	updated_tail_node(&node, buffer, linecount);
+	updated_tail_node(&node, render, linecount);
 
 	if (!element->record)
 		element->record = node;

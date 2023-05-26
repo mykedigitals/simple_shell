@@ -189,7 +189,7 @@ int prt_dcm_int(int, int);
 int load_record(shell_args *element);
 int create_shel_record(shell_args *element);
 int plus_to_record(shell_args *element, char *, int);
-char *obtain_reco_docu_nav(shell_args *element);
+char *collect_filepath(shell_args *element);
 int edit_nodenumber(shell_args *);
 
 
@@ -248,7 +248,6 @@ int see_line_details(shell_args *, char **, size_t *);
 void signit_control(int);
 
 
-<<<<<<< HEAD
 /* examiner */
 char *search_path(shell_args *, char *, char *);
 int is_exec(shell_args *, char *);
@@ -277,10 +276,7 @@ char *clone_str(char *, char *);
 char *double_str(const char *);
 
 
-/* token_handlers */
-=======
 /* bit_control1 */
->>>>>>> a37417b373fc819eb277ee03bf122f8e3377b481
 char **created_tokener(char *, char *);
 
 
