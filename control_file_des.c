@@ -40,7 +40,7 @@ int prt_dcm_int(int platform_f, int ent_int)
 
 	/* print_putc writes to stderr*/
 	if (ent_int == STDERR_FILENO)
-		print_putc = write_with_buffer;
+		print_putc = create_in_space;
 
 	if (platform_f < 0)
 	{
