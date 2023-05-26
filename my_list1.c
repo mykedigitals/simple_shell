@@ -17,7 +17,7 @@ l_list *updated_tail_node(l_list **list_top, const char *str, int num)
 	updated_node = malloc(sizeof(l_list));
 	if (!updated_node)
 		return (NULL);
-	memset_clone((void *)updated_node, 0, sizeof(l_list));
+	cpy_memset((void *)updated_node, 0, sizeof(l_list));
 	updated_node->num = num;
 	if (str)
 	{

@@ -1,47 +1,47 @@
 #include "shell.h"
 
 /**
- * multi_free - frees memory allocated to a string of strings
- * @str_ptr: pointer to a string of strings
+ * double_empty - empty memory given to a string of string
+ * @ptr_strng: pointer to a string of strings
  */
-void multi_free(char **str_ptr)
+void double_empty(char **ptr_strng)
 {
-	char **my_strings;
+	char **our_stng;
 
-	my_strings = str_ptr;
+	our_stng = ptr_strng;
 
-	if (str_ptr == NULL)
+	if (ptr_strng == NULL)
 	{
 		return;
 	}
 
-	while (*str_ptr != NULL)
+	while (*ptr_strng != NULL)
 	{
-		free(*str_ptr++);
+		free(*ptr_strng++);
 	}
 
-	free(my_strings);
+	free(our_stng);
 }
 
 
 /**
- * free_n_NULL - free the memory pointed to by
- * @ptr: pointer address being freed
+ * empty_n_NULL - This is empty the memory pointed
+ * @ptr: This is the pointer address being emptied
  *
- * Return: 1 (freed), 0 (otherwise)
+ * Return: 1 (emptied), 0 (if not)
  */
-int free_n_NULL(void **ptr)
+int empty_n_NULL(void **ptr)
 {
-	int is_freed = 1;
+	int is_emptied = 1;
 
-	/* Check if pointer is not NULL and points to a valid memory location */
+	/* See if pointer isn't NULL and point to a true memory place */
 	if (*ptr != NULL && ptr != NULL)
 	{
 		free(*ptr);
 		*ptr = NULL;
 
-		/* Set flag to indicate that memory has been freed */
-		return (is_freed);
+		/* put flag to show that memory is empty */
+		return (is_emptied);
 	}
 	return (0);
 }

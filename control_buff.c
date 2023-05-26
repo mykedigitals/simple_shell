@@ -2,49 +2,49 @@
 
 
 /**
- * write_with_buffer - inputs characters from car to stderr
- * @car: The character to print
+ * create_in_space - This input characters from chk to stderr
+ * @chk: The chk to print
  *
  * Return: 1 (success), -1 (error)
  */
-int write_with_buffer(char car)
+int create_in_space(char chk)
 {
-	static char buffer[WRITE_BUF_SIZE];
-	static int index;
+	static char render[WRITE_BUF_SIZE];
+	static int sort;
 
-	/* If the buffer is full or a flush character is received, */
-	/* write the buffer to the output and reset the index to 0 */
-	if (index >= WRITE_BUF_SIZE || car == BUF_FLUSH)
+	/* If the render is full or a flush character is taken */
+	/* the render to the output and reset the sort to 0 */
+	if (sort >= WRITE_BUF_SIZE || chk == BUFF_FLUSHH)
 	{
-		write(2, buffer, index);
-		index = 0;
+		write(2, render, sort);
+		sort = 0;
 	}
 
-	if (car != BUF_FLUSH)
+	if (chk != BUFF_FLUSHH)
 	{
-		buffer[index++] = car;
+		render[sort++] = chk;
 	}
-	return (index);
+	return (sort);
 }
 
 
 /**
- * write_string_with_buffer - takes a string as input and
- * writes its contents to the output stream using a buffer
+ * create_thread_in_render - This take a string input and
+ * will write its elements to output using a render
  * @str: string being printed to stdout
  *
  * Return: Nil
  */
-void write_string_with_buffer(char *str)
+void create_thread_in_render(char *str)
 {
-	int index;
+	int sort;
 
-	index = 0;
+	sort = 0;
 
 	if (str == NULL)
 	{
 		return;
 	}
-	for (index = 0; str[index] != '\0'; index++)
-		write_with_buffer(str[index]);
+	for (sort = 0; str[sort] != '\0'; sort++)
+		create_in_space(str[sort]);
 }

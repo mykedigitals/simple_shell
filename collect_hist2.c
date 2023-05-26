@@ -2,58 +2,58 @@
 
 
 /**
- * get_hist_file_path - gets the path to the history file
- * @content: struct parameter
+ * obtain_reco_docu_nav - gets the path to the record file
+ * @element: struct parameter
  *
- * Return: string construct to the path of the history file
+ * Return: string construct to the path of the record file
  */
 
-char *get_hist_file_path(sh_args *content)
+char *obtain_reco_docu_nav(shell_args *element)
 {
-	char *buffer, *home;
-	home = getenv_clone(content, "HOME=");
+	char *render, *abode;
+	abode = getsurr_clone(element, "HOME=");
 
-	if (!home)
+	if (!abode)
 		return (NULL);
 
-	buffer = malloc(sizeof(char) * (len_of_str(home)
-				+ len_of_str(HIST_FILE) + 2));
-	if (!buffer)
+	render = malloc(sizeof(char) * (string_lent(abode)
+				+ string_lent(RECO_DOCX) + 2));
+	if (!render)
 		return (NULL);
-	buffer[0] = 0;
-	str_cpy(buffer, home);
-	concat_str(buffer, "/");
-	concat_str(buffer, HIST_FILE);
-	return (buffer);
+	render[0] = 0;
+	clone_str(render, abode);
+	string_add(render, "/");
+	string_add(render, RECO_DOCX);
+	return (render);
 }
 
 /**
- * write_shel_histry - creates a file to store
- * history of shell program, or appends an existing file
- * @content: struct parameter
+ * create_shel_record - This create a file to keep record of shell program, 
+ * or appends an existing file
+ * @element: structure parameter
  *
  * Return: 1 (success), -1 (error)
  */
 
-int write_shel_histry(sh_args *content)
+int create_shel_record(shell_args *element)
 {
-        ssize_t fil_des;
-        char *history_file = get_hist_file_path(content);
+        ssize_t ent_int;
+        char *record_file = obtain_reco_docu_nav(element);
         l_list *node = NULL;
 
-        if (!history_file)
+        if (!record_file)
                 return (-1);
 
-        fil_des = open(history_file, O_CREAT | O_TRUNC | O_RDWR, 0644);
-        free(history_file);
-        if (fil_des == -1)
+        ent_int = open(record_file, O_CREAT | O_TRUNC | O_RDWR, 0644);
+        free(record_file);
+        if (ent_int == -1)
                 return (-1);
-        for (node = content->history; node; node = node->link)
+        for (node = element->record; node; node = node->link)
         {
-                write_string_to_fd(node->str, fil_des);
-                write_car_to_fd('\n', fil_des);
+                create_strng_find(node->str, ent_int);
+                write_chk_to_fd('\n', ent_int);
         }
-        write_car_to_fd(BUF_FLUSH, fil_des);
-        close(fil_des);
+        write_chk_to_fd(BUFF_FLUSHH, ent_int);
+        close(ent_int);
         return (1);
 }

@@ -26,8 +26,8 @@
 
 
 /* File History Specifiers */
-#define HIST_MAX	4096
-#define HIST_FILE	".simple_shell_record"
+#define RECO_MAX	4096
+#define RECO_DOCX	".simple_shell_record"
 
 
 /* Number Converters */
@@ -134,9 +134,9 @@ int create_in_space(char);
 void create_thread_in_render(char *);
 
 
-/* dym_mem_allocator */
-void *mem_alloc(void *, unsigned int, unsigned int);
-char *memset_clone(char *, char, unsigned int);
+/* dym_alloc_memator */
+void *alloc_mem(void *, unsigned int, unsigned int);
+char *cpy_memset(char *, char, unsigned int);
 void double_empty(char **);
 int empty_n_NULL(void **);
 
@@ -167,7 +167,7 @@ int shell_out(shell_args *);
 
 
 /* file-descriptor_handlers */
-int write_string_to_fd(char *str, int fd);
+int create_strng_find(char *str, int fd);
 int write_chk_to_fd(int fil_des, char chk);
 int prt_dcm_int(int, int);
 

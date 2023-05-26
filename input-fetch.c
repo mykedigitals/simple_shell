@@ -99,7 +99,7 @@ int see_line_details(shell_args *element, char **ptr, size_t *lent)
 
 	line_end = locate_char(input_buf + buf_area, '\n');
 	line_len = line_end ? 1 + (unsigned int)(line_end - input_buf) : buf_len;
-	result_str = mem_alloc(details_pos, all_fourbitss, all_fourbitss ?
+	result_str = alloc_mem(details_pos, all_fourbitss, all_fourbitss ?
 			all_fourbitss + line_len : line_len + 1);
 	if (!result_str) /* MALLOC FAIL! */
 		return (details_pos ? free(details_pos), -1 : -1);

@@ -2,26 +2,26 @@
 
 
 /**
- * make_env - sets or updates an environment
+ * make_surr - sets or updates an surrironment
  * variable with a given name and value
  * @element: struct parameter
- * @name: the name of the environment variable to be set
- * @value: the value of the environment variable to be set
- * Desc: It concatenates the name and value of the environment
+ * @name: the name of the surrironment variable to be set
+ * @value: the value of the surrironment variable to be set
+ * Desc: It concatenates the name and value of the surrironment
  *	variable, along with the equal sign, into the render
  *	then looks for an existing variable with the same name as
  *	the one being set. If it finds a matching variable, it frees the
  *	existing string for that variable and replaces it with the
  *	new string in the render, then it sets a flag
- *	indicating that the environment has been changed
- *	"element->env_changed". If it does not find a matching
+ *	indicating that the surrironment has been changed
+ *	"element->surr_changed". If it does not find a matching
  *	variable, it adds a new node to the end of the linked
- *	list of environment variables, with the new string in
+ *	list of surrironment variables, with the new string in
  *	the render as its value.
  *
  * Return: Always 0
  */
-int make_env(shell_args *element, char *name, char *value)
+int make_surr(shell_args *element, char *name, char *value)
 {
 	int thaa = 1, wha = 0, whii = 2;
 	char *render = NULL, *str;
@@ -32,16 +32,16 @@ int make_env(shell_args *element, char *name, char *value)
 
 	/* allocates memory for a render that is large*/
 	/*enough to hold the name and value of the */
-	/* environment variable, plus an equal sign and a null terminator. */
+	/* surrironment variable, plus an equal sign and a null terminator. */
 	render = malloc(string_lent(value) + string_lent(name) + whii);
 	if (render == NULL)
 		return (thaa);
 	clone_str(render, name);
 	string_add(render, "=");
 	string_add(render, value);
-	/* Traverse the linked list of environment variables to find */
+	/* Traverse the linked list of surrironment variables to find */
 	/* the variable with the same name as the given name */
-	node = element->env;
+	node = element->surr;
 	for ( ; node != NULL; node = node->link)
 	{
 		str = locate_word_begin(node->str, name);
@@ -49,44 +49,44 @@ int make_env(shell_args *element, char *name, char *value)
 		{
 			free(node->str);
 			node->str = render;
-			element->env_changed = thaa;
+			element->surr_changed = thaa;
 			return (wha);
 		}
 	}
-	updated_tail_node(&(element->env), render, wha);
+	updated_tail_node(&(element->surr), render, wha);
 	free(render);
-	element->env_changed = thaa;
+	element->surr_changed = thaa;
 	return (wha);
 }
 
 
 /**
- * env_seeker - retrieve the current environment
+ * surr_seeker - retrieve the current surrironment
  * variables as an array of strings and it caches it
  * @element: struct parameter
- * Desc: If the environ field of the shell_args struct is empty
- * or has been changed since the last time env_seeker was
+ * Desc: If the surriron field of the shell_args struct is empty
+ * or has been changed since the last time surr_seeker was
  * called, the function will convert the linked list of
- * environment variables in the env field of the shell_args
+ * surrironment variables in the surr field of the shell_args
  * struct to an array of strings using the chng_list_to_strng
- * function and store the resulting array in the environ field.
- * The env_changed field is then set to 0 to indicate
- * that the environment variables have not
- * changed since the last call to env_seeker
+ * function and store the resulting array in the surriron field.
+ * The surr_changed field is then set to 0 to indicate
+ * that the surrironment variables have not
+ * changed since the last call to surr_seeker
  *
  * Return: 0
  */
-char **env_seeker(shell_args *element)
+char **surr_seeker(shell_args *element)
 {
 	int wha = 0;
 
-	if (element->env_changed || element->environ == NULL)
+	if (element->surr_changed || element->surriron == NULL)
 	{
-		element->environ = chng_list_to_strng(element->env);
+		element->surriron = chng_list_to_strng(element->surr);
 
-		/* reset the env_vars_changed flag */
-		element->env_changed = wha;
+		/* reset the surr_vars_changed flag */
+		element->surr_changed = wha;
 	}
 
-	return (element->environ);
+	return (element->surriron);
 }

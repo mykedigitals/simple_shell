@@ -10,7 +10,7 @@
 
 int load_record(shell_args *element)
 {
-	int work_idx, final_line = 0, linecount = 0;
+	int work_idx, end_lne = 0, linecount = 0;
 	ssize_t hom_doc, rd_lent, fil_size = 0;
 	struct stat file_stats;
 	char *buffer = NULL, *record_file = collect_filepath(element);
@@ -34,18 +34,18 @@ int load_record(shell_args *element)
 	if (rd_lent <= 0)
 		return (free(buffer), 0);
 	close(hom_doc);
-	for (word_idx = 0; word_idx < fil_size; word_idx++)
-		if (buffer[word_idx] == '\n')
+	for (work_idx = 0; work_idx < fil_size; work_idx++)
+		if (buffer[work_idx] == '\n')
 		{
-			buffer[word_idx] = 0;
-			plus_to_record(element, buffer + final_line, linecount++);
-			final_line = word_idx + 1;
+			buffer[work_idx] = 0;
+			plus_to_record(element, buffer + end_lne, linecount++);
+			end_lne = work_idx + 1;
 		}
-	if (final_line != word_idx)
-		plus_to_record(element, buffer + final_line, linecount++);
+	if (end_lne != work_idx)
+		plus_to_record(element, buffer + end_lne, linecount++);
 	free(buffer);
 	element->recordct = linecount;
-	while (element->recordct-- >= HIST_MAX)
+	while (element->recordct-- >= RECO_MAX)
 		rem_node_sort(&(element->record), 0);
 	edit_nodenumber(element);
 	return (element->recordct);
