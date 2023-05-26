@@ -58,7 +58,7 @@ char *string_add(char *ending_of_str, char *begin_string)
 
 
 /**
- * string_sku - weigh two strings, begining_strng and following_strng,
+ * weigh_strs - weigh two strings, begining_strng and following_strng,
  * and return an whole number value indicating their relative order
  * @begining_strng: first string
  * @following_strng: second string
@@ -68,7 +68,7 @@ char *string_add(char *ending_of_str, char *begin_string)
  * following_strng)
  */
 
-int string_sku(char *begining_strng, char *following_strng)
+int weigh_strs(char *begining_strng, char *following_strng)
 {
 	while (*begining_strng && *following_strng)
 	{

@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * collect_init_node_in_title -  searches a linked list of strings for
+ * obtain_beginingnode -  searches a linked list of strings for
  *      the first node whose string starts with a given prefix
  * @node: pointer to list head
  * @discover_str: string to match
@@ -9,7 +9,7 @@
  *
  * Return: matching node, null
  */
-l_list *collect_init_node_in_title(l_list *node, char *discover_str,
+l_list *obtain_beginingnode(l_list *node, char *discover_str,
                 char discover_char)
 {
         char *match_ptr = NULL;

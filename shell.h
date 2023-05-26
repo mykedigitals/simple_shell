@@ -119,6 +119,19 @@ typedef struct builtin
 
 /* PROTOTYPE DEFINATIONS */
 
+
+/* hsh_handlers */
+int created_sh(shell_args *, char **);
+void search_execcmd(shell_args *);
+void createdfork(shell_args *);
+int find_root(shell_args *);
+
+
+/* hsh_handlers1 */
+int reciprocate(shell_args *);
+int separator(char, char *);
+
+
 /* file_refer */
 int comot_refer(shell_args *element, char *str);
 int cpy_refer(shell_args *);
@@ -184,16 +197,26 @@ int edit_nodenumber(shell_args *);
 int print_command_record(shell_args *);
 
 
-/* hsh_handlers */
-int created_sh(shell_args *, char **);
-void search_execcmd(shell_args *);
-void createdfork(shell_args *);
-int find_root(shell_args *);
+/* thread_control */
+char *locate_char(char *, char);
+char *thread_rearr(char *, char *, int);
+char *string_clone(char *, char *, int);
+void word_comot(char *);
+char *created_iota(long int, int, int);
 
 
-/* hsh_handlers1 */
-int reciprocate(shell_args *);
-int separator(char, char *);
+/* thread_control1 */
+char *locate_word_begin(const char *, const char *);
+int string_lent(char *);
+char *string_add(char *, char *);
+int weigh_strs(char *, char *);
+
+
+/* thread_control2 */
+int _putchar(char);
+void _puts(char *);
+char *clone_str(char *, char *);
+char *double_str(const char *);
 
 
 /* info_getter */
@@ -225,6 +248,7 @@ int see_line_details(shell_args *, char **, size_t *);
 void signit_control(int);
 
 
+<<<<<<< HEAD
 /* examiner */
 char *search_path(shell_args *, char *, char *);
 int is_exec(shell_args *, char *);
@@ -254,15 +278,24 @@ char *double_str(const char *);
 
 
 /* token_handlers */
+=======
+/* bit_control1 */
+>>>>>>> a37417b373fc819eb277ee03bf122f8e3377b481
 char **created_tokener(char *, char *);
 
 
-/* token_handlers */
+/* bit_control */
 void access_cmd_order(shell_args *, char *, size_t *, size_t, size_t);
 int order_cmd_discover(shell_args *, char *, size_t *);
 int change_element(char **, char *);
 int sub_alias_val(shell_args *);
 int sub_var_val(shell_args *);
+
+
+/* examiner */
+char *search_path(shell_args *, char *, char *);
+int is_exec(shell_args *, char *);
+char *char_clone_nolimiter(char *, int, int);
 
 
 #endif /* MAIN_H */
