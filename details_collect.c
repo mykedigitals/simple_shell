@@ -28,8 +28,8 @@ void fill_sh_args(sh_args *content, char **arg_v)
 			;
 		content->argc = index;
 
-		replace_alias_with_value(content);
-		replace_var_values(content);
+		rp_refer_val(content);
+		rp_val(content);
 	}
 }
 

@@ -25,11 +25,11 @@ ssize_t process_input(sh_args *content)
 		next_position = current_position;
 		current_command = command_chain_buffer + current_position;
 
-		evaluate_command_chain(content, command_chain_buffer,
+		analyse_cmd_chain(content, command_chain_buffer,
 				&next_position, current_position, buffer_length);
 		while (next_position < buffer_length)
 		{
-			if (detect_command_chaining(content, command_chain_buffer, &next_position))
+			if (observe_cmd_chain(content, command_chain_buffer, &next_position))
 				break;
 			next_position++;
 		}

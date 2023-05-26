@@ -2,7 +2,7 @@
 
 
 /**
- * evaluate_command_chain - checks if a given command is part of a
+ * analyse_cmd_chain - checks if a given command is part of a
  *	command chain (either an "AND" or "OR" chain), and modify a
  *	buffer accordingly based on the outcome of the evaluation
  * @content: struct parameter
@@ -13,7 +13,7 @@
  *
  * Return: nil
  */
-void evaluate_command_chain(sh_args *content, char *cmd_buffer,
+void analyse_cmd_chain(sh_args *content, char *cmd_buffer,
 		size_t *buffer_pos, size_t cmd_index, size_t buffer_len)
 {
 	size_t current_pos = *buffer_pos;
@@ -40,7 +40,7 @@ void evaluate_command_chain(sh_args *content, char *cmd_buffer,
 
 
 /**
- * detect_command_chaining - determines the type of command chaining
+ * observe_cmd_chain - determines the type of command chaining
  *	as being a chain delimeter
  * @content: the parameter struct
  * @cmd_buffer: the char buffer
@@ -48,7 +48,7 @@ void evaluate_command_chain(sh_args *content, char *cmd_buffer,
  *
  * Return: 1 (chain delimeter), 0 (otherwise)
  */
-int detect_command_chaining(sh_args *content, char *cmd_buffer,
+int observe_cmd_chain(sh_args *content, char *cmd_buffer,
 		size_t *buffer_pos)
 {
 	size_t current_pos = *buffer_pos;
@@ -78,13 +78,13 @@ int detect_command_chaining(sh_args *content, char *cmd_buffer,
 
 
 /**
- * replaceStr_Contnt - replaces the content of a string with a new string
+ * rm_content - replaces the content of a string with a new string
  * @oldStrPtr: the address to the old string
  * @newStr: the new string
  *
  * Return: 1 (string replaced)
  */
-int replaceStr_Contnt(char **oldStrPtr, char *newStr)
+int rm_content(char **oldStrPtr, char *newStr)
 {
 	free(*oldStrPtr);
 	*oldStrPtr = newStr;
@@ -93,7 +93,7 @@ int replaceStr_Contnt(char **oldStrPtr, char *newStr)
 
 
 /**
- * replace_alias_with_value - replaces any aliases defined in the
+ * rp_refer_val - replaces any aliases defined in the
  *	shell with their respective values
  * @content: struct parameter
  * Desc: It does this by searching for an alias with a prefix matching
@@ -102,7 +102,7 @@ int replaceStr_Contnt(char **oldStrPtr, char *newStr)
  *
  * Return: 1 (alias replaced), 0 (otherwise)
  */
-int replace_alias_with_value(sh_args *content)
+int rp_refer_val(sh_args *content)
 {
 	int count;
 	l_list *alias_node;
@@ -127,7 +127,7 @@ int replace_alias_with_value(sh_args *content)
 }
 
 /**
- * replace_var_values - replaces certain variables in the arguments
+ * rp_val - replaces certain variables in the arguments
  *	passed to it with their corresponding values
  * @content: struct parameter
  * Desc: it replaces the following variables:
@@ -137,7 +137,7 @@ int replace_alias_with_value(sh_args *content)
  *
  * Return: 1 (alias replaced), 0 (otherwise)
  */
-int replace_var_values(sh_args *content)
+int rp_val(sh_args *content)
 {
 	int arg_index = 0;
 	l_list *env_var_node;
@@ -149,13 +149,13 @@ int replace_var_values(sh_args *content)
 
 		if (!cmpare_strs(content->argv[arg_index], "$?"))
 		{
-			replaceStr_Contnt(&(content->argv[arg_index]),
+			rm_content(&(content->argv[arg_index]),
 				str_dup(custom_itoa(content->status, 10, 0)));
 			continue;
 		}
 		if (!cmpare_strs(content->argv[arg_index], "$$"))
 		{
-			replaceStr_Contnt(&(content->argv[arg_index]),
+			rm_content(&(content->argv[arg_index]),
 				str_dup(custom_itoa(getpid(), 10, 0)));
 			continue;
 		}
@@ -163,11 +163,11 @@ int replace_var_values(sh_args *content)
 				&content->argv[arg_index][1], '=');
 		if (env_var_node)
 		{
-			replaceStr_Contnt(&(content->argv[arg_index]),
+			rm_content(&(content->argv[arg_index]),
 				str_dup(car_finder(env_var_node->str, '=') + 1));
 			continue;
 		}
-		replaceStr_Contnt(&content->argv[arg_index], str_dup(""));
+		rm_content(&content->argv[arg_index], str_dup(""));
 
 	}
 	return (0);

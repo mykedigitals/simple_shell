@@ -255,11 +255,11 @@ char **created_strt(char *, char *);
 
 
 /* token_handlers */
-void evaluate_command_chain(sh_args *, char *, size_t *, size_t, size_t);
-int detect_command_chaining(sh_args *, char *, size_t *);
-int replaceStr_Contnt(char **, char *);
-int replace_alias_with_value(sh_args *);
-int replace_var_values(sh_args *);
+void analyse_cmd_chain(sh_args *, char *, size_t *, size_t, size_t);
+int observe_cmd_chain(sh_args *, char *, size_t *);
+int rm_content(char **, char *);
+int rp_refer_val(sh_args *);
+int rp_val(sh_args *);
 
 
 #endif /* MAIN_H */
