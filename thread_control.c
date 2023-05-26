@@ -23,7 +23,7 @@ char *locate_char(char *letter, char the_real_char)
 
 
 /**
- * thread_rearr - this function concatenate a part of one string, 
+ * thread_rearr - this function concatenate a part of one string,
  * begin, onto the end of another string, dest
  * @ending: ending of the string
  * @begin: foundation of string
@@ -54,7 +54,7 @@ char *thread_rearr(char *ending, char *begin, int threshold)
 
 /**
  * string_clone - Wonderfully copies the char from the foundation
- * string (begin) to the final end string (ending) and 
+ * string (begin) to the final end string (ending) and
  * make it definite that the final end string is null
  * @ending: destination string
  * @begin: source string
@@ -97,7 +97,8 @@ void word_comot(char *txt_word)
 	int index_word;
 
 	for (index_word = 0; txt_word[index_word] != '\0'; index_word++)
-		if (txt_word[index_word] == '#' && (!index_word || txt_word[index_word - 1] == ' '))
+		if (txt_word[index_word] == '#' && (!index_word || 
+					txt_word[index_word - 1] == ' '))
 		{
 			txt_word[index_word] = '\0';
 			break;

@@ -198,7 +198,7 @@ int separator(char, char *);
 
 /* info_getter */
 void enter_shell_args(shell_args *, char **);
-void correct_sh_args(shell_args *);
+void correct_shell_args(shell_args *);
 void empty_shell_args(shell_args *, int);
 
 
@@ -243,7 +243,7 @@ char *created_iota(long int, int, int);
 char *locate_word_begin(const char *, const char *);
 int string_lent(char *);
 char *string_add(char *, char *);
-int weigh_strs(char *, char *);
+int string_sku(char *, char *);
 
 
 /* thread_control2 */

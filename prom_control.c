@@ -15,7 +15,7 @@ int created_sh(shell_args *element, char **a_v)
 
 	while (details_rslt != -1 && root_rslt != -2)
 	{
-		correct_sh_args(element);
+		correct_shell_args(element);
 		if (reciprocate(element))
 			_puts("$ ");
 		create_in_space(BUFF_FLUSHH);
@@ -54,8 +54,8 @@ int created_sh(shell_args *element, char **a_v)
 void createdfork(shell_args *element)
 {
 	pid_t child_pid;
-	
 	child_pid = fork();
+	
 	if (child_pid == -1)
 	{
 		/* ACTION: PUT ERROR FUNCTION */

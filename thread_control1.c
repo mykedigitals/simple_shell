@@ -63,8 +63,9 @@ char *string_add(char *ending_of_str, char *begin_string)
  * @begining_strng: first string
  * @following_strng: second string
  *
- * Return: return 0 (if begining_strng == following_strng), negative 
- * (begining_strng < following_strng), positive (begining_strng > following_strng)
+ * Return: return 0 (if begining_strng == following_strng), negative
+ * (begining_strng < following_strng), positive (begining_strng > 
+ * following_strng)
  */
 
 int string_sku(char *begining_strng, char *following_strng)

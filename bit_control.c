@@ -21,13 +21,13 @@ int sub_var_val(shell_args *element)
 		if (element->argv[arg_sort][0] != '$' || !element->argv[arg_sort][1])
 			continue;
 
-		if (!weigh_strs(element->argv[arg_sort], "$?"))
+		if (!string_sku(element->argv[arg_sort], "$?"))
 		{
 			change_element(&(element->argv[arg_sort]),
 				double_str(created_iota(element->status, 10, 0)));
 			continue;
 		}
-		if (!weigh_strs(element->argv[arg_sort], "$$"))
+		if (!string_sku(element->argv[arg_sort], "$$"))
 		{
 			change_element(&(element->argv[arg_sort]),
 				double_str(created_iota(getpid(), 10, 0)));
