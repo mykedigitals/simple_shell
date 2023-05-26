@@ -219,7 +219,7 @@ char *clone_str(char *, char *);
 char *double_str(const char *);
 
 
-/* info_getter */
+/* Obtain_reco */
 void enter_shell_args(shell_args *, char **);
 void correct_shell_args(shell_args *);
 void empty_shell_args(shell_args *, int);
@@ -240,12 +240,12 @@ size_t prt_l_list_in_sort(const l_list *);
 char **chng_list_to_strng(l_list *);
 
 
-/* line_getter */
+/* Input fetch */
 ssize_t pro_details(shell_args *);
 ssize_t read_into_buffer(shell_args *element, char *buf, size_t *i);
 ssize_t obtain_details_stdin(shell_args *element, char **buf, size_t *len);
 int see_line_details(shell_args *, char **, size_t *);
-void signit_control(int);
+void sigint_control(int);
 
 
 /* examiner */

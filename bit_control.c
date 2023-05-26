@@ -21,13 +21,13 @@ int sub_var_val(shell_args *element)
 		if (element->argv[arg_sort][0] != '$' || !element->argv[arg_sort][1])
 			continue;
 
-		if (!string_sku(element->argv[arg_sort], "$?"))
+		if (!weigh_strs(element->argv[arg_sort], "$?"))
 		{
 			change_element(&(element->argv[arg_sort]),
 				double_str(created_iota(element->status, 10, 0)));
 			continue;
 		}
-		if (!string_sku(element->argv[arg_sort], "$$"))
+		if (!weigh_strs(element->argv[arg_sort], "$$"))
 		{
 			change_element(&(element->argv[arg_sort]),
 				double_str(created_iota(getpid(), 10, 0)));
@@ -49,7 +49,7 @@ int sub_var_val(shell_args *element)
 
 /**
  * change_element - This will replaces the element of a str
- * with a new string 
+ * with a new string
  * @preptrs: address to the old string
  * @postPtr: for  new string
  *
@@ -57,15 +57,14 @@ int sub_var_val(shell_args *element)
  */
 int change_element(char **preptrs, char *postPtr)
 {
-        free(*preptrs);
-        *preptrs = postPtr;
-        return (1);
+	free(*preptrs);
+	*preptrs = postPtr;
+	return (1);
 }
 
 /**
- * **created_tokener - this will take a string and separate string
- *	(separate) as details entered
- *	 and then split into an array of strings
+ * created_tokener - this will take a string and separate string
+ * (separate) as details entered and then split into an array of strings
  * @str: the details or fed string
  * @separate: the delimeter string
  * Return: a pointer to an array of strings, or NULL on failure

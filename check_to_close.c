@@ -39,7 +39,7 @@ int ch_directory(shell_args *element)
 		else
 			ch_win = chdir(folder);
 	}
-	else if (string_sku(element->argv[1], "-") == 0)
+	else if (weigh_strs(element->argv[1], "-") == 0)
 	{
 		if (!getsurr_clone(element, "OLDPWD="))
 		{

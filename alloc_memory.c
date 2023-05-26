@@ -4,6 +4,7 @@
  * double_empty - empty memory given to a string of string
  * @ptr_strng: pointer to a string of strings
  */
+
 void double_empty(char **ptr_strng)
 {
 	char **our_stng;

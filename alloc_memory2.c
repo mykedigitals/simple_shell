@@ -6,7 +6,7 @@
  *  @ptr: points to the memory space to be filled
  *  @val: the val to be put in the mem spaxe
  *  @num: the no of bytes to be set in the memory block
- *  
+ *
  *  Return: pointer to the memory space
  */
 
@@ -37,7 +37,7 @@ char *cpy_memset(char *ptr, char val, unsigned int num)
  * Return: pointer to newly allocated memory block (p)
  */
 void *alloc_mem(void *ptr_one, unsigned int
-old_memsize, unsigned int present_memsize)
+		old_memsize, unsigned int present_memsize)
 {
 	char *new_ptr;
 

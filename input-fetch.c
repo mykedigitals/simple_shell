@@ -42,7 +42,7 @@ ssize_t obtain_details_stdin(shell_args *element, char **input_render,
 	{
 		free(*input_render);
 		*input_render = NULL;
-		signal(SIGINT, signit_control);
+		signal(SIGINT, sigint_control);
 #if USE_GETLINE
 		see_len = receiveline(input_render, &allocated_renderLen, stdin);
 #else

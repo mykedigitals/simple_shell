@@ -2,13 +2,13 @@
 
 
 /**
- * obtain_reco_docu_nav - gets the path to the record file
+ * collect_filepath - gets the path to the record file
  * @element: struct parameter
  *
  * Return: string construct to the path of the record file
  */
 
-char *obtain_reco_docu_nav(shell_args *element)
+char *collect_filepath(shell_args *element)
 {
 	char *render, *abode;
 	abode = getsurr_clone(element, "HOME=");
@@ -38,7 +38,7 @@ char *obtain_reco_docu_nav(shell_args *element)
 int create_shel_record(shell_args *element)
 {
         ssize_t ent_int;
-        char *record_file = obtain_reco_docu_nav(element);
+        char *record_file = collect_filepath(element);
         l_list *node = NULL;
 
         if (!record_file)

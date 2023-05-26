@@ -48,14 +48,14 @@ int end_from_str(char *str)
 
 
 /**
- * support_cmd -  to provide a placeholder
+ * help_command -  to provide a placeholder
  * for the "help" command in a shell program
  * @element: struct parameter
  *
  * Return: 0
  */
 
-int support_cmd(shell_args *element)
+int help_command(shell_args *element)
 {
 	char **a_v = element->argv;
 	/* If no argument is provided, show general help message */

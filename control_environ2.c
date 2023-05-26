@@ -48,6 +48,7 @@ int fillup_ct_surr(shell_args *element)
 	{
 		updated_tail_node(&node, surriron[indices], 0);
 	}
+
 	element->surr = node;
 	return (0);
 }
