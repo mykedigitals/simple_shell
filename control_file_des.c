@@ -2,83 +2,66 @@
 
 
 /**
- * write_string_to_fd - write the string to a stream
- * @str: string being printed
- * @fil_des: filedescriptor written to
+ * create_strng_find - to write a string to other streams of strings
+ * @str: string to be printed back 
+ * @go_to_file: the descriptor of file to be written into
  *
- * Return: characters written
+ * Return: this returns the value string written
  */
-int write_string_to_fd(char *str, int fil_des)
+
+int create_strng_find(char *str, int go_to_file)
 {
-	int count = 0;
+	int val_num = 0;
 
 	if (!str)
 		return (0);
 	while (*str)
 	{
-		count += write_car_to_fd(*str++, fil_des);
+		val_num += write_chk_to_fd(*str++, go_to_file);
 	}
-	return (count);
+	return (val_num);
 }
 
 
 /**
- * prnt_decim_int - print the value of the
- * "feed" argument as a decimal number i.e base 10
- * @feed: the input
- * @fil_des: the filedescriptor to write to
- * Desc: If the "feed" argument is negative, the function
- * calculates the absolute value of "feed3" and sets avariable
- * named "absol_val" to that value. It then prints a minus sign
- * to indicate that the number is negative,and increments the
- * "count" variable to reflect the fact that an additional
- * character was printed, then if non-negative, the function
- * simply sets "absol_val" equal to "feed". To print it initializes
- * "remaining" to "absol_val", and then using a loop to iterate
- * through the powers of 10, starting with 1000000000 and dividing
- * by 10 each time. For each power of 10, the function checks if
- * "absol_val" is divisible by that power of 10 If it is, it prints
- * the corresponding digit of "remaining" divided by that power
- * of 10 (using the ASCII code for the digit), and increments
- * the "count" variable. It then updates "remaining" to be equal
- * to the remainder of "absol_val" divided by that power of 10.
- * Then function prints the last digit of "remaining" also
- * using the ASCII code and increments "count" one final time.
- * It then returns the value of "count",
- * indicating how many characters were printed
+ * prt_dcm_int - print the value of the
+ * "platform_f" argument as a decimal number i.e base 10
+ * @platform_f: the value we will be inputting
+ * @go_to_file: this describe the file we will be writing into
  *
  * Return: printed characters
  */
-int prnt_decim_int(int feed, int fil_des)
+
+int prt_dcm_int(int platform_f, int go_to_file)
 {
-	int (*_puchar)(char) = _putchar;
-	int index, count = 0;
-	unsigned int absol_val, remaining;
+	int (*print_putc)(char) = _putchar;
+	int index, val_num = 0;
+	unsigned int no_minus_val, remaining;
 
-	/* _puchar writes to stderr*/
-	if (fil_des == STDERR_FILENO)
-		_puchar = write_with_buffer;
+	/* print_putc writes to stderr*/
+	if (go_to_file == STDERR_FILENO)
+		print_putc = write_with_buffer;
 
-	if (feed < 0)
+	if (platform_f < 0)
 	{
-		absol_val = -feed;
-		_puchar('-');
-		count++;
+		no_minus_val = -platform_f;
+		print_putc('-');
+		val_num++;
 	}
 	else
-		absol_val = feed;
-	remaining = absol_val;
+		no_minus_val = platform_f;
+	remaining = no_minus_val;
 	for (index = 1000000000; index > 1; index /= 10)
 	{
-		if (absol_val / index)
+		if (no_minus_val / index)
 		{
-			_puchar('0' + remaining / index);
-			count++;
+			print_putc('0' + remaining / index);
+			val_num++;
 		}
 		remaining %= index;
 	}
-	_puchar('0' + remaining);
-	count++;
+	print_putc('0' + remaining);
+	val_num++;
 
-	return (count);
+	return (val_num);
 }
