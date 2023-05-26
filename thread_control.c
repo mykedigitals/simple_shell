@@ -97,7 +97,7 @@ void word_comot(char *txt_word)
 	int index_word;
 
 	for (index_word = 0; txt_word[index_word] != '\0'; index_word++)
-		if (txt_word[index_word] == '#' && (!index_word || 
+		if (txt_word[index_word] == '#' && (!index_word ||
 					txt_word[index_word - 1] == ' '))
 		{
 			txt_word[index_word] = '\0';
