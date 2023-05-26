@@ -8,7 +8,7 @@
  */
 void enter_shell_args(shell_args *element, char **a_v)
 {
-	int index = 0;
+	int sort = 0;
 
 	element->fname = a_v[0];
 	if (element->arg)
@@ -24,9 +24,9 @@ void enter_shell_args(shell_args *element, char **a_v)
 				element->argv[1] = NULL;
 			}
 		}
-		for (index = 0; element->argv && element->argv[index]; index++)
+		for (sort = 0; element->argv && element->argv[sort]; sort++)
 			;
-		element->argc = index;
+		element->argc = sort;
 
 		sub_alias_val(element);
 		sub_var_val(element);

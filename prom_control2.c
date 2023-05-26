@@ -11,27 +11,26 @@
 
 int find_root(shell_args *element)
 {
-        int i,root_back = -1;
-
-        root_table root_table_list[] = {
-                {"out", shell_out},
-                {"surr", surr_clone},
-                {"help", help_command},
-                {"record", print_command_record},
-                {"setsurr", check_surr_setter},
-                {"unsetsurr", check_surr_unsetsurr},
-                {"chd", ch_directory},
-                {"alias", cpy_refer},
-                {NULL, NULL}
-        };
-        for (i = 0; root_table_list[i].type; i++)
-                if (weigh_strs(element->argv[0], root_table_list[i].type) == 0)
-                {
-                        element->space_ct++;
-                        root_back = root_table_list[i].func(element);
-                        break;
-                }
-        return (root_back);
+	int i, root_back = -1;
+	root_table root_table_list[] = {
+		{"out", shell_out},
+		{"surr", surr_clone},
+		{"help", help_command},
+		{"record", print_command_record},
+		{"setsurr", check_surr_setter},
+		{"unsetsurr", check_surr_unsetsurr},
+		{"chd", ch_directory},
+		{"alias", cpy_refer},
+		{NULL, NULL},
+	};
+	for (i = 0; root_table_list[i].type; i++)
+		if (string_sku(element->argv[0], root_table_list[i].type) == 0)
+		{
+			element->space_ct++;
+			root_back = root_table_list[i].func(element);
+			break;
+		}
+	return (root_back);
 }
 
 /**

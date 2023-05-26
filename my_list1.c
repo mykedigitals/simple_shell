@@ -13,6 +13,7 @@ l_list *updated_tail_node(l_list **list_top, const char *str, int num)
 
 	if (!list_top)
 		return (NULL);
+
 	present_node = *list_top;
 	updated_node = malloc(sizeof(l_list));
 	if (!updated_node)

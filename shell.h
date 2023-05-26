@@ -209,7 +209,7 @@ char *created_iota(long int, int, int);
 char *locate_word_begin(const char *, const char *);
 int string_lent(char *);
 char *string_add(char *, char *);
-int weigh_strs(char *, char *);
+int string_sku(char *, char *);
 
 
 /* thread_control2 */

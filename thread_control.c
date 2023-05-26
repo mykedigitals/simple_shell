@@ -5,7 +5,7 @@
  * locate_char - searches for a particular character in a string and
  *	returns a pointer to the first occurrence of that character
  * @the_real_char: character being looked for
- * @str: string being checked
+ * @letter: string being checked
  *
  * Return: the character that was found in string *start_of_dest
  */

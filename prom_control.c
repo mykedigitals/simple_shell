@@ -55,7 +55,6 @@ int created_sh(shell_args *element, char **a_v)
 void createdfork(shell_args *element)
 {
 	pid_t child_pid;
-
 	child_pid = fork();
 
 	if (child_pid == -1)
