@@ -13,7 +13,6 @@
  * value of the current digit to it. If the changed_return
  * exceeds the maximum value of an integer (INT_MAX),
  * the function returns -1 indicating an error
- * 
  *
  * Return: 0 , -1 (error, if the input string contains non-numeric characters)
  */
