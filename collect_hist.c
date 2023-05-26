@@ -13,7 +13,7 @@ int load_record(shell_args *element)
 	int work_idx, end_lne = 0, linecount = 0;
 	ssize_t hom_doc, rd_lent, fil_size = 0;
 	struct stat file_stats;
-	char *buffer = NULL, *record_file = collect_filepath(element);
+	char *buffer = NULL, *record_file = obtain_reco_docu_nav(element);
 
 	if (!record_file)
 		return (0);

@@ -189,7 +189,7 @@ int prt_dcm_int(int, int);
 int load_record(shell_args *element);
 int create_shel_record(shell_args *element);
 int plus_to_record(shell_args *element, char *, int);
-char *collect_filepath(shell_args *element);
+char *obtain_reco_docu_nav(shell_args *element);
 int edit_nodenumber(shell_args *);
 
 
