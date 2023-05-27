@@ -2,28 +2,13 @@
 
 
 /**
- * change_directory - changes the current
+ * c_dir_shell - changes the current
  * working directory of the shell
  * @content: struct parameter
- * Desc: getcwd gets the current working directory and
- * stores it in the buffer. If it is empty, it sets
- * the dir variable to the value of the HOME environment
- * variable, and if that fails, it sets dir to the
- * value of the PWD environment variable. It then calls
- * the chdir function to change the current working
- * directory to the value of dir. If the first argument
- * is not empty, the function checks if it is equal to "-".
- * If it is, it prints the current working directory
- * to standard output and sets the dir variable to the value
- * of the OLDPWD. If the first argument is not empty
- * and not equal to "-", the function simply calls chdir to
- * change the current working directory to the value of
- * the first argument. Then it sets OLDPWD and PWD to the
- * shell's environment variable table
  *
  * Return: 0 (success), 1 (error)
  */
-int change_directory(sh_args *content)
+int c_dir_shell(sh_args *content)
 {
 	char *wrkin_dir, *dir, buff[1024];
 	int cd_success;
@@ -67,13 +52,13 @@ int change_directory(sh_args *content)
 
 
 /**
- * help_command -  to provide a placeholder
+ * assist_cmd -  to provide a placeholder
  * for the "help" command in a shell program
  * @content: struct parameter
  *
  * Return: 0
  */
-int help_command(sh_args *content)
+int assist_cmd(sh_args *content)
 {
 	char **arg_v;
 
@@ -86,18 +71,18 @@ int help_command(sh_args *content)
 
 
 /**
- * shell_exit - terminates the shell's working process
+ * close_sh - terminates the shell's working process
  * @content: struct parameter
  *
  * Return: 0
  */
-int shell_exit(sh_args *content)
+int close_sh(sh_args *content)
 {
 	int exitcheck;
 
 	if (content->argv[1])  /* If there is an exit arguement */
 	{
-		exitcheck = exit_str_to_int(content->argv[1]);
+		exitcheck = close_str_intt(content->argv[1]);
 		if (exitcheck == -1)
 		{
 			content->status = 2;
@@ -106,7 +91,7 @@ int shell_exit(sh_args *content)
 			write_with_buffer('\n');
 			return (1);
 		}
-		content->err_num = exit_str_to_int(content->argv[1]);
+		content->err_num = close_str_intt(content->argv[1]);
 		return (-2);
 	}
 	content->err_num = -1;
@@ -115,7 +100,7 @@ int shell_exit(sh_args *content)
 
 
 /**
- * exit_str_to_int - converts string inputs to integer
+ * close_str_intt - converts string inputs to integer
  * @str: string being converted
  * Desc: It then checks whether the first character
  * of the input string is a + sign. If it is, it increments
@@ -128,7 +113,7 @@ int shell_exit(sh_args *content)
  *
  * Return: 0 , -1 (error, if the input string contains non-numeric characters)
  */
-int exit_str_to_int(char *str)
+int close_str_intt(char *str)
 {
 	int count = 0;
 	unsigned long int converted_output = 0;
