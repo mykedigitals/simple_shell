@@ -154,13 +154,13 @@ char *getenv_clone(sh_args *, const char *);
 
 /* error_handlers1 */
 void print_err_mesg(sh_args *, char *);
-int exit_str_to_int(char *);
+int close_str_intt(char *);
 
 
 /* exit_checker */
-int change_directory(sh_args *);
-int help_command(sh_args *);
-int shell_exit(sh_args *);
+int c_dir_shell(sh_args *);
+int assist_cmd(sh_args *);
+int close_sh(sh_args *);
 
 
 /* control_fd */
