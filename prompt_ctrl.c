@@ -144,13 +144,13 @@ int search_and_exec_builtin(sh_args *content)
 {
 	int i, builtin_return = -1;
 	builtin_table builtin_table_list[] = {
-		{"exit", shell_exit},
+		{"exit", close_sh},
 		{"env", env_clone},
-		{"help", help_command},
+		{"help", assist_cmd},
 		{"history", print_command_hist},
 		{"setenv", check_env_setter},
 		{"unsetenv", check_env_unsetenv},
-		{"cd", change_directory},
+		{"cd", c_dir_shell},
 		{"alias", alias_clone},
 		{NULL, NULL}
 	};
