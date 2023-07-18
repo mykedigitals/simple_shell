@@ -2,14 +2,14 @@
 
 
 /**
- * prnt_l_list_str - print all the strings stored in a singly
+ * list_of_stringPrint - print all the strings stored in a singly
  *	linked list of strings, with each string followed by a
  *	newline character
  * @head: first node pointer
  *
  * Return: number of nodes traversed in the linked list
  */
-size_t prnt_l_list_str(const l_list *head)
+size_t list_of_stringPrint(const l_list *head)
 {
 	size_t index = 0;
 
@@ -25,14 +25,14 @@ size_t prnt_l_list_str(const l_list *head)
 
 
 /**
- * new_end_node - adds a new node to the end of a linked list
+ * endOf_node - adds a new node to the end of a linked list
  * @list_head: head node
  * @str: strings
  * @num: index
  *
  * Return: list size
  */
-l_list *new_end_node(l_list **list_head, const char *str, int num)
+l_list *endOf_node(l_list **list_head, const char *str, int num)
 {
 	l_list *new_node, *current_node;
 
@@ -47,7 +47,7 @@ l_list *new_end_node(l_list **list_head, const char *str, int num)
 	new_node->num = num;
 	if (str)
 	{
-		new_node->str = str_dup(str);
+		new_node->str = clone_string(str);
 		if (!new_node->str)
 		{
 			free(new_node);
@@ -67,13 +67,13 @@ l_list *new_end_node(l_list **list_head, const char *str, int num)
 
 
 /**
- * delete_node_index - delete a node in a linked list at a specific index
+ * rm_node_idx - delete a node in a linked list at a specific index
  * @list_head: head node
  * @index: index node being deleted
  *
  * Return: 1 (success), 0 (failure)
  */
-int delete_node_index(l_list **list_head, unsigned int index)
+int rm_node_idx(l_list **list_head, unsigned int index)
 {
 	l_list *current_node, *preceding_node;
 	unsigned int x = 0;
@@ -108,12 +108,12 @@ int delete_node_index(l_list **list_head, unsigned int index)
 
 
 /**
- * free_l_list - frees all list
+ * empty_l_list - frees all list
  * @list_head: head node
  *
  * Return: void
  */
-void free_l_list(l_list **list_head)
+void empty_l_list(l_list **list_head)
 {
 	l_list *current_node, *next_node, *head;
 

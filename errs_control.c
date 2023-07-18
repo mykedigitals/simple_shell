@@ -2,20 +2,20 @@
 
 
 /**
- * print_err_mesg - The function writes an
+ * error_msg_print - The function writes an
  * error message to the standard error output
  * @content: struct parameter
  * @err_str: information about the source of the error
  *
  * Return: 0
  */
-void print_err_mesg(sh_args *content, char *err_str)
+void error_msg_print(sh_args *content, char *err_str)
 {
-	write_string_with_buffer(content->fname);
-	write_string_with_buffer(": ");
-	prnt_decim_int(content->line_count, STDERR_FILENO);
-	write_string_with_buffer(": ");
-	write_string_with_buffer(content->argv[0]);
-	write_string_with_buffer(": ");
-	write_string_with_buffer(err_str);
+	using_buffer_to_write_str(content->fname);
+	using_buffer_to_write_str(": ");
+	decimal_intPrint(content->line_count, STDERR_FILENO);
+	using_buffer_to_write_str(": ");
+	using_buffer_to_write_str(content->argv[0]);
+	using_buffer_to_write_str(": ");
+	using_buffer_to_write_str(err_str);
 }

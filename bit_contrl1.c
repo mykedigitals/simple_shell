@@ -2,14 +2,14 @@
 
 
 /**
- * analyse_cmd_chain - checks if a given command is part of a
- *	command chain (either an "AND" or "OR" chain), and modify a
- *	buffer accordingly based on the outcome of the evaluation
+ * analyse_cmd_chain - evaluates if a given command is a link in a
+ * command chain (either a "AND" or "OR" chain), then modifies
+ * a buffer in accordance with the results.
  * @content: struct parameter
- * @cmd_buffer: buffer's  char
- * @buffer_pos: command buffer's address of current position
- * @cmd_index:  command buffer's starting position
- * @buffer_len: command buffer's length
+ * @cmd_buffer: buf's  character
+ * @buffer_pos: cmand buffer's address of present position
+ * @cmd_index:  cmand buffer's starting position
+ * @buffer_len: cmd buffer's length
  *
  * Return: nil
  */
@@ -40,13 +40,13 @@ void analyse_cmd_chain(sh_args *content, char *cmd_buffer,
 
 
 /**
- * observe_cmd_chain - determines the type of command chaining
- *	as being a chain delimeter
- * @content: the parameter struct
- * @cmd_buffer: the char buffer
- * @buffer_pos: address of current position in cmd_buffer
+ * observe_cmd_chain - determines whether the
+ * command chaining is a chain delimeter.
+ * @content: the value struct
+ * @cmd_buffer: the character buf
+ * @buffer_pos: location of present position in commd_buf
  *
- * Return: 1 (chain delimeter), 0 (otherwise)
+ * Return: 1 (chain delimeter), else 0
  */
 int observe_cmd_chain(sh_args *content, char *cmd_buffer,
 		size_t *buffer_pos)
@@ -78,11 +78,12 @@ int observe_cmd_chain(sh_args *content, char *cmd_buffer,
 
 
 /**
- * rm_content - replaces the content of a string with a new string
- * @oldStrPtr: the address to the old string
- * @newStr: the new string
+ * rm_content - puts a new string in place
+ * of the content of a string.
+ * @oldStrPtr: the address to the former string
+ * @newStr: the current string
  *
- * Return: 1 (string replaced)
+ * Return: 1 if string is replaced
  */
 int rm_content(char **oldStrPtr, char *newStr)
 {
@@ -93,13 +94,13 @@ int rm_content(char **oldStrPtr, char *newStr)
 
 
 /**
- * rp_refer_val - replaces any aliases defined in the
- *	shell with their respective values
+ * rp_refer_val - substitutes any shell-defined aliases
+ * with their corresponding values.
  * @content: struct parameter
- * Desc: It does this by searching for an alias with a prefix matching
- *	the first argument in the content struct, and if found,
- *	replacing it with the alias value
- *
+ * Desc: This is accomplished by looking for an alias in
+ * the content struct that has a prefix matching the first
+ * parameter, and if one is found, replacing it with the
+ * alias value.
  * Return: 1 (alias replaced), 0 (otherwise)
  */
 int rp_refer_val(sh_args *content)
@@ -110,15 +111,15 @@ int rp_refer_val(sh_args *content)
 
 	for (count = 0; count < 10; count++)
 	{
-		alias_node = get_first_node_with_prefix(content->alias,
+		alias_node = prefix_of_firstNode(content->alias,
 				content->argv[0], '=');
 		if (!alias_node)
 			return (0);
 		free(content->argv[0]);
-		alias_value = car_finder(alias_node->str, '=');
+		alias_value = to_find_char(alias_node->str, '=');
 		if (!alias_value)
 			return (0);
-		alias_value = str_dup(alias_value + 1);
+		alias_value = clone_string(alias_value + 1);
 		if (!alias_value)
 			return (0);
 		content->argv[0] = alias_value;
@@ -127,13 +128,14 @@ int rp_refer_val(sh_args *content)
 }
 
 /**
- * rp_val - replaces certain variables in the arguments
- *	passed to it with their corresponding values
+ * rp_val - replaces certain factors within the contentions
+ * passed to it with their comparing values
  * @content: struct parameter
- * Desc: it replaces the following variables:
- * "$?" with the exit status of the most recently executed command.
+ * Desc: it replaces the taking after factors:
+ * "$?" with the exit status of the foremost as of late
+ * executed command
  * "$$" with the process ID of the current shell process.
- * "${VAR}" with the value of the environment variable named VAR.
+ * "${VAR}" with the val of the env variable named VAR.
  *
  * Return: 1 (alias replaced), 0 (otherwise)
  */
@@ -147,27 +149,27 @@ int rp_val(sh_args *content)
 		if (content->argv[arg_index][0] != '$' || !content->argv[arg_index][1])
 			continue;
 
-		if (!cmpare_strs(content->argv[arg_index], "$?"))
+		if (!strings_weigh(content->argv[arg_index], "$?"))
 		{
 			rm_content(&(content->argv[arg_index]),
-				str_dup(custom_itoa(content->status, 10, 0)));
+				clone_string(selfCreated_get(content->status, 10, 0)));
 			continue;
 		}
-		if (!cmpare_strs(content->argv[arg_index], "$$"))
+		if (!strings_weigh(content->argv[arg_index], "$$"))
 		{
 			rm_content(&(content->argv[arg_index]),
-				str_dup(custom_itoa(getpid(), 10, 0)));
+				clone_string(selfCreated_get(getpid(), 10, 0)));
 			continue;
 		}
-		env_var_node = get_first_node_with_prefix(content->env,
+		env_var_node = prefix_of_firstNode(content->env,
 				&content->argv[arg_index][1], '=');
 		if (env_var_node)
 		{
 			rm_content(&(content->argv[arg_index]),
-				str_dup(car_finder(env_var_node->str, '=') + 1));
+				clone_string(to_find_char(env_var_node->str, '=') + 1));
 			continue;
 		}
-		rm_content(&content->argv[arg_index], str_dup(""));
+		rm_content(&content->argv[arg_index], clone_string(""));
 
 	}
 	return (0);

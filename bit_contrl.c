@@ -2,11 +2,11 @@
 
 
 /**
- * **created_strt - takes a string (str) and a delimiter string
- *	(delimiter) as input and then split str into an array of strings
- * @str: the input string
- * @delimiter: the delimeter string
- * Return: a pointer to an array of strings, or NULL on failure
+ * **created_strt - this functions takes input of string and delimiter
+ * it then split str into an array of strings
+ * @str: the str input
+ * @delimiter: the delimeter str
+ * Return: this returns the pointer to array of str, or NULL on failure
  */
 char **created_strt(char *str, char *delimiter)
 {
@@ -18,8 +18,8 @@ char **created_strt(char *str, char *delimiter)
 	if (!delimiter)
 		delimiter = " ";
 	for (i = 0; str[i] != '\0'; i++)
-		if (!is_delimiter(str[i], delimiter) &&
-				(is_delimiter(str[i + 1], delimiter) || !str[i + 1]))
+		if (!no_limitation(str[i], delimiter) &&
+				(no_limitation(str[i + 1], delimiter) || !str[i + 1]))
 			word_count++;
 
 	if (word_count == 0)
@@ -29,10 +29,10 @@ char **created_strt(char *str, char *delimiter)
 		return (NULL);
 	for (i = 0, j = 0; j < word_count; j++)
 	{
-		while (is_delimiter(str[i], delimiter))
+		while (no_limitation(str[i], delimiter))
 			i++;
 		k = 0;
-		while (!is_delimiter(str[i + k], delimiter) && str[i + k])
+		while (!no_limitation(str[i + k], delimiter) && str[i + k])
 			k++;
 		substrings[j] = malloc((k + 1) * sizeof(char));
 		if (!substrings[j])

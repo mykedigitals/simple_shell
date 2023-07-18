@@ -2,13 +2,13 @@
 
 
 /**
- * process_input - reads user input from the command line
+ * put_prosez - reads user input from the command line
  *	(apart from the newline)
  * @content: struct parameter
  *
  * Return: length of the current command
  */
-ssize_t process_input(sh_args *content)
+ssize_t put_prosez(sh_args *content)
 {
 	static char *command_chain_buffer;
 	static size_t current_position, next_position, buffer_length;
@@ -16,7 +16,7 @@ ssize_t process_input(sh_args *content)
 	char **current_command_pointer = &(content->arg), *current_command;
 
 	_putchar(BUF_FLUSH);
-	input_length = get_input_from_stdin(content,
+	input_length = stdin_obtained(content,
 			&command_chain_buffer, &buffer_length);
 	if (input_length == -1)
 		return (-1);
@@ -42,7 +42,7 @@ ssize_t process_input(sh_args *content)
 		}
 
 		*current_command_pointer = current_command;
-		return (len_of_str(current_command));
+		return (string_lent(current_command));
 	}
 
 	*current_command_pointer = command_chain_buffer;
@@ -51,7 +51,7 @@ ssize_t process_input(sh_args *content)
 
 
 /**
- * read_into_buffer - reads data from a file descriptor into a buffer,
+ *  buffer_insert - reads data from a file descriptor into a buffer,
  *	up to a maximum size specified by READ_BUF_SIZE
  * @content: struct parameter
  * @buffer: buffer
@@ -59,7 +59,7 @@ ssize_t process_input(sh_args *content)
  *
  * Return: result
  */
-ssize_t read_into_buffer(sh_args *content, char *buffer, size_t *bytes_read)
+ssize_t  buffer_insert(sh_args *content, char *buffer, size_t *bytes_read)
 {
 	ssize_t result = 0;
 
@@ -73,13 +73,13 @@ ssize_t read_into_buffer(sh_args *content, char *buffer, size_t *bytes_read)
 
 
 /**
- * get_input_from_stdin - reads input from standard input (stdin)
+ * stdin_obtained - reads input from standard input (stdin)
  *	and store it in a buffer
  * @content: parameter struct
  * @input_buffer: buffer's address
  * @buffer_size: buffer_size  address
  * Desc: If there is no input left in the buffer, the function will
- *	fill the buffer by calling getline or read_input_line function
+ *	fill the buffer by calling getline or insert_line_search function
  *	to read input from stdin. The input is then processed by
  *	removing any trailing newline, removing comments, adding it to
  *	the command history, and determining if it is a command chain
@@ -87,7 +87,7 @@ ssize_t read_into_buffer(sh_args *content, char *buffer, size_t *bytes_read)
  *
  * Return: number of characters read
  */
-ssize_t get_input_from_stdin(sh_args *content, char **input_buffer,
+ssize_t stdin_obtained(sh_args *content, char **input_buffer,
 		size_t *buffer_size)
 {
 	ssize_t read_len = 0;
@@ -97,11 +97,11 @@ ssize_t get_input_from_stdin(sh_args *content, char **input_buffer,
 	{
 		free(*input_buffer);
 		*input_buffer = NULL;
-		signal(SIGINT, handle_sigInt);
+		signal(SIGINT, input_Ctrl);
 #if USE_GETLINE
 		read_len = getline(input_buffer, &allocated_bufferLen, stdin);
 #else
-		read_len = read_input_line(content, input_buffer, &allocated_bufferLen);
+		read_len = insert_line_search(content, input_buffer, &allocated_bufferLen);
 #endif
 		if (read_len > 0)
 		{
@@ -111,8 +111,8 @@ ssize_t get_input_from_stdin(sh_args *content, char **input_buffer,
 				read_len--;
 			}
 			content->linecount_flag = 1;
-			coments_remover(*input_buffer);
-			add_to_history(content, *input_buffer, content->histcount++);
+			thisRm_comments(*input_buffer);
+			append_inRecord(content, *input_buffer, content->histcount++);
 			{
 				*buffer_size = read_len;
 				content->cmd_buf = input_buffer;
@@ -124,7 +124,7 @@ ssize_t get_input_from_stdin(sh_args *content, char **input_buffer,
 
 
 /**
- * read_input_line - reads a line of input from a file or a stream
+ * insert_line_search - reads a line of input from a file or a stream
  *	and store it in a character array
  * @content: parameter struct
  * @ptr: stores address of the pointer that will point to the output
@@ -134,7 +134,7 @@ ssize_t get_input_from_stdin(sh_args *content, char **input_buffer,
  *
  * Return: total_bytes
  */
-int read_input_line(sh_args *content, char **ptr, size_t *length)
+int insert_line_search(sh_args *content, char **ptr, size_t *length)
 {
 	static char input_buf[READ_BUF_SIZE];
 	static size_t buf_pos, buf_len;
@@ -148,11 +148,11 @@ int read_input_line(sh_args *content, char **ptr, size_t *length)
 	if (buf_pos == buf_len)
 		buf_pos = buf_len = 0;
 
-	bytes_read = read_into_buffer(content, input_buf, &buf_len);
+	bytes_read =  buffer_insert(content, input_buf, &buf_len);
 	if (bytes_read == -1 || (bytes_read == 0 && buf_len == 0))
 		return (-1);
 
-	line_end = car_finder(input_buf + buf_pos, '\n');
+	line_end = to_find_char(input_buf + buf_pos, '\n');
 	line_len = line_end ? 1 + (unsigned int)(line_end - input_buf) : buf_len;
 	new_output_str = to_allocate_mem(input_pos, total_bytes, total_bytes ?
 			total_bytes + line_len : line_len + 1);
@@ -160,9 +160,9 @@ int read_input_line(sh_args *content, char **ptr, size_t *length)
 		return (input_pos ? free(input_pos), -1 : -1);
 
 	if (total_bytes)
-		string_concat(new_output_str, input_buf + buf_pos, line_len - buf_pos);
+		addMore_str(new_output_str, input_buf + buf_pos, line_len - buf_pos);
 	else
-		cpy_str(new_output_str, input_buf + buf_pos, line_len - buf_pos + 1);
+		string_to_copy(new_output_str, input_buf + buf_pos, line_len - buf_pos + 1);
 
 	total_bytes += line_len - buf_pos;
 	buf_pos = line_len;
@@ -176,13 +176,13 @@ int read_input_line(sh_args *content, char **ptr, size_t *length)
 
 
 /**
- * handle_sigInt - handle signal calls when user presses Ctrl+C
+ * input_Ctrl - handle signal calls when user presses Ctrl+C
  * @unused_signal_num:  indicates the signal number that triggered
  *	the signal handler
  *
  * Return: nil
  */
-void handle_sigInt(__attribute__((unused))int unused_signal_num)
+void input_Ctrl(__attribute__((unused))int unused_signal_num)
 {
 	_puts("\n");
 	_puts("$ ");

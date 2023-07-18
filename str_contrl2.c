@@ -44,13 +44,13 @@ void _puts(char *str)
 
 
 /**
- * str_cpy - copies string from src_str to dest_str
+ * copy_string - copies string from src_str to dest_str
  * @dest_str: string destination
  * @src_str: string source
  *
  * Return: pointer to destination
  */
-char *str_cpy(char *dest_str, char *src_str)
+char *copy_string(char *dest_str, char *src_str)
 {
 	int idx = 0;
 
@@ -67,12 +67,12 @@ char *str_cpy(char *dest_str, char *src_str)
 
 
 /**
- * str_dup - handles string duplication
+ * clone_string - handles string duplication
  * @str: string being duplicated
  *
  * Return: pointer to the duplicated string
  */
-char *str_dup(const char *str)
+char *clone_string(const char *str)
 {
 	int len = 0;
 	char *result;

@@ -2,14 +2,14 @@
 
 
 /**
- * car_finder - searches for a particular character in a string and
+ * to_find_char - searches for a particular character in a string and
  *	returns a pointer to the first occurrence of that character
  * @target_char: character being looked for
  * @str: string being checked
  *
  * Return: the character that was found in string *start_of_dest
  */
-char *car_finder(char *str, char target_char)
+char *to_find_char(char *str, char target_char)
 {
 	while (*str++ != '\0')
 	{
@@ -23,7 +23,7 @@ char *car_finder(char *str, char target_char)
 
 
 /**
- * string_concat - concatenate a portion of one string, src, onto the
+ * addMore_str - concatenate a portion of one string, src, onto the
  *	end of another string, dest
  * @dest: destination string
  * @src: source string
@@ -31,7 +31,7 @@ char *car_finder(char *str, char target_char)
  *
  * Return: concatenated string
  */
-char *string_concat(char *dest, char *src, int max_chars)
+char *addMore_str(char *dest, char *src, int max_chars)
 {
 	int dest_index, source_index;
 	char *start_of_dest = dest;
@@ -53,7 +53,7 @@ char *string_concat(char *dest, char *src, int max_chars)
 
 
 /**
- * cpy_str - copies characters from the source string (src) to the
+ * string_to_copy - copies characters from the source string (src) to the
  *	destination string (dest) and ensure that the destination
  *	string is null-terminated
  * @dest: destination string
@@ -62,7 +62,7 @@ char *string_concat(char *dest, char *src, int max_chars)
  *
  * Return: copied string
  */
-char *cpy_str(char *dest, char *src, int limit)
+char *string_to_copy(char *dest, char *src, int limit)
 {
 	int src_idx, dest_idx;
 	char *dest_start = dest;
@@ -87,12 +87,12 @@ char *cpy_str(char *dest, char *src, int limit)
 
 
 /**
- * coments_remover - searches and replaces first instance of '#' with '\0'
+ * thisRm_comments - searches and replaces first instance of '#' with '\0'
  * @text: string to be modifed
  *
  * Return: 0
  */
-void coments_remover(char *text)
+void thisRm_comments(char *text)
 {
 	int idx;
 
@@ -106,7 +106,7 @@ void coments_remover(char *text)
 
 
 /**
- * custom_itoa - converts a long integer num into a string
+ * selfCreated_get - converts a long integer num into a string
  *	representation in a given base, which can be specified through the flags
  * @num: number
  * @conversionBase: conversionBase
@@ -114,7 +114,7 @@ void coments_remover(char *text)
  *
  * Return: converted string
  */
-char *custom_itoa(long int num, int conversionBase, int flags)
+char *selfCreated_get(long int num, int conversionBase, int flags)
 {
 	static char *conversionArray;
 	static char conversionBuffer[50];

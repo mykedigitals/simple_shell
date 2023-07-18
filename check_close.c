@@ -18,34 +18,34 @@ int c_dir_shell(sh_args *content)
 		_puts("TODO: >>getcwd failure emsg here<<\n");
 	if (!content->argv[1])
 	{
-		dir = getenv_clone(content, "HOME=");
+		dir = getduplicate_surr(content, "HOME=");
 		if (!dir)
-			cd_success = chdir((dir = getenv_clone(content, "PWD=")) ? dir : "/");
+			cd_success = chdir((dir = getduplicate_surr(content, "PWD=")) ? dir : "/");
 		else
 			cd_success = chdir(dir);
 	}
-	else if (cmpare_strs(content->argv[1], "-") == 0)
+	else if (strings_weigh(content->argv[1], "-") == 0)
 	{
-		if (!getenv_clone(content, "OLDPWD="))
+		if (!getduplicate_surr(content, "OLDPWD="))
 		{
 			_puts(wrkin_dir);
 			_putchar('\n');
 			return (1);
 		}
-		_puts(getenv_clone(content, "OLDPWD=")), _putchar('\n');
-		cd_success = chdir((dir = getenv_clone(content, "OLDPWD=")) ? dir : "/");
+		_puts(getduplicate_surr(content, "OLDPWD=")), _putchar('\n');
+		cd_success = chdir((dir = getduplicate_surr(content, "OLDPWD=")) ? dir : "/");
 	}
 	else
 		cd_success = chdir(content->argv[1]);
 	if (cd_success == -1)
 	{
-		print_err_mesg(content, "can't cd to ");
-		write_string_with_buffer(content->argv[1]), write_with_buffer('\n');
+		error_msg_print(content, "can't cd to ");
+		using_buffer_to_write_str(content->argv[1]), using_buffer_to_write('\n');
 	}
 	else
 	{
-		env_setter(content, "OLDPWD", getenv_clone(content, "PWD="));
-		env_setter(content, "PWD", getcwd(buff, 1024));
+		surr_set(content, "OLDPWD", getduplicate_surr(content, "PWD="));
+		surr_set(content, "PWD", getcwd(buff, 1024));
 	}
 	return (0);
 }
@@ -86,9 +86,9 @@ int close_sh(sh_args *content)
 		if (exitcheck == -1)
 		{
 			content->status = 2;
-			print_err_mesg(content, "Illegal number: ");
-			write_string_with_buffer(content->argv[1]);
-			write_with_buffer('\n');
+			error_msg_print(content, "Illegal number: ");
+			using_buffer_to_write_str(content->argv[1]);
+			using_buffer_to_write('\n');
 			return (1);
 		}
 		content->err_num = close_str_intt(content->argv[1]);

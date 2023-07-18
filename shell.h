@@ -119,16 +119,16 @@ typedef struct builtin
 
 /* PROTOTYPE DEFINATIONS */
 
-/* alias */
-int alias_to_str(sh_args *content, char *str);
-int remv_alias(sh_args *content, char *str);
-int alias_printer(l_list *node);
-int alias_clone(sh_args *);
+/* file_refer.c */
+int convert_aliasToStr(sh_args *content, char *str);
+int alias_rm(sh_args *content, char *str);
+int getting_alias(l_list *node);
+int duplicate_alias(sh_args *);
 
 
-/* buffer_handlers */
-int write_with_buffer(char);
-void write_string_with_buffer(char *);
+/* control_buff.c */
+int using_buffer_to_write(char);
+void using_buffer_to_write_str(char *);
 
 
 /* assign_dym_mem */
@@ -138,22 +138,22 @@ void free_alot(char **);
 int to_free_nothing(void **);
 
 
-/* env_getter */
-int env_setter(sh_args *, char *, char *);
-int unsetenv_clone(sh_args *, char *);
-char **environ_getter(sh_args *);
+/* obtain_surr.c */
+int surr_set(sh_args *, char *, char *);
+int unsetduplicate_surr(sh_args *, char *);
+char **get_surround(sh_args *);
 
 
 /* environment_handlers */
-int check_env_setter(sh_args *);
-int check_env_unsetenv(sh_args *);
-int populat_listof_env(sh_args *);
-int env_clone(sh_args *);
-char *getenv_clone(sh_args *, const char *);
+int set_surr_confirm(sh_args *);
+int unsetting_surr_confirm(sh_args *);
+int listing_surr_amt(sh_args *);
+int duplicate_surr(sh_args *);
+char *getduplicate_surr(sh_args *, const char *);
 
 
-/* error_handlers1 */
-void print_err_mesg(sh_args *, char *);
+/* errs_control.c */
+void error_msg_print(sh_args *, char *);
 int close_str_intt(char *);
 
 
@@ -164,62 +164,62 @@ int close_sh(sh_args *);
 
 
 /* control_fd */
-int write_string_to_fd(char *str, int fd);
-int write_car_to_fd(int fil_des, char car);
-int prnt_decim_int(int, int);
+int stringwrite_toFd(char *str, int fd);
+int charWrite_toFd(int fil_des, char car);
+int decimal_intPrint(int, int);
 
 
-/* history_getter */
-int load_history(sh_args *content);
-int write_shel_histry(sh_args *content);
-int add_to_history(sh_args *content, char *buf, int linecount);
-char *get_hist_file_path(sh_args *content);
-int update_hist_node_numbrs(sh_args *incontentfo);
+/* hist_obtain */
+int hist_process(sh_args *content);
+int put_sh_record(sh_args *content);
+int append_inRecord(sh_args *content, char *buf, int linecount);
+char *obtain_histFile_path(sh_args *content);
+int refresh_history_nodeNumber(sh_args *incontentfo);
 
 
-/* history_list */
-int print_command_hist(sh_args *);
+/* ls_hist.c */
+int hist_cmd_print(sh_args *);
 
 
-/* hsh_handlers */
-int custom_shell(sh_args *, char **);
-void findAndExecCommand(sh_args *);
-void custom_fork(sh_args *);
-int search_and_exec_builtin(sh_args *);
+/* prompt_ctrl.c */
+int self_created_sh(sh_args *, char **);
+void locate_exeCmd(sh_args *);
+void self_created_fork(sh_args *);
+int find_andExe_follow(sh_args *);
 
 
-/* hsh_handlers1 */
-int is_interactive(sh_args *);
-int is_delimiter(char, char *);
+/* prompt_ctrl1.c */
+int to_commune(sh_args *);
+int no_limitation(char, char *);
 
 
-/* info_getter */
-void fill_sh_args(sh_args *, char **);
-void reset_sh_args(sh_args *);
-void free_sh_args(sh_args *, int);
+/* obtain_collect.c */
+void occupy_shell(sh_args *, char **);
+void shell_restart(sh_args *);
+void shell_empty(sh_args *, int);
 
 
-/* l_list_handler */
-size_t prnt_l_list_str(const l_list *);
-l_list *new_end_node(l_list **, const char *, int);
-int delete_node_index(l_list **, unsigned int);
-void free_l_list(l_list **);
+/* my_list.c */
+size_t list_of_stringPrint(const l_list *);
+l_list *endOf_node(l_list **, const char *, int);
+int rm_node_idx(l_list **, unsigned int);
+void empty_l_list(l_list **);
 
 
-/* l_list_handler1 */
-ssize_t find_node_index(l_list *, l_list *);
-l_list *get_first_node_with_prefix(l_list *, char *, char);
-size_t list_len(const l_list *);
-size_t prnt_l_list_with_index(const l_list *);
-char **conv_list_to_strings(l_list *);
+/* my_list1.c */
+ssize_t locate_idx_node(l_list *, l_list *);
+l_list *prefix_of_firstNode(l_list *, char *, char);
+size_t length_ofList(const l_list *);
+size_t idx_of_printedList(const l_list *);
+char **list_toStrings_list(l_list *);
 
 
-/* line_getter */
-ssize_t process_input(sh_args *);
-ssize_t read_into_buffer(sh_args *content, char *buf, size_t *i);
-ssize_t get_input_from_stdin(sh_args *content, char **buf, size_t *len);
-int read_input_line(sh_args *, char **, size_t *);
-void handle_sigInt(int);
+/* collect_line.c */
+ssize_t put_prosez(sh_args *);
+ssize_t  buffer_insert(sh_args *content, char *buf, size_t *i);
+ssize_t stdin_obtained(sh_args *content, char **buf, size_t *len);
+int insert_line_search(sh_args *, char **, size_t *);
+void input_Ctrl(int);
 
 
 /* parse_handlers */
@@ -228,26 +228,26 @@ int for_doc_exec(sh_args *, char *);
 char *clone_no_delim(char *, int, int);
 
 
-/* string_handlers */
-char *car_finder(char *, char);
-char *string_concat(char *, char *, int);
-char *cpy_str(char *, char *, int);
-void coments_remover(char *);
-char *custom_itoa(long int, int, int);
+/* str_ctrl.c */
+char *to_find_char(char *, char);
+char *addMore_str(char *, char *, int);
+char *string_to_copy(char *, char *, int);
+void thisRm_comments(char *);
+char *selfCreated_get(long int, int, int);
 
 
-/* string_handlers1 */
-char *find_substr_at_start(const char *, const char *);
-int len_of_str(char *);
-char *concat_str(char *, char *);
-int cmpare_strs(char *, char *);
+/* str_ctrl1.c */
+char *on_startFind_sub(const char *, const char *);
+int string_lent(char *);
+char *extend_string(char *, char *);
+int strings_weigh(char *, char *);
 
 
-/* string_handlers2 */
+/* str_ctrl2.c */
+char *copy_string(char *, char *);
+char *clone_string(const char *);
 int _putchar(char);
 void _puts(char *);
-char *str_cpy(char *, char *);
-char *str_dup(const char *);
 
 
 /* bit_contrl */

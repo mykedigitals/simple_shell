@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * fill_sh_args - sets the fname field of the struct to the name
+ * occupy_shell - sets the fname field of the struct to the name
  *	of the command being executed
  * @content: struct parameter
  * @arg_v: argument vector
  */
-void fill_sh_args(sh_args *content, char **arg_v)
+void occupy_shell(sh_args *content, char **arg_v)
 {
 	int index = 0;
 
@@ -20,7 +20,7 @@ void fill_sh_args(sh_args *content, char **arg_v)
 			content->argv = malloc(sizeof(char *) * 2);
 			if (content->argv)
 			{
-				content->argv[0] = str_dup(content->arg);
+				content->argv[0] = clone_string(content->arg);
 				content->argv[1] = NULL;
 			}
 		}
@@ -35,11 +35,11 @@ void fill_sh_args(sh_args *content, char **arg_v)
 
 
 /**
- * reset_sh_args - resets the values of the fields in that struct
+ * shell_restart - resets the values of the fields in that struct
  *	to their default values
  * @content: struct parameter
  */
-void reset_sh_args(sh_args *content)
+void shell_restart(sh_args *content)
 {
 	content->arg = NULL;
 	content->argv = NULL;
@@ -49,11 +49,11 @@ void reset_sh_args(sh_args *content)
 
 
 /**
- * free_sh_args - frees sh_args fields
+ * shell_empty - frees sh_args fields
  * @content: struct parameter
  * @fields: fields
  */
-void free_sh_args(sh_args *content, int fields)
+void shell_empty(sh_args *content, int fields)
 {
 	free_alot(content->argv);
 	content->argv = NULL;
@@ -63,11 +63,11 @@ void free_sh_args(sh_args *content, int fields)
 		if (!content->cmd_buf)
 			free(content->arg);
 		if (content->env)
-			free_l_list(&(content->env));
+			empty_l_list(&(content->env));
 		if (content->history)
-			free_l_list(&(content->history));
+			empty_l_list(&(content->history));
 		if (content->alias)
-			free_l_list(&(content->alias));
+			empty_l_list(&(content->alias));
 		free_alot(content->environ);
 			content->environ = NULL;
 		to_free_nothing((void **)content->cmd_buf);

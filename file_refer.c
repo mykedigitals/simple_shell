@@ -2,23 +2,23 @@
 
 
 /**
- * alias_to_str - convert an alias command in the
+ * convert_aliasToStr - convert an alias command in the
  * form "alias name=value"into a string and
  * store it in the "sh_args" struct
  * @content: struct parameter
  * @str: the alias string
  * Desc: It facilitates the creation of a new alias and
  * stores it in @content, but if the value of the alias is
- * not empty, the function calls @remv_alias with the to remove
+ * not empty, the function calls @alias_rm with the to remove
  * any existing alias with the same name as the one being created
  * and then adds it as new node at the end of a linked list
  *
  * Return: 0 (success), 1 (error)
  */
-int alias_to_str(sh_args *content, char *str)
+int convert_aliasToStr(sh_args *content, char *str)
 {
 	/* Find the equals sign in the string */
-	char *str_p = car_finder(str, '=');
+	char *str_p = to_find_char(str, '=');
 
 	if (str_p == NULL)
 	{
@@ -28,37 +28,37 @@ int alias_to_str(sh_args *content, char *str)
 	/* update the alias in the structure */
 	if (!*++str_p)
 	{
-		return (remv_alias(content, str));
+		return (alias_rm(content, str));
 	}
 
-	remv_alias(content, str);
+	alias_rm(content, str);
 	/* Add the new alias to the end of the list */
-	return (new_end_node(&(content->alias), str, 0) == NULL);
+	return (endOf_node(&(content->alias), str, 0) == NULL);
 }
 
 
 /**
- * remv_alias - removes an alias command in the form
+ * alias_rm - removes an alias command in the form
  * "alias name=value" from "sh_args" struct
  * @content: struct parameter
  * @str: the alias string
  * Desc: It copies alias name from @str_p to @copy, then
  * set @str_p to null (\0) to terminate the string at that point.
- * The find_node_index function is then called to find the index
+ * The locate_idx_node function is then called to find the index
  * of the node in the alias linked list that starts with the string
- * before the equal sign. The get_first_node_with_prefix function is
+ * before the equal sign. The prefix_of_firstNode function is
  * used to perform the comparison. If a matching node is found, the
- * delete_node_index function is called
+ * rm_node_idx function is called
  * to remove the node from the linked list.
  *
  * Return: 0 (success), 1 (error)7
  */
-int remv_alias(sh_args *content, char *str)
+int alias_rm(sh_args *content, char *str)
 {
 	/* Find the position of the '=' character in the input string */
 	int remover;
 	char copy;
-	char *str_p = car_finder(str, '=');
+	char *str_p = to_find_char(str, '=');
 
 	if (!str_p)
 	{
@@ -70,9 +70,9 @@ int remv_alias(sh_args *content, char *str)
 
 	 /* Get d index of d first node in d alias list that matches the prefix */
 	/* Delete the node at the given index from the alias list */
-	remover = delete_node_index(&(content->alias),
-		find_node_index(content->alias,
-		get_first_node_with_prefix(content->alias, str, -1)));
+	remover = rm_node_idx(&(content->alias),
+		locate_idx_node(content->alias,
+		prefix_of_firstNode(content->alias, str, -1)));
 	/* Restore the '=' character to the input string */
 	*str_p = copy;
 	return (remover);
@@ -80,20 +80,20 @@ int remv_alias(sh_args *content, char *str)
 
 
 /**
- * alias_printer - prints the alias and
+ * getting_alias - prints the alias and
  * its value stored in the input node's "str"
  * @node: node of the alias
  *
  * Return: 0 (success), 1 (error)
  */
-int alias_printer(l_list *node)
+int getting_alias(l_list *node)
 {
 	char *equal_sign_ptr = NULL;
 	char *c_ptr = NULL;
 
 	if (node != NULL)
 	{
-		equal_sign_ptr = car_finder(node->str, '=');
+		equal_sign_ptr = to_find_char(node->str, '=');
 
 		/* printing chars before "=" */
 		c_ptr = node->str;
@@ -113,12 +113,12 @@ int alias_printer(l_list *node)
 }
 
 /**
- * alias_clone - prints out the name and value of each alias
+ * duplicate_alias - prints out the name and value of each alias
  * @content: struct parameter
  *
  *  Return: 0
  */
-int alias_clone(sh_args *content)
+int duplicate_alias(sh_args *content)
 {
 	int idx = 0;
 	char *car = NULL;
@@ -129,17 +129,17 @@ int alias_clone(sh_args *content)
 		/* prints the node while iterating through the linked list */
 		node = content->alias;
 		for ( ; node != NULL; node = node->link)
-			alias_printer(node);
+			getting_alias(node);
 		return (0);
 	}
 	idx = 1;
 	while (content->argv[idx])
 	{
-		car = car_finder(content->argv[idx], '=');
+		car = to_find_char(content->argv[idx], '=');
 		if (car != NULL)
-			alias_to_str(content, content->argv[idx]);
+			convert_aliasToStr(content, content->argv[idx]);
 		else
-			alias_printer(get_first_node_with_prefix(
+			getting_alias(prefix_of_firstNode(
 				content->alias, content->argv[idx], '='));
 		idx++;
 	}

@@ -2,12 +2,12 @@
 
 
 /**
- * write_with_buffer - inputs characters from car to stderr
+ * using_buffer_to_write - inputs characters from car to stderr
  * @car: The character to print
  *
  * Return: 1 (success), -1 (error)
  */
-int write_with_buffer(char car)
+int using_buffer_to_write(char car)
 {
 	static int index;
 	static char buffer[WRITE_BUF_SIZE];
@@ -24,13 +24,13 @@ int write_with_buffer(char car)
 
 
 /**
- * write_string_with_buffer - takes a string as input and
+ * using_buffer_to_write_str - takes a string as input and
  * writes its contents to the output stream using a buffer
  * @str: string being printed to stdout
  *
  * Return: Nil
  */
-void write_string_with_buffer(char *str)
+void using_buffer_to_write_str(char *str)
 {
 	int index = 0;
 
@@ -38,7 +38,7 @@ void write_string_with_buffer(char *str)
 		return;
 	while (str[index] != '\0')
 	{
-		write_with_buffer(str[index]);
+		using_buffer_to_write(str[index]);
 		index++;
 	}
 }

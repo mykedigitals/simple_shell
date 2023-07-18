@@ -27,19 +27,19 @@ int main(int arg_c, char **arg_v)
 				exit(126);
 			if (errno == ENOENT)
 			{
-				write_string_with_buffer(arg_v[0]);
-				write_string_with_buffer(": 0: Can't open ");
-				write_string_with_buffer(arg_v[1]);
-				write_with_buffer('\n');
-				write_with_buffer(BUF_FLUSH);
+				using_buffer_to_write_str(arg_v[0]);
+				using_buffer_to_write_str(": 0: Can't open ");
+				using_buffer_to_write_str(arg_v[1]);
+				using_buffer_to_write('\n');
+				using_buffer_to_write(BUF_FLUSH);
 				exit(127);
 			}
 			return (EXIT_FAILURE);
 		}
 		content->readfd = fil_des;
 	}
-	populat_listof_env(content);
-	load_history(content);
-	custom_shell(content, arg_v);
+	listing_surr_amt(content);
+	hist_process(content);
+	self_created_sh(content, arg_v);
 	return (EXIT_SUCCESS);
 }

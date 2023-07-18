@@ -2,13 +2,13 @@
 
 
 /**
- * write_string_to_fd - write the string to a stream
+ * stringwrite_toFd - write the string to a stream
  * @str: string being printed
  * @fil_des: filedescriptor written to
  *
  * Return: characters written
  */
-int write_string_to_fd(char *str, int fil_des)
+int stringwrite_toFd(char *str, int fil_des)
 {
 	int count = 0;
 
@@ -16,20 +16,20 @@ int write_string_to_fd(char *str, int fil_des)
 		return (0);
 	while (*str)
 	{
-		count += write_car_to_fd(*str++, fil_des);
+		count += charWrite_toFd(*str++, fil_des);
 	}
 	return (count);
 }
 
 /**
- * write_car_to_fd - writes characters
+ * charWrite_toFd - writes characters
  * to a file descriptor fil_des in a buffered manner
  * @car: character being printed
  * @fil_des: filedescriptor written to
  *
  * Return: 1 (success), -1 (error)
  */
-int write_car_to_fd(int fil_des, char car)
+int charWrite_toFd(int fil_des, char car)
 {
 	static int index;
 	static char buffer[WRITE_BUF_SIZE];
@@ -46,7 +46,7 @@ int write_car_to_fd(int fil_des, char car)
 
 
 /**
- * prnt_decim_int - print the value of the
+ * decimal_intPrint - print the value of the
  * "feed" argument as a decimal number i.e base 10
  * @feed: the input
  * @fil_des: the filedescriptor to write to
@@ -72,7 +72,7 @@ int write_car_to_fd(int fil_des, char car)
  *
  * Return: printed characters
  */
-int prnt_decim_int(int feed, int fil_des)
+int decimal_intPrint(int feed, int fil_des)
 {
 	int (*_puchar)(char) = _putchar;
 	int index, count = 0;
@@ -80,7 +80,7 @@ int prnt_decim_int(int feed, int fil_des)
 
 	/* _puchar writes to stderr*/
 	if (fil_des == STDERR_FILENO)
-		_puchar = write_with_buffer;
+		_puchar = using_buffer_to_write;
 
 	if (feed < 0)
 	{

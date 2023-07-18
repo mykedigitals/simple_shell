@@ -2,22 +2,18 @@
 
 
 /**
- * to_allocate_mem - resizes a previously allocated memory block
- * @prev_mem_size: byte size of previous block
- * @new_mem_size: byte size of new block
- * @first_ptr: pointer to previous malloc'ated block
- * Desc: It first calculates the minimum size between
- * the old size and the new size, and stores the result in old_size.
- * This is because we're only copying the minimum number of
- * bytes required to preserve the data in the memory block.
- * After which it copies over the data from the previously
- * allocated memory block to the new memory block. The loop
- * starts at old_size-1 and decrements old_size on each
- * iteration until it reaches 0. On each iteration, it copies
- * the byte at index "old_size" in the old memory block
- * to the same index in the new memory block.
+ * to_allocate_mem - this function resizes the former alloc memory block
+ * @prev_mem_size: size of former block in byte
+ * @new_mem_size: new block size in byte
+ * @first_ptr: this points to the former malloc block
+ * Desc: First of, it calc the minimum size between
+ * the former and new block size then store them in the former size
+ * This is cause we only copy the min num of bytes required to
+ * contain the data in the mem block.
+ * Here after it cpy over the data from the formerly alloc
+ * mem block to the new mem block. This loops keeps reiterating
  *
- * Return: pointer to newly allocated memory block (p)
+ * Return: this returns the pointer pointing to the newly alloc mem block(p)
  */
 void *to_allocate_mem(void *first_ptr, unsigned int
 prev_mem_size, unsigned int new_mem_size)
@@ -51,10 +47,10 @@ prev_mem_size, unsigned int new_mem_size)
 
 
 /**
- * cpy_setof_mem - emulates "memset()"
- * function as it fills memory with a constant byte
- * @ptr: pointer to the memory area to be filled
- * @value: the value to be filled in the memory block
+ * cpy_setof_mem - this function imitates "memset()" function
+ * as it fills mem with a unchanging byte
+ * @ptr: this is a pointer to mem that is to be filled
+ * @value: values to be filled in the mem block
  * @num: the number of bytes to be set in the memory block
  *
  * Return: pointer to the memory area
@@ -69,7 +65,7 @@ char *cpy_setof_mem(char *ptr, char value, unsigned int num)
 }
 
 /**
- * free_alot - frees memory allocated to a string of strings
+ * free_alot - this function frees mem allocd to a string of strings
  * @str_ptr: pointer to a string of strings
  */
 
@@ -86,10 +82,10 @@ void free_alot(char **str_ptr)
 
 
 /**
- * to_free_nothing - free the memory pointed to by
- * @p: pointer address being freed
+ * to_free_nothing - this function free the mem pointed to by
+ * @p: pointer address that is to be freed
  *
- * Return: 1 (freed), 0 (otherwise)
+ * Return: 1 (freed), else 0
  */
 int to_free_nothing(void **p)
 {

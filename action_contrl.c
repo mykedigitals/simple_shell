@@ -2,13 +2,15 @@
 
 
 /**
- * locate_execute - finds the full path of a command within a
- *	list of directories provided in the dirctry_list
- * @content: struct content
- * @dirctry_list: string path
+ * locate_execute - in the list of dirctry_list this
+ * command locates the path of the command with a
+ * list of dirs
+ *
+ * @content: the content of struct
+ * @dirctry_list: this reps the path to a string
  * @command: command
  *
- * Return: command's full path | NULL
+ * Return: cmd full path or NULL
  */
 char *locate_execute(sh_args *content, char *dirctry_list, char *command)
 {
@@ -17,7 +19,7 @@ char *locate_execute(sh_args *content, char *dirctry_list, char *command)
 
 	if (!dirctry_list)
 		return (NULL);
-	if ((len_of_str(command) > 2) && find_substr_at_start(command, "./"))
+	if ((string_lent(command) > 2) && on_startFind_sub(command, "./"))
 	{
 		if (for_doc_exec(content, command))
 			return (command);
@@ -29,11 +31,11 @@ char *locate_execute(sh_args *content, char *dirctry_list, char *command)
 			full_path = clone_no_delim(dirctry_list,
 					prev_index, path_index);
 			if (!*full_path)
-				concat_str(full_path, command);
+				extend_string(full_path, command);
 			else
 			{
-				concat_str(full_path, "/");
-				concat_str(full_path, command);
+				extend_string(full_path, "/");
+				extend_string(full_path, command);
 			}
 			if (for_doc_exec(content, full_path))
 				return (full_path);
@@ -48,11 +50,13 @@ char *locate_execute(sh_args *content, char *dirctry_list, char *command)
 
 
 /**
- * for_doc_exec - checks if a file is an executable command or not
- * @content: struct content
- * @file_path: file path
+ * for_doc_exec - this function if a particular fine
+ * contains an executable command
  *
- * Return: 1 (true), 0 (otherwise)
+ * @content: content of struct
+ * @file_path: path to all files
+ *
+ * Return: 1 (true), else 0
  */
 int for_doc_exec(sh_args *content, char *file_path)
 {
@@ -71,11 +75,12 @@ int for_doc_exec(sh_args *content, char *file_path)
 
 
 /**
- * clone_no_delim - duplicates chars while removing any
- *	delimiters
- * @pathstr: string path
- * @start_index: start index
- * @stop_index: stop index
+ * clone_no_delim - this function adds another character
+ * at the same time removing any delimiters
+ *
+ * @pathstr: path to string in a file
+ * @start_index: index of the beginning
+ * @stop_index: index signifying the ending
  *
  * Return: pointer to new buffer
  */

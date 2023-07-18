@@ -2,13 +2,13 @@
 
 
 /**
- * find_node_index - finds the index of a given node in a linked list
+ * locate_idx_node - finds the index of a given node in a linked list
  * @head: head node
  * @target_node: target_node
  *
  * Return: node index starting from 0, -1 (otherwise)
  */
-ssize_t find_node_index(l_list *head, l_list *target_node)
+ssize_t locate_idx_node(l_list *head, l_list *target_node)
 {
 	size_t index = 0;
 
@@ -24,7 +24,7 @@ ssize_t find_node_index(l_list *head, l_list *target_node)
 
 
 /**
- * get_first_node_with_prefix -  searches a linked list of strings for
+ * prefix_of_firstNode -  searches a linked list of strings for
  *	the first node whose string starts with a given prefix
  * @node: pointer to list head
  * @search_str: string to match
@@ -32,14 +32,14 @@ ssize_t find_node_index(l_list *head, l_list *target_node)
  *
  * Return: matching node, null
  */
-l_list *get_first_node_with_prefix(l_list *node, char *search_str,
+l_list *prefix_of_firstNode(l_list *node, char *search_str,
 		char search_char)
 {
 	char *match_ptr = NULL;
 
 	while (node)
 	{
-		match_ptr = find_substr_at_start(node->str, search_str);
+		match_ptr = on_startFind_sub(node->str, search_str);
 		if (match_ptr && ((search_char == -1) || (*match_ptr == search_char)))
 			return (node);
 		node = node->link;
@@ -49,12 +49,12 @@ l_list *get_first_node_with_prefix(l_list *node, char *search_str,
 
 
 /**
- * list_len - finds length of linked list
+ * length_ofList - finds length of linked list
  * @head: head node
  *
  * Return: list size
  */
-size_t list_len(const l_list *head)
+size_t length_ofList(const l_list *head)
 {
 	size_t index = 0;
 
@@ -68,18 +68,18 @@ size_t list_len(const l_list *head)
 
 
 /**
- * prnt_l_list_with_index - prints all elements of a l_list linked list
+ * idx_of_printedList - prints all elements of a l_list linked list
  * @head: head node
  *
  * Return: list size
  */
-size_t prnt_l_list_with_index(const l_list *head)
+size_t idx_of_printedList(const l_list *head)
 {
 	size_t index = 0;
 
 	while (head)
 	{
-		_puts(custom_itoa(head->num, 10, 0));
+		_puts(selfCreated_get(head->num, 10, 0));
 		_putchar(':');
 		_putchar(' ');
 		_puts(head->str ? head->str : "(nil)");
@@ -92,15 +92,15 @@ size_t prnt_l_list_with_index(const l_list *head)
 
 
 /**
- * conv_list_to_strings - create an array of strings from list->str
+ * list_toStrings_list - create an array of strings from list->str
  * @head: head node
  *
  * Return: array of strings
  */
-char **conv_list_to_strings(l_list *head)
+char **list_toStrings_list(l_list *head)
 {
 	l_list *node = head;
-	size_t index = list_len(head), x;
+	size_t index = length_ofList(head), x;
 	char **str_array;
 	char *str;
 
@@ -111,7 +111,7 @@ char **conv_list_to_strings(l_list *head)
 		return (NULL);
 	for (index = 0; node; node = node->link, index++)
 	{
-		str = malloc(len_of_str(node->str) + 1);
+		str = malloc(string_lent(node->str) + 1);
 		if (!str)
 		{
 			for (x = 0; x < index; x++)
@@ -120,7 +120,7 @@ char **conv_list_to_strings(l_list *head)
 			return (NULL);
 		}
 
-		str = str_cpy(str, node->str);
+		str = copy_string(str, node->str);
 		str_array[index] = str;
 	}
 	str_array[index] = NULL;
