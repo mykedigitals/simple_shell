@@ -2,9 +2,9 @@
 
 
 /**
- * c_dir_shell - changes the current
- * working directory of the shell
- * @content: struct parameter
+ * c_dir_shell - this function converts the
+ * present working catalog of the shell
+ * @content: struct credentials
  *
  * Return: 0 (success), 1 (error)
  */
@@ -52,9 +52,9 @@ int c_dir_shell(sh_args *content)
 
 
 /**
- * assist_cmd -  to provide a placeholder
- * for the "help" command in a shell program
- * @content: struct parameter
+ * assist_cmd -  to supply a placeholder for the "assistance"
+ * command in a shell program
+ * @content: credential for struct
  *
  * Return: 0
  */
@@ -71,8 +71,8 @@ int assist_cmd(sh_args *content)
 
 
 /**
- * close_sh - terminates the shell's working process
- * @content: struct parameter
+ * close_sh - ends the shell's working schedule
+ * @content: credential for struct
  *
  * Return: 0
  */
@@ -100,18 +100,22 @@ int close_sh(sh_args *content)
 
 
 /**
- * close_str_intt - converts string inputs to integer
+ * close_str_intt - changes over string inputs to numbers
+ * @str: string being changed over
  * @str: string being converted
- * Desc: It then checks whether the first character
- * of the input string is a + sign. If it is, it increments
- * the pointer (str++) to move past the + sign. whether each
- * character is a digit between 0 and 9. If it is, it
- * multiplies the converted_output by 10 and adds the
- * value of the current digit to it. If the converted_output
- * exceeds the maximum value of an integer (INT_MAX),
- * the function returns -1 indicating an error
+ * Desc: It at that point checks whether the primary
+ * character of the input string may be a + sign.
+ * In case it is, it increases the pointer (str++)
+ * to move past the + sign. whether each character
+ * may be a digit between and 9. In case it is, it
+ * duplicates the converted_output by 10 and includes
+ * the esteem of the current digit to it. In the event
+ * that the converted_output surpasses the most extreme
+ * esteem of an numbers (INT_MAX), the work returns -1
+ * showing an blunder
  *
- * Return: 0 , -1 (error, if the input string contains non-numeric characters)
+ * Return: 0 , -1 (mistake, in the event that the input string
+ * contains non-numeric chars)
  */
 int close_str_intt(char *str)
 {

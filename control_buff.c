@@ -2,8 +2,9 @@
 
 
 /**
- * using_buffer_to_write - inputs characters from car to stderr
- * @car: The character to print
+ * using_buffer_to_write - This function converts inputs
+ * characters from char to stderr
+ * @car: The char to be printed
  *
  * Return: 1 (success), -1 (error)
  */
@@ -25,8 +26,9 @@ int using_buffer_to_write(char car)
 
 /**
  * using_buffer_to_write_str - takes a string as input and
- * writes its contents to the output stream using a buffer
- * @str: string being printed to stdout
+ * composes its substance to the yield stream employing
+ * a buffer
+ * @str: string being printed in to stdout
  *
  * Return: Nil
  */

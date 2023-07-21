@@ -2,9 +2,9 @@
 
 
 /**
- * put_prosez - reads user input from the command line
- *	(apart from the newline)
- * @content: struct parameter
+ * put_prosez - peruses client input from the
+ * command line (separated from the newline)
+ * @content: credentials for struct
  *
  * Return: length of the current command
  */
@@ -51,13 +51,14 @@ ssize_t put_prosez(sh_args *content)
 
 
 /**
- *  buffer_insert - reads data from a file descriptor into a buffer,
- *	up to a maximum size specified by READ_BUF_SIZE
- * @content: struct parameter
+ *  buffer_insert - peruses information from a record
+ *  descriptor into a buffer, up to a greatest measure
+ *  indicated by READ_BUF_SIZE
+ * @content: credential for struct
  * @buffer: buffer
  * @bytes_read: size
  *
- * Return: result
+ * Return: output
  */
 ssize_t  buffer_insert(sh_args *content, char *buffer, size_t *bytes_read)
 {
@@ -73,19 +74,20 @@ ssize_t  buffer_insert(sh_args *content, char *buffer, size_t *bytes_read)
 
 
 /**
- * stdin_obtained - reads input from standard input (stdin)
- *	and store it in a buffer
- * @content: parameter struct
- * @input_buffer: buffer's address
- * @buffer_size: buffer_size  address
- * Desc: If there is no input left in the buffer, the function will
- *	fill the buffer by calling getline or insert_line_search function
- *	to read input from stdin. The input is then processed by
- *	removing any trailing newline, removing comments, adding it to
- *	the command history, and determining if it is a command chain
- *	by checking for the presence of a semicolon
- *
- * Return: number of characters read
+ * stdin_obtained - peruses input from standard input
+ * (stdin) and store it in a buffer
+ * @content: credential for struct
+ * @input_buffer: buf's address
+ * @buffer_size: buf_size  address
+ * Desc: In the event that there's no input cleared out
+ * within the buffer, the work will fill the buffer by
+ * calling getline or insert_line_search work to examined
+ * input from stdin. The input is at that point handled by
+ * expelling any trailing newline, expelling comments,
+ * including it to the command history, and deciding in case
+ * it may be a command chain by checking for the nearness of
+ * a semicolon
+ * Return: nos of chars to be read
  */
 ssize_t stdin_obtained(sh_args *content, char **input_buffer,
 		size_t *buffer_size)
@@ -124,13 +126,13 @@ ssize_t stdin_obtained(sh_args *content, char **input_buffer,
 
 
 /**
- * insert_line_search - reads a line of input from a file or a stream
- *	and store it in a character array
- * @content: parameter struct
- * @ptr: stores address of the pointer that will point to the output
- *	buffer where the function will store the read line
- * @length: stores  the length of the line that was read, including
- *	the null terminator
+ * insert_line_search - peruses a line of input from a record
+ * or a stream and store it in a character cluster
+ * @content: credential for struct
+ * @ptr: saves address of the pointer that will point to the
+ * yield buffer where the work will save the studied line
+ * @length: stores the length of the line that was studied,
+ * counting the invalid eliminator
  *
  * Return: total_bytes
  */
@@ -176,9 +178,10 @@ int insert_line_search(sh_args *content, char **ptr, size_t *length)
 
 
 /**
- * input_Ctrl - handle signal calls when user presses Ctrl+C
- * @unused_signal_num:  indicates the signal number that triggered
- *	the signal handler
+ * input_Ctrl - This function cntrls flag calls when client
+ * presses Ctrl+C
+ * @unused_signal_num: shows the flag number that activated
+ * the flag controller
  *
  * Return: nil
  */

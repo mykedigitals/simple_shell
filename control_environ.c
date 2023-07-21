@@ -2,9 +2,9 @@
 
 
 /**
- * set_surr_confirm - verifies the number of
- * arguments being passed to surr_set
- * @content: struct parameter
+ * set_surr_confirm - validates the amounts of
+ * args being moved to surr_set
+ * @content: credentials of struct
  *
  *  Return: 0 (success), 1 (error)
  */
@@ -21,9 +21,9 @@ int set_surr_confirm(sh_args *content)
 }
 
 /**
- * unsetting_surr_confirm - verifies the number of
- * arguments being passed to surr_set unsetduplicate_surr
- * @content: struct parameter
+ * unsetting_surr_confirm - validates the amounts of
+ * args being moved to surr_set unsetduplicate_surr
+ * @content: credentials of struct
  *
  *  Return: 0
  */
@@ -43,11 +43,13 @@ int unsetting_surr_confirm(sh_args *content)
 }
 
 /**
- * listing_surr_amt -  populating a linked list with environment variables
- * @content: struct parameter
- * Desc: it adds each element of the environ array to the end
- * of the linked list using the endOf_node function. The third
- * argument to endOf_node takes 0 (an integer value) as arguments
+ * listing_surr_amt -  propagating a linked-list with environ
+ * variables
+ * @content: credentials of struct
+ * Desc: it includes each component of the environ cluster to the
+ * conclusion of the connected list utilizing the endOf_node work.
+ * The third contention to endOf_node takes (an numbers esteem)
+ * as contentions
  *
  * Return: 0
  */
@@ -64,8 +66,9 @@ int listing_surr_amt(sh_args *content)
 
 
 /**
- * duplicate_surr - print the current environment variables of the program
- * @content: struct parameter
+ * duplicate_surr - This function prints the present env variables
+ * of the program
+ * @content: credentials of the struct
  *
  * Return: 0
  */
@@ -77,10 +80,11 @@ int duplicate_surr(sh_args *content)
 
 
 /**
- * getduplicate_surr - search for an environment variable with
- * the given name in the linked list pointed to by content->env
- * and return a pointer to its value if it is found
- * @content: struct parameter
+ * getduplicate_surr - look for an environment variable with the
+ * given title within the connected list pointed to by content->env
+ * and return a pointer to its esteem on the off chance that
+ * it is found
+ * @content: credential of the struct
  * @name: name of env var
  *
  * Return: the value
