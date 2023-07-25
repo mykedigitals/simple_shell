@@ -2,8 +2,8 @@
 
 
 /**
- * _putchar - writes a char to stdout
- * @target_char: character to be printed
+ * _putchar - This writes a character to stdout
+ * @target_char: this is character to be printed
  *
  * Return: 1 (success), -1 (error)
  */
@@ -24,8 +24,8 @@ int _putchar(char target_char)
 
 
 /**
- *_puts - handles printing string from input
- *@str: string being printed
+ *_puts - to handle printing of the string from input
+ *@str: string that will be printed
  *
  * Return: nil
  */
@@ -44,11 +44,11 @@ void _puts(char *str)
 
 
 /**
- * copy_string - copies string from src_str to dest_str
- * @dest_str: string destination
- * @src_str: string source
+ * copy_string - this will copy string from src_str to dest_str
+ * @dest_str: this  string destination
+ * @src_str: this string source
  *
- * Return: pointer to destination
+ * Return: the pointer to destination
  */
 char *copy_string(char *dest_str, char *src_str)
 {
@@ -67,10 +67,10 @@ char *copy_string(char *dest_str, char *src_str)
 
 
 /**
- * clone_string - handles string duplication
- * @str: string being duplicated
+ * clone_string - this will handle string duplication
+ * @str: this string being duplicated
  *
- * Return: pointer to the duplicated string
+ * Return: the pointer to the duplicated string
  */
 char *clone_string(const char *str)
 {
