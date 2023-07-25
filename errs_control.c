@@ -2,10 +2,11 @@
 
 
 /**
- * error_msg_print - The function writes an
- * error message to the standard error output
- * @content: struct parameter
- * @err_str: information about the source of the error
+ * error_msg_print - The function sends a message
+ * about an error to the output for errors
+ * called standard error.
+ * @content: value of struct
+ * @err_str: detials of the origin of the error
  *
  * Return: 0
  */
