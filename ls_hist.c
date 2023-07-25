@@ -1,9 +1,8 @@
 #include "shell.h"
 
 /**
- * hist_cmd_print -  print out the command history,
- * consecutively, leading with line numbers, from 0
- * @content: struct parameter
+ * hist_cmd_print -  this function make it simple, you can say: "Get a list of all the commands you have used, starting from line 0, with line numbers included."
+ * @content: value of struct
  *  Return: Always 0
  */
 int hist_cmd_print(sh_args *content)

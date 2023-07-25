@@ -1,11 +1,11 @@
 #include "shell.h"
 
 /**
- * hist_process - reads command history
+ * hist_process - this function scan through cmd history
  * from a file and add it to a history buffer
  * @content: struct parameter
  *
- * Return: histcount (success), 0 (error)
+ * Return: histcount (success), else 0
  */
 int hist_process(sh_args *content)
 {
@@ -52,11 +52,12 @@ int hist_process(sh_args *content)
 
 
 /**
- * put_sh_record - creates a file to store
- * history of shell program, or appends an existing file
- * @content: struct parameter
+ * put_sh_record - generates a file to save
+ * history of shell program, or attach presently
+ * available file
+ * @content: value of struct
  *
- * Return: 1 (success), -1 (error)
+ * Return: 1 (success), else -1
  */
 int put_sh_record(sh_args *content)
 {
@@ -107,10 +108,12 @@ int append_inRecord(sh_args *content, char *buffer, int linecount)
 
 
 /**
- * obtain_histFile_path - gets the path to the history file
- * @content: struct parameter
+ * obtain_histFile_path - This sentence means finding the
+ * location of the file where the history is stored.
+ * @content: value of struct
  *
- * Return: string construct to the path of the history file
+ * Return: string struct to the location where the history file
+ * is located
  */
 char *obtain_histFile_path(sh_args *content)
 {
@@ -132,12 +135,12 @@ char *obtain_histFile_path(sh_args *content)
 
 
 /**
- * refresh_history_nodeNumber - renumbers
- * the nodes in a linked list of history items
- * @content: struct parameter
+ * refresh_history_nodeNumber - This function numbers
+ * the nodes in a linked-list of hist items again
+ * @content: value of struct
  *
- * Return: total number of nodes in the linked list
- * (i.e. the new highest number assigned to a node, plus one)
+ * Return: all nodes completely in the linked list
+ * this means the new highest no assigned to a node, plus one
  */
 int refresh_history_nodeNumber(sh_args *content)
 {
