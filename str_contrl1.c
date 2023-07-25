@@ -2,12 +2,12 @@
 
 
 /**
- * on_startFind_sub - the string str_to_search starts with the
- *	substring substring
- * @str_to_search: searched string
- * @substring: substring being searched
+ * on_startFind_sub - this is the string str_to_search starts with the
+ *	substring x2
+ * @str_to_search: the is searched string
+ * @substring: substring to be searched
  *
- * Return: address of next char of str_to_search or NULL
+ * Return: this returns address of the next char of str_to_search or NULL
  */
 char *on_startFind_sub(const char *str_to_search, const char *substring)
 {
@@ -19,10 +19,10 @@ char *on_startFind_sub(const char *str_to_search, const char *substring)
 
 
 /**
- * string_lent - gets length of a string
- * @str: string length to be checked
+ * string_lent - this will get length of string
+ * @str: this is the string length to be checked
  *
- * Return: string length
+ * Return: the string length
  */
 int string_lent(char *str)
 {
@@ -38,11 +38,11 @@ int string_lent(char *str)
 
 
 /**
- * extend_string - concatenates strings str_dest and str_src
- * @str_dest: the destination buffer
- * @str_src: the source buffer
+ * extend_string - this will concatenate the strings str_dest and str_src
+ * @str_dest: this is the destination buffer
+ * @str_src: this is the source buffer
  *
- * Return: concatenates string
+ * Return: return the concatenated string
  */
 char *extend_string(char *str_dest, char *str_src)
 {
@@ -58,12 +58,12 @@ char *extend_string(char *str_dest, char *str_src)
 
 
 /**
- * strings_weigh - compare two strings, str1 and str2, and return an
- *	integer value indicating their relative order
- * @str1: first string
- * @str2: second string
+ * strings_weigh - this would compare two strings, str1 and str2, then return an
+ *	integer value to show us their relative order
+ * @str1: this first string
+ * @str2: this second string
  *
- * Return: 0 (if str1 == str2), negative (str1 < str2), positive (str1 > str2)
+ * Return: 0 (if str1 == str2) and -ve (str1 < str2) or +ve (str1 > str2)
  */
 int strings_weigh(char *str1, char *str2)
 {

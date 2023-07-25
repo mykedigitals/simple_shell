@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * occupy_shell - this function assigns fname field
- * of struct to the name of the cmd that is being executed
- * @content: parameter of struct
- * @arg_v: vector of an argument
+ * occupy_shell - this is function to assign fname field
+ * of a struct to name of the cmd that is to be executed
+ * @content: this parameter of struct
+ * @arg_v: this vector of an argument
  */
 void occupy_shell(sh_args *content, char **arg_v)
 {
@@ -35,9 +35,9 @@ void occupy_shell(sh_args *content, char **arg_v)
 
 
 /**
- * shell_restart - this function restore the default values
- * of the fields in that struct
- * @content: struct parameter
+ * shell_restart - this is function to restore the default values
+ * of fields in the 'struct'
+ * @content: this struct parameter
  */
 void shell_restart(sh_args *content)
 {
@@ -49,8 +49,8 @@ void shell_restart(sh_args *content)
 
 
 /**
- * shell_empty - this function frees sh_args fields
- * @content: value of struct
+ * shell_empty - this is function to free sh_args fields
+ * @content: this value of struct
  * @fields: fields
  */
 void shell_empty(sh_args *content, int fields)

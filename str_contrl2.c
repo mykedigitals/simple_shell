@@ -68,7 +68,7 @@ char *copy_string(char *dest_str, char *src_str)
 
 /**
  * clone_string - this will handle string duplication
- * @str: this string being duplicated
+ * @str: this string to be duplicated
  *
  * Return: the pointer to the duplicated string
  */
