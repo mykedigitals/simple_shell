@@ -2,12 +2,12 @@
 
 
 /**
- * to_find_char - searches for a particular character in a string and
- *	returns a pointer to the first occurrence of that character
- * @target_char: character being looked for
- * @str: string being checked
+ * to_find_char - this will search for particular character in string and
+ *	return a pointer to the first sign of that character
+ * @target_char: the character to be found.
+ * @str: the string to be checked
  *
- * Return: the character that was found in string *start_of_dest
+ * Return: this is the character that is found in string *start_of_dest
  */
 char *to_find_char(char *str, char target_char)
 {
@@ -23,13 +23,13 @@ char *to_find_char(char *str, char target_char)
 
 
 /**
- * addMore_str - concatenate a portion of one string, src, onto the
- *	end of another string, dest
- * @dest: destination string
- * @src: source string
- * @max_chars: maximum number of characters to copy from src
+ * addMore_str - this will concatenate one portion of string, src, with the
+ *	end of another string, which is dest
+ * @dest: this destination string
+ * @src: this source string
+ * @max_chars: represents  maximum number of characters to be copied from src
  *
- * Return: concatenated string
+ * Return: the concatenated string
  */
 char *addMore_str(char *dest, char *src, int max_chars)
 {
@@ -53,14 +53,14 @@ char *addMore_str(char *dest, char *src, int max_chars)
 
 
 /**
- * string_to_copy - copies characters from the source string (src) to the
- *	destination string (dest) and ensure that the destination
+ * string_to_copy - this copies characters from the source string (src) to (dest) and sees
+ * that the destination
  *	string is null-terminated
- * @dest: destination string
- * @src: source string
- * @limit: maximum number of characters to copy from src
+ * @dest: this  destination string
+ * @src: this source string
+ * @limit: this max no characters to copy from src
  *
- * Return: copied string
+ * Return: the string that was copied
  */
 char *string_to_copy(char *dest, char *src, int limit)
 {
@@ -87,8 +87,8 @@ char *string_to_copy(char *dest, char *src, int limit)
 
 
 /**
- * thisRm_comments - searches and replaces first instance of '#' with '\0'
- * @text: string to be modifed
+ * thisRm_comments - this will search then  replace first show of '#' with '\0'
+ * @text: the string be modifed
  *
  * Return: 0
  */
@@ -106,13 +106,12 @@ void thisRm_comments(char *text)
 
 
 /**
- * selfCreated_get - converts a long integer num into a string
- *	representation in a given base, which can be specified through the flags
- * @num: number
- * @conversionBase: conversionBase
- * @flags: flags
+ * selfCreated_get - this converts long int num to a str representer in a base
+ * @num: the  number
+ * @conversionBase: tis is conversionBase
+ * @flags: our flags
  *
- * Return: converted string
+ * Return: the converted string
  */
 char *selfCreated_get(long int num, int conversionBase, int flags)
 {
