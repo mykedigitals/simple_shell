@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * self_created_sh - custom shell implementation
- * that reads user input, interprets and executes commands
- * @content: struct parameter
- * @arg_v: argument vector
+ * self_created_sh - this is custom shell implementation
+ * which will read user input, interpret then execute commands
+ * @content: the struct parameter
+ * @arg_v: this reps argument vector
  *
  * Return: 0 (success), 1 (error)
  */
@@ -46,12 +46,12 @@ int self_created_sh(sh_args *content, char **arg_v)
 
 
 /**
- * locate_exeCmd - function finds the path to an executable
- * file based on the command-line arguments
- * and then calls fork_cmd to execute the file
- * @content: struct parameter
+ * locate_exeCmd - this function will find the path to executable
+ * file depending on command-line arguments then it calls 
+ * fork_cmd to execute the file
+ * @content: this is struct parameter
  *
- * Return: nil
+ * Return: nil(no return)
  */
 void locate_exeCmd(sh_args *content)
 {
@@ -92,10 +92,10 @@ void locate_exeCmd(sh_args *content)
 
 
 /**
- * self_created_fork - forks a system call to create a new process
- * @content: struct parameter
+ * self_created_fork - this will iterate a system call and create a new process
+ * @content: this is struct parameter
  *
- * Return: nil
+ * Return: nil(no return)
  */
 void self_created_fork(sh_args *content)
 {
@@ -104,7 +104,7 @@ void self_created_fork(sh_args *content)
 	child_pid = fork();
 	if (child_pid == -1)
 	{
-		/* TODO: PUT ERROR FUNCTION */
+		/* TODO:this is to add our error function */
 		perror("Error:");
 		return;
 	}
@@ -117,7 +117,7 @@ void self_created_fork(sh_args *content)
 				exit(126);
 			exit(1);
 		}
-		/* TODO: PUT ERROR FUNCTION */
+		/* TODO: this is to add our error function */
 	}
 	else
 	{
@@ -133,12 +133,13 @@ void self_created_fork(sh_args *content)
 
 
 /**
- * find_andExe_follow - searches for a built-in command in a shell program
- * @content: struct parameter
+ * find_andExe_follow - this will search for a built-in 
+ * command in our shell program
+ * @content: this is struct parameter
  *
- * Return: -1 (builtin is not found), 0 (builtin is executed),
- * 1 (builtin found but not executed),
- *	   -2 (builtin signals exit())
+ * Return: -1 ( if our builtin is not found), 0 (if our builtin is executed),
+ * 1 (if our builtin can be  found but not executed),
+ *	   -2 (when our builtin signals exit())
  */
 int find_andExe_follow(sh_args *content)
 {

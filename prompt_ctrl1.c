@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * to_commune - checks if shell is in interactive mode
- * @content: struct parameter
+ * to_commune - this will check if shell can interact
+ * @content: this is struct parameter
  *
- * Return: 1 (is interactive mode)
+ * Return: 1 (shell can  interact)
  */
 int to_commune(sh_args *content)
 {
@@ -13,10 +13,9 @@ int to_commune(sh_args *content)
 
 
 /**
- * no_limitation - checks if a given
- * character is a delimeter character
- * @car: character being check
- * @delim: delimeter string
+ * no_limitation - this will check if a given character is a delimeter
+ * @car: the character to be checked
+ * @delim: the delimeter string
  *
  * Return: 1 (true), 0 (false)
  */

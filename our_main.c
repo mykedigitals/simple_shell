@@ -2,11 +2,11 @@
 
 
 /**
- * main - encapsulates the running a custom shell program
- * @arg_c: argument count
- * @arg_v: argument vector
+ * main - this covers and controls how our custom shell program runs
+ * @arg_c: this argument count
+ * @arg_v: this argument vector
  *
- * Return: 0 (success), 1 (error)
+ * Return: 0 (for success), 1 (for error)
  */
 int main(int arg_c, char **arg_v)
 {
