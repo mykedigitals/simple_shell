@@ -2,12 +2,12 @@
 
 
 /**
- * list_of_stringPrint - print all the strings stored in a singly
- *	linked list of strings, with each string followed by a
- *	newline character
- * @head: first node pointer
+ * list_of_stringPrint - print all the strings put away
+ * in a independently connected list of strings, with
+ * each string taken after by a newline character
+ * @head: pointer to the beginning of the node
  *
- * Return: number of nodes traversed in the linked list
+ * Return: amounts of hubs navigated within the connected list
  */
 size_t list_of_stringPrint(const l_list *head)
 {
@@ -25,12 +25,13 @@ size_t list_of_stringPrint(const l_list *head)
 
 
 /**
- * endOf_node - adds a new node to the end of a linked list
- * @list_head: head node
- * @str: strings
+ * endOf_node - includes an update node to the
+ * conclusion of a connected list
+ * @list_head: the top of the node
+ * @str: strs
  * @num: index
  *
- * Return: list size
+ * Return: size of the connected list
  */
 l_list *endOf_node(l_list **list_head, const char *str, int num)
 {
@@ -67,11 +68,11 @@ l_list *endOf_node(l_list **list_head, const char *str, int num)
 
 
 /**
- * rm_node_idx - delete a node in a linked list at a specific index
+ * rm_node_idx - remove a hub in a connected list at a particular index
  * @list_head: head node
  * @index: index node being deleted
  *
- * Return: 1 (success), 0 (failure)
+ * Return: 1 if success, else 0
  */
 int rm_node_idx(l_list **list_head, unsigned int index)
 {
@@ -108,10 +109,10 @@ int rm_node_idx(l_list **list_head, unsigned int index)
 
 
 /**
- * empty_l_list - frees all list
- * @list_head: head node
+ * empty_l_list - this function liberates all list
+ * @list_head: the tip of the node
  *
- * Return: void
+ * Return: null
  */
 void empty_l_list(l_list **list_head)
 {

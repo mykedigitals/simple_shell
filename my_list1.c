@@ -2,11 +2,12 @@
 
 
 /**
- * locate_idx_node - finds the index of a given node in a linked list
- * @head: head node
- * @target_node: target_node
+ * locate_idx_node - this function locates the record
+ * of a given hub in a connected list
+ * @head: this is the tip of the node
+ * @target_node: node to be targeted
  *
- * Return: node index starting from 0, -1 (otherwise)
+ * Return: this returns the hub value ranging from 0, -1 (otherwise)
  */
 ssize_t locate_idx_node(l_list *head, l_list *target_node)
 {
@@ -24,11 +25,12 @@ ssize_t locate_idx_node(l_list *head, l_list *target_node)
 
 
 /**
- * prefix_of_firstNode -  searches a linked list of strings for
- *	the first node whose string starts with a given prefix
- * @node: pointer to list head
- * @search_str: string to match
- * @search_char: the next character after search_str to match
+ * prefix_of_firstNode - this function looks a connected list
+ * of strings for the primary hub whose string begins with
+ * a given prefix
+ * @node: this is the pointer pointed to the head of the list
+ * @search_str: pairing string
+ * @search_char: the next char after search_str to match
  *
  * Return: matching node, null
  */
@@ -49,10 +51,11 @@ l_list *prefix_of_firstNode(l_list *node, char *search_str,
 
 
 /**
- * length_ofList - finds length of linked list
- * @head: head node
+ * length_ofList - this locates the length
+ * of linked list
+ * @head: the tip of node
  *
- * Return: list size
+ * Return: qty of the list
  */
 size_t length_ofList(const l_list *head)
 {
@@ -68,10 +71,11 @@ size_t length_ofList(const l_list *head)
 
 
 /**
- * idx_of_printedList - prints all elements of a l_list linked list
+ * idx_of_printedList - this function prints all the elements
+ * of a l_list linked list
  * @head: head node
  *
- * Return: list size
+ * Return: qty of the list
  */
 size_t idx_of_printedList(const l_list *head)
 {
@@ -92,8 +96,8 @@ size_t idx_of_printedList(const l_list *head)
 
 
 /**
- * list_toStrings_list - create an array of strings from list->str
- * @head: head node
+ * list_toStrings_list - develop series of strs frm list->str
+ * @head: this is the tip node
  *
  * Return: array of strings
  */
