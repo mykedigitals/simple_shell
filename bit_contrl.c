@@ -10,16 +10,16 @@
  */
 char **created_strt(char *str, char *delimiter)
 {
-	int i, j, k, m, word_count = 0;
+	int a, b, c, d, word_count = 0;
 	char **substrings;
 
 	if (str == NULL || str[0] == 0)
 		return (NULL);
 	if (!delimiter)
 		delimiter = " ";
-	for (i = 0; str[i] != '\0'; i++)
-		if (!no_limitation(str[i], delimiter) &&
-				(no_limitation(str[i + 1], delimiter) || !str[i + 1]))
+	for (a = 0; str[a] != '\0'; a++)
+		if (!no_limitation(str[a], delimiter) &&
+				(no_limitation(str[a + 1], delimiter) || !str[a + 1]))
 			word_count++;
 
 	if (word_count == 0)
@@ -27,25 +27,25 @@ char **created_strt(char *str, char *delimiter)
 	substrings = malloc((1 + word_count) * sizeof(char *));
 	if (!substrings)
 		return (NULL);
-	for (i = 0, j = 0; j < word_count; j++)
+	for (a = 0, b = 0; b < word_count; b++)
 	{
-		while (no_limitation(str[i], delimiter))
-			i++;
-		k = 0;
-		while (!no_limitation(str[i + k], delimiter) && str[i + k])
-			k++;
-		substrings[j] = malloc((k + 1) * sizeof(char));
-		if (!substrings[j])
+		while (no_limitation(str[b], delimiter))
+			b++;
+		c = 0;
+		while (!no_limitation(str[a + c], delimiter) && str[a + c])
+			c++;
+		substrings[b] = malloc((c + 1) * sizeof(char));
+		if (!substrings[b])
 		{
-			for (k = 0; k < j; k++)
-				free(substrings[k]);
+			for (c = 0; c < b; c++)
+				free(substrings[c]);
 			free(substrings);
 			return (NULL);
 		}
-		for (m = 0; m < k; m++)
-			substrings[j][m] = str[i++];
-		substrings[j][m] = 0;
+		for (d = 0; d < c; d++)
+			substrings[b][d] = str[a++];
+		substrings[b][d] = 0;
 	}
-	substrings[j] = NULL;
+	substrings[b] = NULL;
 	return (substrings);
 }
